@@ -1,7 +1,7 @@
 ---
 name: User Story
 about: A default user story
-title: "(Short name)"
+title: "(Short This )"
 projects: 'me-jterhorst/neueFische-capstone-inCased'
 assignees: "me-jterhorst"
 ---
