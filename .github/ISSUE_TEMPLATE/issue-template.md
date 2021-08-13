@@ -3,7 +3,7 @@ name: User Story
 about: A default user story
 title: "(Short name)"
 labels: ""
-assignees: ""
+assignees: "me-jterhorst"
 ---
 
 ## Value statement - a requirement, not a solution
