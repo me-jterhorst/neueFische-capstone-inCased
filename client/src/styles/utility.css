@@ -1,0 +1,45 @@
+.dispFlex {
+  display: flex;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+/* ============== General Icons */
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-stroke--light {
+  stroke: var(--black-25);
+}
+
+.icon-fill--light {
+  fill: var(--black-25);
+}
+
+.icon-stroke--dark {
+  stroke: var(--black-100);
+}
+.icon-fill--dark {
+  fill: var(--black-100);
+}
+
+/* ================= General Hover / Active */
+
+.opaque:hover,
+.opaque:active {
+  opacity: 0.6;
+}
+
+/* =============== Transition Ease-in-out */
+.transition {
+  transition: all 0.5s ease-in-out;
+}
