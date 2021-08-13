@@ -2,7 +2,7 @@
 name: User Story
 about: A default user story
 title: "(Short name)"
-labels: "testlabel"
+projects: "Incased"
 assignees: "me-jterhorst"
 ---
 
