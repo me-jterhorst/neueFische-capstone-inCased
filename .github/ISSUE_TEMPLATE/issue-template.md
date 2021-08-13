@@ -4,6 +4,7 @@ about: A default user story
 title: "(Short This )"
 projects: 'me-jterhorst/neueFische-capstone-inCased'
 assignees: "me-jterhorst"
+labels: tracking issue
 ---
 
 ## Value statement - a requirement, not a solution
