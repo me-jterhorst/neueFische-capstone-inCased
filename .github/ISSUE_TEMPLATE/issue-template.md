@@ -5,8 +5,6 @@ title: "(Short Name)"
 projects: 'me-jterhorst/neueFische-capstone-inCased'
 assignees: "me-jterhorst"
 
-name: Auto Assign to Project(s)
-
 on:
   issues:
     types: [opened]
