@@ -2,7 +2,7 @@
 name: User Story
 about: A default user story
 title: "(Short name)"
-projects: 'https://github.com/me-jterhorst/neueFische-capstone-inCased/projects/1'
+projects: 'me-jterhorst/neueFische-capstone-inCased'
 assignees: "me-jterhorst"
 ---
 
