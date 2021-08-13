@@ -1,10 +1,10 @@
 ---
 name: User Story
 about: A default user story
-title: "(Short This )"
+title: "(Short Name)"
 projects: 'me-jterhorst/neueFische-capstone-inCased'
 assignees: "me-jterhorst"
-labels: tracking issue
+labels: tracking issue, needs triage
 ---
 
 ## Value statement - a requirement, not a solution
