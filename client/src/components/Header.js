@@ -1,11 +1,20 @@
 import "./Header.css";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 export default function Header() {
+  const [isToggled, setIsToggled] = useState(false);
+
+  function toggleNav() {
+    setIsToggled(!isToggled);
+  }
   return (
-    <header className='top-nav top-nav--active transition'>
+    <header
+      className={`top-nav ${isToggled ? "top-nav--active" : " "}
+    transition`}>
       <svg
-        className='top-nav__icon'
+        onClick={(e) => toggleNav(e)}
+        className='top-nav__icon opaque'
         width='30'
         height='30'
         viewBox='0 0 30 30'

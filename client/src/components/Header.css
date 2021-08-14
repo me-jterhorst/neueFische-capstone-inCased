@@ -17,6 +17,7 @@
   position: absolute;
   top: 40px;
   left: 20px;
+  cursor: pointer;
 }
 
 /* Upper Nav Menu & Nav Links */
