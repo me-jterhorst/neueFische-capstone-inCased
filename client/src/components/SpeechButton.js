@@ -3,7 +3,7 @@ import "./SpeechButton.css";
 export default function SpeechButton() {
   return (
     <div className='speechPart'>
-      <button className='speechButton'>
+      <button className='speechButton transition'>
         <svg
           className='icon'
           viewBox='0 0 43 43'
