@@ -6,6 +6,7 @@
   left: calc(100vw - var(--dot-matrix-width) - 40px);
   min-width: 100vw;
   z-index: 10;
+  min-height: 100px;
 }
 
 .top-nav--active {

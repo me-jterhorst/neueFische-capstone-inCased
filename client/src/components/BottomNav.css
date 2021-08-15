@@ -1,0 +1,31 @@
+footer {
+  position: absolute;
+  inset: auto 0 0 0;
+  min-height: 90px;
+
+  flex-direction: column;
+  justify-content: center;
+
+  background: var(--black-100);
+}
+
+.tabNav {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.tabNav a.active {
+  position: relative;
+}
+
+.tabNav a.active::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-75%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--black-25);
+}
