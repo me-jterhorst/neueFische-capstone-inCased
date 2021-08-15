@@ -1,15 +1,14 @@
-import { NavLink } from "react-router-dom";
 import "./BottomNav.css";
+import { NavLink } from "react-router-dom";
+import SpeechButton from "./SpeechButton";
 
-export default function BottomNav() {
+export default function BottomNav({ hasSpeech = true }) {
   return (
     <footer className='dispFlex'>
-      {
-        //optional speech part
-      }
+      {hasSpeech ? <SpeechButton /> : null}
 
       <nav className='tabNav dispFlex'>
-        <NavLink to='#'>
+        <NavLink className='opaque' to='#'>
           <svg
             className='icon icon-stroke--light'
             viewBox='0 0 28 28'
@@ -21,7 +20,7 @@ export default function BottomNav() {
             />
           </svg>
         </NavLink>
-        <NavLink to='#'>
+        <NavLink className='opaque' to='#'>
           <svg
             className='icon'
             viewBox='0 0 28 28'
@@ -45,7 +44,7 @@ export default function BottomNav() {
             />
           </svg>
         </NavLink>
-        <NavLink to='#'>
+        <NavLink className='opaque' to='#'>
           <svg
             className='icon'
             viewBox='0 0 28 28'

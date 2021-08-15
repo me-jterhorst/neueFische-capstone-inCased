@@ -1,0 +1,22 @@
+.speechPart {
+  min-height: 70px;
+  position: relative;
+}
+
+.speechButton {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid var(--black-100);
+
+  cursor: pointer;
+}
+
+.speechButton svg {
+  width: 45px;
+  height: 45px;
+}
