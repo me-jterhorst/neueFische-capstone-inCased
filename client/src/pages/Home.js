@@ -1,4 +1,3 @@
-import "./Home.css";
 import Searchfield from "../components/Searchfield";
 import Greeting from "../components/Greeting";
 
