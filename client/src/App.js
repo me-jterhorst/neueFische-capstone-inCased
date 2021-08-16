@@ -26,7 +26,6 @@ export default function App() {
         <Route exact path='/login'>
           <main>Hello Login</main>
         </Route>
-
         <Route path='/'>
           <main>Hello Home</main>
         </Route>
