@@ -1,0 +1,24 @@
+.searchfield {
+  border-block: 5px solid var(--color-black-100);
+  margin: 0 auto;
+  height: 40px;
+  max-width: 640px;
+}
+
+.searchfield-button {
+  background: none;
+  cursor: pointer;
+  border: none;
+  margin-left: 5px;
+  transform: scale(0.75);
+}
+
+.searchfield-input {
+  width: 100%;
+  margin-inline: 5px;
+  background: var(--color-black-25);
+  padding-left: 10px;
+  outline: none;
+  border: none;
+  font-family: "Rubik", sans-serif;
+}

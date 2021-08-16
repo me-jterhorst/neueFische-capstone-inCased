@@ -1,0 +1,10 @@
+h1 {
+  font-family: "Rubik", sans-serif;
+  color: var(--color-black-100);
+  font-size: 3.2rem;
+  width: 7ch;
+}
+
+.txt--highlight {
+  color: var(--color-black-70);
+}
