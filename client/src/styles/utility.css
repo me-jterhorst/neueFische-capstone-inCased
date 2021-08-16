@@ -18,18 +18,18 @@
 }
 
 .icon-stroke--light {
-  stroke: var(--black-25);
+  stroke: var(--color-black-25);
 }
 
 .icon-fill--light {
-  fill: var(--black-25);
+  fill: var(--color-black-25);
 }
 
 .icon-stroke--dark {
-  stroke: var(--black-100);
+  stroke: var(--color-black-100);
 }
 .icon-fill--dark {
-  fill: var(--black-100);
+  fill: var(--color-black-100);
 }
 
 /* ================= General Hover / Active */
