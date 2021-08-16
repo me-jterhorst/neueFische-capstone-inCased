@@ -1,0 +1,22 @@
+<svg
+className='icon'
+viewBox='0 0 28 28'
+fill='none'
+xmlns='http://www.w3.org/2000/svg'>
+    <path
+        d='M14.2222 13.9857L14.2975 11.1907L22.6791 2.80906C23.4301 2.05802 24.6478 2.05802 25.3989 2.80906C26.1499 3.56011 26.1499 4.7778 25.3989 5.52884L17.0173 13.9105L14.2222 13.9857Z'
+        className='icon-stroke--light'
+        stroke-width='2.5'
+    />
+    <path
+        d='M20.2548 3.78424L24.4238 7.95323'
+        className='icon-stroke--light'
+        stroke-width='2.5'
+    />
+    <path
+        d='M22.6981 14.0049V22.5445H5.6189V5.46533H13.7315'
+        className='icon-stroke--light'
+        stroke-width='2.5'
+        stroke-linecap='round'
+    />
+</svg>
