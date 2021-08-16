@@ -19,19 +19,19 @@ export default function Header() {
     transition`}>
       <DotMatrixIcon onClick={() => toggleNav()} />
       <nav className='top-nav__menu dispFlex col'>
-        <NavLink className='opaque' to='#'>
+        <NavLink className='opaque' to='darkmode'>
           <DarkmodeIcon />
           Darkmode
         </NavLink>
-        <NavLink className='opaque' to='#'>
+        <NavLink className='opaque' to='account'>
           <AccountIcon />
           Account
         </NavLink>
-        <NavLink className='opaque' to='#'>
+        <NavLink className='opaque' to='imprint'>
           <ImprintIcon />
           Imprint
         </NavLink>
-        <NavLink className='opaque' to='#'>
+        <NavLink className='opaque' to='login'>
           <LoginIcon />
           Login
         </NavLink>

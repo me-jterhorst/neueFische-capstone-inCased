@@ -11,13 +11,13 @@ export default function BottomNav({ hasSpeech = true }) {
       {hasSpeech ? <SpeechButton /> : null}
 
       <nav className='tabNav dispFlex'>
-        <NavLink className='opaque' to='#'>
+        <NavLink className='opaque' exact to='/'>
           <HomeIcon />
         </NavLink>
-        <NavLink className='opaque' to='#'>
+        <NavLink className='opaque' to='create'>
           <CreateIcon />
         </NavLink>
-        <NavLink className='opaque' to='#'>
+        <NavLink className='opaque' to='overview'>
           <OverviewIcon />
         </NavLink>
       </nav>
