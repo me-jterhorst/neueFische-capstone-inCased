@@ -1,0 +1,11 @@
+.BackButton::before {
+  content: "Text";
+  width: 10rem;
+  height: 10rem;
+  background: var(--color-black-100);
+  position: absolute;
+  top: -5rem;
+  left: -5rem;
+  border-radius: 50%;
+  z-index: -1;
+}

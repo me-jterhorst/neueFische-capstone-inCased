@@ -32,6 +32,11 @@
   fill: var(--color-black-100);
 }
 
+.lineIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 /* ================= General Hover / Active */
 
 .opaque:hover,

@@ -1,0 +1,11 @@
+.ForwardButton::before {
+  content: "";
+  position: absolute;
+  top: -5rem;
+  right: -5rem;
+  z-index: -1;
+  width: 10rem;
+  height: 10rem;
+  background: var(--color-black-100);
+  border-radius: 50%;
+}
