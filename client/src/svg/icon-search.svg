@@ -1,0 +1,19 @@
+<svg 
+className="icon opaque"
+id="seachicon"
+
+viewBox="0 0 24 25" 
+fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+    <circle 
+    cx="13.3819" 
+    cy="10.6182" 
+    r="8.61818" 
+    className="icon-stroke--dark" 
+    stroke-width="2.5"
+    />
+    <path 
+    d="M0.751447 22.2714C0.282818 22.74 0.282818 23.4998 0.751447 23.9684C1.22008 24.4371 1.97987 24.4371 2.4485 23.9684L0.751447 22.2714ZM7.23145 15.7914L0.751447 22.2714L2.4485 23.9684L8.9285 17.4884L7.23145 15.7914Z" 
+    className="icon-fill--dark"
+    />
+</svg>

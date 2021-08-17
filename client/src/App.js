@@ -1,6 +1,7 @@
 import "./App.css";
 import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
+import Home from "./pages/Home";
 import { Switch, Route, Redirect } from "react-router";
 
 export default function App() {
@@ -27,10 +28,10 @@ export default function App() {
           <main>Hello Login</main>
         </Route>
         <Route path='/'>
-          <main>Hello Home</main>
+          <Home />
         </Route>
         <Route path='/*'>
-          <Redirect path='/' />
+          <Redirect to='/' />
         </Route>
       </Switch>
       <BottomNav />
