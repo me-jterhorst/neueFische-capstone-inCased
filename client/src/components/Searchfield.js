@@ -10,8 +10,8 @@ export default function Searchfield() {
       <input
         type="text"
         name="searchfield__input"
-        id="searchfield-input"
-        className="Searchfield-input"
+        id="searchfield__input"
+        className="Searchfield__input"
       />
     </form>
   );
