@@ -1,11 +1,11 @@
-.searchfield {
+.Searchfield {
   position: relative;
   margin: 0 auto;
-  height: 40px;
+  height: 2.66rem;
   max-width: 640px;
 }
 
-.searchfield::before {
+.Searchfield::before {
   content: "";
   position: absolute;
   top: -5px;
@@ -15,7 +15,7 @@
   border-radius: 5px;
 }
 
-.searchfield::after {
+.Searchfield::after {
   content: "";
   position: absolute;
   bottom: -5px;
@@ -25,7 +25,7 @@
   border-radius: 5px;
 }
 
-.searchfield-button {
+.Searchfield__button {
   background: none;
   cursor: pointer;
   border: none;
@@ -33,7 +33,7 @@
   transform: scale(0.75);
 }
 
-.searchfield-input {
+.Searchfield__input {
   width: 100%;
   margin-inline: 5px;
   background: var(--color-black-25);

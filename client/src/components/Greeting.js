@@ -13,9 +13,9 @@ export default function Greeting({ user, isUserLoggedIn }) {
 
   const number = Math.floor(Math.random() * greetings.length);
   return (
-    <h1 className='greeting'>
+    <h1 className="Greeting">
       Hello <br />
-      <span className='txt--highlight'>
+      <span className="txt--highlight">
         {isUserLoggedIn ? user : "Stranger"},
       </span>
       <br />
