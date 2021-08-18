@@ -1,6 +1,6 @@
 import "./AccountInput.css";
 
-export default function Input({ label, value }) {
+export default function Input({ label, value, type = "text" }) {
   return (
     <fieldset className="Input-box">
       <label
@@ -9,10 +9,11 @@ export default function Input({ label, value }) {
       >{`${label}:`}</label>
       <span className="Input-wrapper">
         <input
+          type={type}
           className="Input Input--account"
           name={`Account__${label}`}
           id={`Account__${label}`}
-          value={value}
+          placeholder={value}
           required
         />
       </span>
