@@ -6,13 +6,19 @@ import FooterAccountDelete from "./Card_components/FooterAccountDelete";
 import HeaderGoBack from "./Card_components/HeaderGoBack";
 import HeaderGoForward from "./Card_components/HeaderGoForward";
 
-export default function CardScreen({ id, page, hasForward, isLight }) {
+export default function CardScreen({
+  id,
+  page,
+  hasForward,
+  isLight,
+  totalItems,
+}) {
   function chooseFooter() {
     switch (id) {
       case "Account":
         return <FooterAccountDelete />;
       case "Item":
-        return <FooterItemDelete totalItems={8} />;
+        return <FooterItemDelete totalItems={totalItems} />;
       case "SignUp":
         return <FooterSubmit text="Sign up" />;
       case "Login":
@@ -29,11 +35,20 @@ export default function CardScreen({ id, page, hasForward, isLight }) {
     }
   }
 
+  function chooseHeader() {
+    switch (id) {
+      case "Add":
+        return <HeaderGoForward totalItems={totalItems} />;
+      default:
+        return <HeaderGoBack />;
+    }
+  }
+
   return (
     <main id={id} className={`CardScreen`}>
       <article className={`Card ${isLight ? "Card--light" : ""}`}>
         {/* Card Header */}
-        {hasForward ? <HeaderGoForward totalItems={7} /> : <HeaderGoBack />}
+        {chooseHeader()}
 
         {/* Card Content */}
         <section className="Card__content">{page}</section>

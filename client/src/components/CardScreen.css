@@ -45,6 +45,11 @@
   color: var(--color-white-100);
 }
 
+.Card__footer a {
+  color: var(--color-white-100);
+  text-decoration: none;
+}
+
 .Card__footer--light {
   background: var(--color-black-85);
 }
