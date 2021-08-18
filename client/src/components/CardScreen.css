@@ -15,6 +15,10 @@
   justify-content: flex-start;
 }
 
+.Card--light {
+  border: 5px solid var(--color-black-85);
+}
+
 .Card__header {
   position: relative;
   z-index: 0;
@@ -31,12 +35,12 @@
 }
 
 .Card__content {
-  padding: 25px;
+  padding: 1.5rem;
   height: 100%;
 }
 
 .Card__footer {
-  height: 70px;
+  height: 4.5rem;
   gap: 0.25rem;
   background: var(--color-black-100);
   width: 100%;
@@ -50,22 +54,6 @@
   text-decoration: none;
 }
 
-.Card__footer--light {
-  background: var(--color-black-85);
-}
-.Card--light {
-  border: 5px solid var(--color-black-85);
-}
-
-.Card__footer--submit {
-  justify-content: center;
-}
-
-.Card__footer--space {
-  padding-inline: 25px;
-  justify-content: space-between;
-}
-
 .Card__footer button {
   all: unset;
   display: flex;
@@ -75,4 +63,16 @@
   height: 100%;
   background: var(--color-black-100);
   color: var(--color-white-100);
+}
+.Card__footer--light {
+  background: var(--color-black-85);
+}
+
+.Card__footer--submit {
+  justify-content: center;
+}
+
+.Card__footer--space {
+  padding-inline: 25px;
+  justify-content: space-between;
 }
