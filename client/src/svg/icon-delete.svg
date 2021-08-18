@@ -1,0 +1,34 @@
+<svg 
+className="icon icon--small opaque"
+viewBox="0 0 25 25" 
+fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+    <path 
+      d="M1.80231 5.10919H23.1746" 
+      className="icon-stroke--light"
+      stroke-width="1.78103" 
+      stroke-linecap="round"
+    />
+    <path 
+      d="M14.7208 5.1046L10.3341 5.1046C9.69812 5.1046 9.18254 4.58903 9.18254 3.95304C9.18254 2.56517 10.3076 1.44008 11.6955 1.44008L13.3594 1.44008C14.7473 1.44008 15.8724 2.56517 15.8724 3.95304C15.8724 4.58903 15.3568 5.1046 14.7208 5.1046Z" 
+      className="icon-stroke--light"
+      stroke-width="1.75"
+    />
+    <path 
+      d="M5.54249 5.2873H20.0981V19.5233C20.0981 21.7048 18.3296 23.4733 16.1481 23.4733H9.49246C7.31095 23.4733 5.54249 21.7048 5.54249 19.5233V5.2873Z" 
+      stroke="#EBEBEB" 
+      stroke-width="1.75"
+    />
+    <path 
+      d="M10.5038 9.70917V19.6829" 
+      className="icon-stroke--light"
+      stroke-width="2" 
+      stroke-linecap="round"
+    />
+    <path 
+      d="M15.0836 9.70917V19.6829" 
+      className="icon-stroke--light"
+      stroke-width="2" 
+      stroke-linecap="round"
+    />
+</svg>

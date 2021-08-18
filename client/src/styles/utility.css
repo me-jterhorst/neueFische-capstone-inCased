@@ -32,14 +32,30 @@
   fill: var(--color-black-100);
 }
 
+.lineIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.icon--small {
+  width: 20px;
+  height: 20px;
+}
+
 /* ================= General Hover / Active */
 
 .opaque:hover,
 .opaque:active {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 /* =============== Transition Ease-in-out */
 .transition {
   transition: all 0.5s ease-in-out;
+}
+
+/* ========================== */
+.card-screen {
+  height: calc(100vh - 90px);
+  padding-bottom: 40px;
 }

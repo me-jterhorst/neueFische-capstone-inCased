@@ -5,6 +5,12 @@ h1 {
   width: 7ch;
 }
 
+h2 {
+  font-family: "Rubik", sans-serif;
+  color: var(--color-black-100);
+  font-size: 2.4rem;
+}
+
 .txt--highlight {
   color: var(--color-black-70);
 }
