@@ -28,8 +28,8 @@ export default function App() {
           <CardScreen
             id="Account"
             page={<AccountPage />}
+            hasForward={false}
             isLight={true}
-            hasFooter={true}
           />
           <BottomNav hasSpeech={false} />
         </Route>
