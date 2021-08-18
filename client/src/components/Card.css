@@ -1,15 +1,9 @@
-.CardScreen {
-  height: calc(100vh - 90px);
-  padding-bottom: 40px;
-}
-
 .Card {
   width: 100%;
   border: 5px solid var(--color-black-100);
   border-radius: 10px;
   height: 100%;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -35,7 +29,7 @@
 }
 
 .Card__content {
-  padding: 1.5rem;
+  padding: 1.25rem;
   height: 100%;
 }
 

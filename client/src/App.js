@@ -1,9 +1,10 @@
 import "./App.css";
 import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
+/* =========================== Import Pages*/
 import Home from "./pages/Home";
-import CardScreen from "./components/CardScreen";
-import AccountPage from "./pages/AccountPage";
+import Account from "./pages/Account";
+/* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 
 export default function App() {
@@ -25,12 +26,7 @@ export default function App() {
         </Route>
 
         <Route path="/account">
-          <CardScreen
-            id="Account"
-            page={<AccountPage />}
-            hasForward={false}
-            isLight={true}
-          />
+          <Account isLight={true} />
           <BottomNav hasSpeech={false} />
         </Route>
 
