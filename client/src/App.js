@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Account from "./pages/Account";
 import Imprint from "./pages/Imprint";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 
@@ -39,7 +40,9 @@ export default function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/signup"></Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
         <Route path="/password-reset"></Route>
         <Route path="/">
           <Home />
