@@ -10,15 +10,25 @@ export default function Login() {
     <main id="Login" className="card-screen">
       <Card header={<BackButton />} footer={<FooterSubmit text="Login" />}>
         <h2 className="margin-b--s">Login</h2>
-        <p>No Account yet?</p>
-        <Link className="opaque link" to="/signup">
-          Sign Up here
-        </Link>
+        <p>
+          No Account yet?
+          <br />
+          <Link className="opaque link" to="/signup">
+            Sign Up here
+          </Link>
+        </p>
 
-        <form className="dispFlex">
+        <form className="dispFlex margin-b--l">
           <InputField id="Login" label="Username" />
           <InputField id="Login" label="Password" type="password" />
         </form>
+
+        <details>
+          <summary>Forgot your password?</summary>
+          <Link className="link" to="/password-reset">
+            Password reset
+          </Link>
+        </details>
       </Card>
     </main>
   );

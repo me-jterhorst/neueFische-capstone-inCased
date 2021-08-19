@@ -39,6 +39,8 @@ export default function App() {
         <Route path="/login">
           <Login />
         </Route>
+        <Route path="/signup"></Route>
+        <Route path="/password-reset"></Route>
         <Route path="/">
           <Home />
           <BottomNav hasSpeech={true} />
