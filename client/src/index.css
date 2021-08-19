@@ -30,6 +30,10 @@
   --dot-matrix-width: 2rem;
 }
 
+::selection {
+  background: var(--color-black-40);
+}
+
 html,
 body {
   font-family: "Open Sans", sans-serif;
