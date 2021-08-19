@@ -29,6 +29,11 @@ label {
   color: var(--color-black-100);
 }
 
+.link {
+  text-decoration: none;
+  color: var(--color-black-55);
+}
+
 .txt--highlight {
   color: var(--color-black-70);
 }
