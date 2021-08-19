@@ -4,6 +4,7 @@ import Header from "./components/Header";
 /* =========================== Import Pages*/
 import Home from "./pages/Home";
 import Account from "./pages/Account";
+import Imprint from "./pages/Imprint";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 
@@ -31,7 +32,8 @@ export default function App() {
         </Route>
 
         <Route path="/imprint">
-          <main>Hello Imprint</main>
+          <Imprint />
+          <BottomNav hasSpeech={false} />
         </Route>
         <Route path="/login">
           <main>Hello Login</main>
