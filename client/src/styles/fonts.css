@@ -17,8 +17,8 @@ h3 {
 }
 
 p {
-  font-size: 1rem;
-  line-height: 1.75rem;
+  font-size: 0.85rem;
+  line-height: 1.5rem;
   letter-spacing: 0.025rem;
 }
 
@@ -27,6 +27,15 @@ label {
   font-size: 0.75rem;
   font-weight: 800;
   color: var(--color-black-100);
+}
+
+summary {
+  font-size: 0.85rem;
+}
+.link {
+  text-decoration: none;
+  color: var(--color-black-55);
+  font-size: 0.8rem;
 }
 
 .txt--highlight {

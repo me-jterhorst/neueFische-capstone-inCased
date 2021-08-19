@@ -1,0 +1,7 @@
+#Login .Card__content {
+  /* overflow-y: scroll; */
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5em;
+}
