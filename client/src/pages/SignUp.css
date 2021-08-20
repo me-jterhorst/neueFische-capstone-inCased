@@ -1,0 +1,16 @@
+#Signup .Card__content {
+  overflow-y: scroll;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-black-100);
+}
+
+#Signup .Card__content::-webkit-scrollbar {
+  background: var(--color-black-40);
+
+  width: 0.75rem;
+}
+#Signup .Card__content::-webkit-scrollbar-thumb {
+  background: var(--color-black-85);
+  border-radius: 10px;
+}
