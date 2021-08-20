@@ -17,6 +17,7 @@ import { useState } from "react";
 
 export default function App() {
   const [isLogin, setLogin] = useState(true);
+
   const userData = {
     id: 1,
     user: {
@@ -99,7 +100,7 @@ export default function App() {
   };
   return (
     <>
-      <Header />
+      <Header isLogin={isLogin} />
       <Switch>
         <Route path="/create/:number">
           <CreateAction />
