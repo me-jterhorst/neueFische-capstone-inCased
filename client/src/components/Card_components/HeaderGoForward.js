@@ -1,6 +1,7 @@
 import BackButton from "../BackButton";
 import ForwardButton from "../ForwardButton";
 import AddAnotherButton from "../AddAnotherButton";
+
 export default function HeaderSimpleBack({ totalItems }) {
   const currentItem = 1;
   return (

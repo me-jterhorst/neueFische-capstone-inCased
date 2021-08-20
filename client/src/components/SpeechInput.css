@@ -1,0 +1,63 @@
+.Speechinput-box {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.Speechinput-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.Speechinput-wrapper::before {
+  content: "";
+  height: 5px;
+  background: var(--color-black-100);
+  position: absolute;
+  inset: auto -5px -5px 0;
+  border-radius: 5px;
+}
+
+.Speechinput {
+  all: unset;
+  box-sizing: border-box;
+  width: 90%;
+  background: var(--color-black-25);
+  padding: 0.5rem 0.5rem;
+  color: var(--color-black-100);
+  font-size: 0.8rem;
+}
+
+.Speechinput:focus,
+.Speechinput:hover {
+  background: var(--color-black-55);
+}
+
+.Speechinput-button-wrapper {
+  position: relative;
+  width: 10%;
+}
+
+.Speechinput-button-wrapper::before {
+  content: "";
+  background: var(--color-black-100);
+  position: absolute;
+  inset: 0 -5px -5px 100%;
+  border-radius: 5px;
+
+  z-index: 10;
+}
+
+.Speechinput-button {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0px;
+  background: var(--color-white-100);
+  cursor: pointer;
+}

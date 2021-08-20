@@ -1,11 +1,11 @@
 import "./Imprint.css";
 import Card from "../components/Card";
-import BackButton from "../components/BackButton";
+import HeaderGoBack from "../components/Card_components/HeaderGoBack";
 
 export default function Imprint({ isLight }) {
   return (
     <main id="Imprint" className="card-screen">
-      <Card header={<BackButton />} isLight={isLight}>
+      <Card header={<HeaderGoBack />} isLight={isLight}>
         <h2>Imprint</h2>
         <p>
           This App has been made during the{" "}

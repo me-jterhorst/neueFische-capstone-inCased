@@ -1,6 +1,6 @@
 import "./Login.css";
 import Card from "../components/Card";
-import BackButton from "../components/BackButton";
+import HeaderGoBack from "../components/Card_components/HeaderGoBack";
 import FooterSubmit from "../components/Card_components/FooterSubmit";
 import InputField from "../components/InputField";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <main id="Login" className="card-screen">
-      <Card header={<BackButton />} footer={<FooterSubmit text="Login" />}>
+      <Card header={<HeaderGoBack />} footer={<FooterSubmit text="Login" />}>
         <h2 className="margin-b--s">Login</h2>
         <p>
           No Account yet?
