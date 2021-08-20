@@ -19,8 +19,8 @@ export default function Login() {
         </p>
 
         <form className="dispFlex margin-b--l">
-          <InputField id="Login" label="Username" />
-          <InputField id="Login" label="Password" type="password" />
+          <InputField identifier="Login" label="Username" />
+          <InputField identifier="Login" label="Password" type="password" />
         </form>
 
         <details>

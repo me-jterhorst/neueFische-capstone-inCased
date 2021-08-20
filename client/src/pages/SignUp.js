@@ -19,10 +19,14 @@ export default function SignUp() {
         </p>
 
         <form className="dispFlex margin-b--l">
-          <InputField id="Signup" label="Username" />
-          <InputField id="Signup" label="Email" />
-          <InputField id="Signup" label="Password" type="password" />
-          <InputField id="Signup" label="Repeat password" type="password" />
+          <InputField identifier="Signup" label="Username" />
+          <InputField identifier="Signup" label="Email" />
+          <InputField identifier="Signup" label="Password" type="password" />
+          <InputField
+            identifier="Signup"
+            label="Repeat password"
+            type="password"
+          />
         </form>
       </Card>
     </main>
