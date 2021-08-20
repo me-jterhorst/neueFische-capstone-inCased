@@ -1,14 +1,11 @@
 import Searchfield from "../components/Searchfield";
 import Greeting from "../components/Greeting";
 
-export default function Home() {
-  const user = "Jane";
-  const isUserLoggedIn = true;
-
+export default function Home({ name, isLogin }) {
   return (
-    <main id='home'>
+    <main id="home">
       <Searchfield />
-      <Greeting user={user} isUserLoggedIn={isUserLoggedIn} />
+      <Greeting firstname={name} isLogin={isLogin} />
     </main>
   );
 }

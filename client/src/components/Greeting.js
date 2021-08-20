@@ -1,6 +1,6 @@
 import "./Greeting.css";
 
-export default function Greeting({ user, isUserLoggedIn }) {
+export default function Greeting({ firstname, isLogin }) {
   const greetings = [
     "what's cookin'?",
     "what's happening?",
@@ -16,7 +16,7 @@ export default function Greeting({ user, isUserLoggedIn }) {
     <h1 className="Greeting">
       Hello <br />
       <span className="txt--highlight">
-        {isUserLoggedIn ? user : "Stranger"},
+        {isLogin ? firstname : "Stranger"},
       </span>
       <br />
       {greetings[number]}
