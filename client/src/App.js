@@ -148,7 +148,9 @@ export default function App() {
         <Route path="/password-reset">
           <PasswordReset />
         </Route>
-
+        <Route path="/logout">
+          <Redirect to="/" />
+        </Route>
         <Route path="/">
           <Home />
           <BottomNav hasSpeech={true} />
