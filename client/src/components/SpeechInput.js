@@ -6,7 +6,7 @@ export default function SpeechInput({ identifier, label, isRequired = true }) {
     <fieldset className={`Speechinput-box `}>
       <label
         className="Speechinput-label"
-        for={`${identifier}__${label}`}
+        htmlFor={`${identifier}__${label}`}
       >{`${label}:`}</label>
       <span className={`Speechinput-wrapper ${isRequired ? "" : "faded"}`}>
         <input

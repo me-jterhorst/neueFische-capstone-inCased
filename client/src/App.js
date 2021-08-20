@@ -20,8 +20,9 @@ export default function App() {
 
   const userData = {
     id: 1,
+    isLoggedin: true,
     user: {
-      name: "Jane",
+      name: "Namir",
       email: "JaneDoe@hotmail.de",
       password: 12345678,
     },
@@ -98,6 +99,10 @@ export default function App() {
       },
     ],
   };
+
+  function logout() {
+    console.log("Alright that's it");
+  }
   return (
     <>
       <Header isLogin={isLogin} />
@@ -152,7 +157,7 @@ export default function App() {
           <Redirect to="/" />
         </Route>
         <Route path="/">
-          <Home />
+          <Home name={userData.user.name} isLogin={isLogin} />
           <BottomNav hasSpeech={true} />
         </Route>
 

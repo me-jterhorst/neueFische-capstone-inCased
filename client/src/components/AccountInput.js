@@ -5,7 +5,7 @@ export default function Input({ label, value, type = "text" }) {
     <fieldset className="Input-box">
       <label
         className="Input-label"
-        for={`Account__${label}`}
+        htmlFor={`Account__${label}`}
       >{`${label}:`}</label>
       <span className="Input-wrapper">
         <input
