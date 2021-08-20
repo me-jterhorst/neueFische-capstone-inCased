@@ -14,8 +14,12 @@ export default function PasswordReset() {
         </h2>
 
         <form className="dispFlex margin-b--l">
-          <InputField identifier="Signup" label="Email" />
-          <InputField identifier="Signup" label="Password" type="password" />
+          <InputField identifier="PasswordReset" label="Email" />
+          <InputField
+            identifier="PasswordReset"
+            label="Password"
+            type="password"
+          />
         </form>
       </Card>
     </main>
