@@ -5,7 +5,7 @@ export default function InputField({ identifier, label, type = "text" }) {
     <fieldset className="Input-box">
       <label
         className="Input-label"
-        for={`${identifier}__${label}`}
+        htmlFor={`${identifier}__${label}`}
       >{`${label}:`}</label>
       <span className="Input-wrapper">
         <input
