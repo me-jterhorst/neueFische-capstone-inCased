@@ -7,6 +7,7 @@ import Account from "./pages/Account";
 import Imprint from "./pages/Imprint";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import PasswordReset from "./pages/PasswordReset";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 
@@ -43,7 +44,9 @@ export default function App() {
         <Route path="/signup">
           <SignUp />
         </Route>
-        <Route path="/password-reset"></Route>
+        <Route path="/password-reset">
+          <PasswordReset />
+        </Route>
         <Route path="/">
           <Home />
           <BottomNav hasSpeech={true} />
