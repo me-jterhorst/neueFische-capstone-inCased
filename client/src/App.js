@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
 import CreateCase from "./pages/CreateCase";
 import CreateAction from "./pages/CreateAction";
+import SinglePage from "./pages/SinglePage";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 
@@ -28,9 +29,9 @@ export default function App() {
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/overview/:action/:another">
-          <main>Hello Single Page</main>
-          <BottomNav hasSpeech={true} />
+        <Route path="/overview/task/:id">
+          <SinglePage isLight={true} />
+          <BottomNav hasSpeech={false} />
         </Route>
 
         <Route path="/overview">
