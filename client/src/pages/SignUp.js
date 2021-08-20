@@ -1,6 +1,6 @@
 import "./SignUp.css";
 import Card from "../components/Card";
-import BackButton from "../components/BackButton";
+import HeaderGoBack from "../components/Card_components/HeaderGoBack";
 import FooterSubmit from "../components/Card_components/FooterSubmit";
 import InputField from "../components/InputField";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function SignUp() {
   return (
     <main id="Signup" className="card-screen">
-      <Card header={<BackButton />} footer={<FooterSubmit text="Sign Up" />}>
+      <Card header={<HeaderGoBack />} footer={<FooterSubmit text="Sign Up" />}>
         <h2 className="margin-b--s">Sign Up</h2>
         <p>
           Already have an account?

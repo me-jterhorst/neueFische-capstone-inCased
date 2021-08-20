@@ -1,13 +1,14 @@
 import "./PasswordReset.css";
 import InputField from "../components/InputField";
 import Card from "../components/Card";
-import BackButton from "../components/BackButton";
+
 import FooterSubmit from "../components/Card_components/FooterSubmit";
+import HeaderGoBack from "../components/Card_components/HeaderGoBack";
 
 export default function PasswordReset() {
   return (
     <main id="PasswordReset" className="card-screen">
-      <Card header={<BackButton />} footer={<FooterSubmit text="Reset" />}>
+      <Card header={<HeaderGoBack />} footer={<FooterSubmit text="Reset" />}>
         <h2 className="margin-b--s">
           Reset <br />
           Password
