@@ -22,14 +22,22 @@ export default function App() {
           <CreateAction />
           <BottomNav hasSpeech={false} />
         </Route>
+
         <Route path="/create">
           <CreateCase />
           <BottomNav hasSpeech={false} />
         </Route>
+
+        <Route path="/overview/:action/:another">
+          <main>Hello Single Page</main>
+          <BottomNav hasSpeech={true} />
+        </Route>
+
         <Route path="/overview">
           <main>Hello Overview</main>
           <BottomNav hasSpeech={true} />
         </Route>
+
         <Route path="/darkmode">
           <main>Hello Darkmode</main>
           <BottomNav hasSpeech={false} />
@@ -44,19 +52,24 @@ export default function App() {
           <Imprint />
           <BottomNav hasSpeech={false} />
         </Route>
+
         <Route path="/login">
           <Login />
         </Route>
+
         <Route path="/signup">
           <SignUp />
         </Route>
+
         <Route path="/password-reset">
           <PasswordReset />
         </Route>
+
         <Route path="/">
           <Home />
           <BottomNav hasSpeech={true} />
         </Route>
+
         <Route path="/*">
           <Redirect to="/" />
         </Route>
