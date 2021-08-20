@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
 import CreateCase from "./pages/CreateCase";
+import CreateAction from "./pages/CreateAction";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 
@@ -17,6 +18,10 @@ export default function App() {
     <>
       <Header />
       <Switch>
+        <Route path="/create/:number">
+          <CreateAction />
+          <BottomNav hasSpeech={false} />
+        </Route>
         <Route path="/create">
           <CreateCase />
           <BottomNav hasSpeech={false} />
