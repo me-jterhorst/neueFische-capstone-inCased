@@ -8,6 +8,7 @@ import Imprint from "./pages/Imprint";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
+import CreateCase from "./pages/CreateCase";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 
@@ -17,7 +18,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route path="/create">
-          <main>Hello Create</main>
+          <CreateCase />
           <BottomNav hasSpeech={false} />
         </Route>
         <Route path="/overview">

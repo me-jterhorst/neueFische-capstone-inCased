@@ -1,5 +1,5 @@
 .BackButton::before {
-  content: "Text";
+  content: "";
   width: 10rem;
   height: 10rem;
   background: var(--color-black-100);

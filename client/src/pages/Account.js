@@ -1,14 +1,14 @@
 import "./Account.css";
 import Card from "../components/Card";
-import BackButton from "../components/BackButton";
 import FooterAccountDelete from "../components/Card_components/FooterAccountDelete";
 import AccountInput from "../components/AccountInput";
+import HeaderGoBack from "../components/Card_components/HeaderGoBack";
 
 export default function Account({ isLight }) {
   return (
     <main id="Account" className="card-screen">
       <Card
-        header={<BackButton />}
+        header={<HeaderGoBack />}
         footer={<FooterAccountDelete />}
         isLight={isLight}
       >
