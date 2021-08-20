@@ -1,7 +1,6 @@
 import "./PasswordReset.css";
 import InputField from "../components/InputField";
 import Card from "../components/Card";
-import { Link } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import FooterSubmit from "../components/Card_components/FooterSubmit";
 
