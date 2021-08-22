@@ -11,6 +11,7 @@ import PasswordReset from "./pages/PasswordReset";
 import CreateCase from "./pages/CreateCase";
 import CreateAction from "./pages/CreateAction";
 import SinglePage from "./pages/SinglePage";
+import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 import { useState } from "react";
@@ -47,7 +48,14 @@ export default function App() {
           },
           {
             taskId: 3,
-            happening: "shooing",
+            happening: "shopping",
+            verb: "Ask for",
+            action: "vegan icecream",
+            with: "",
+          },
+          {
+            taskId: 4,
+            happening: "shopping",
             verb: "Ask for",
             action: "vegan icecream",
             with: "",
@@ -69,7 +77,7 @@ export default function App() {
         ],
       },
       {
-        reminderId: 1,
+        reminderId: 3,
         trigger: "Joker",
         creationTime: 12343434,
         tasks: [
@@ -118,7 +126,7 @@ export default function App() {
         </Route>
 
         <Route path="/overview">
-          <main>Hello Overview</main>
+          <Overview reminderList={userData.reminders} />
           <BottomNav hasSpeech={true} />
         </Route>
 
