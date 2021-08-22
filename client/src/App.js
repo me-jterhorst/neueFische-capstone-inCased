@@ -10,10 +10,93 @@ import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
 import CreateCase from "./pages/CreateCase";
 import CreateAction from "./pages/CreateAction";
+import SinglePage from "./pages/SinglePage";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
+import { useState } from "react";
 
 export default function App() {
+  const [isLogin, setLogin] = useState(true);
+  const userData = {
+    id: 1,
+    user: {
+      name: "Jane",
+      email: "JaneDoe@hotmail.de",
+      password: 12345678,
+    },
+    reminders: [
+      {
+        reminderId: 1,
+        trigger: "Supermarket",
+        creationTime: 12343434,
+        tasks: [
+          {
+            taskId: 1,
+            happening: "shopping",
+            verb: "buy",
+            action: "some milk",
+            with: "Max",
+          },
+          {
+            taskId: 2,
+            happening: "shopping",
+            verb: "buy",
+            action: "some toiletpaper",
+            with: "",
+          },
+          {
+            taskId: 3,
+            happening: "shooing",
+            verb: "Ask for",
+            action: "vegan icecream",
+            with: "",
+          },
+        ],
+      },
+      {
+        reminderId: 2,
+        trigger: "Eric",
+        creationTime: 12343434,
+        tasks: [
+          {
+            taskId: 1,
+            happening: "is Visiting",
+            verb: "book",
+            action: "restaurant table",
+            with: "Anne",
+          },
+        ],
+      },
+      {
+        reminderId: 1,
+        trigger: "Joker",
+        creationTime: 12343434,
+        tasks: [
+          {
+            taskId: 1,
+            happening: "is attacking Gotham",
+            verb: "call",
+            action: "Batman",
+            with: "Comissioner Gordon",
+          },
+          {
+            taskId: 2,
+            happening: "breaks into Arkham",
+            verb: "refuel",
+            action: "the Batmobil",
+            with: "Alfred",
+          },
+          {
+            taskId: 3,
+            happening: "is starting a gang war",
+            verb: "Call",
+            action: "Robin",
+            with: "Robin",
+          },
+        ],
+      },
+    ],
+  };
   return (
     <>
       <Header />
@@ -28,9 +111,9 @@ export default function App() {
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/overview/:action/:another">
-          <main>Hello Single Page</main>
-          <BottomNav hasSpeech={true} />
+        <Route path="/overview/task/:id">
+          <SinglePage isLight={true} />
+          <BottomNav hasSpeech={false} />
         </Route>
 
         <Route path="/overview">
