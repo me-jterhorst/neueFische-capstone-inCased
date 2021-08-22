@@ -17,6 +17,7 @@ import { useState } from "react";
 
 export default function App() {
   const [isLogin, setLogin] = useState(true);
+
   const userData = {
     id: 1,
     user: {
@@ -99,7 +100,7 @@ export default function App() {
   };
   return (
     <>
-      <Header />
+      <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
         <Route path="/create/:number">
           <CreateAction />
@@ -147,9 +148,11 @@ export default function App() {
         <Route path="/password-reset">
           <PasswordReset />
         </Route>
-
+        <Route path="/logout">
+          <Redirect to="/" />
+        </Route>
         <Route path="/">
-          <Home />
+          <Home isLogin={isLogin} name={userData.user.name} />
           <BottomNav hasSpeech={true} />
         </Route>
 
