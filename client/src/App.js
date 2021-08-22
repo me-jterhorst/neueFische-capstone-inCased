@@ -28,7 +28,7 @@ export default function App() {
     },
     reminders: [
       {
-        reminderId: 1,
+        reminderId: 11111,
         trigger: "Supermarket",
         creationTime: 12343434,
         tasks: [
@@ -63,7 +63,7 @@ export default function App() {
         ],
       },
       {
-        reminderId: 2,
+        reminderId: 22222,
         trigger: "Eric",
         creationTime: 12343434,
         tasks: [
@@ -77,7 +77,7 @@ export default function App() {
         ],
       },
       {
-        reminderId: 3,
+        reminderId: 33333,
         trigger: "Joker",
         creationTime: 12343434,
         tasks: [

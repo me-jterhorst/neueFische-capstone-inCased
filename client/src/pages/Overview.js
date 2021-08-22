@@ -13,7 +13,7 @@ export default function Overview({ reminderList }) {
           <h4>{item.trigger}</h4>
         </div>
         <Link
-          to={`/overview/task/${item.reminderId}/1`}
+          to={`/overview/task/${item.reminderId}/0`}
           className="Overview__card__link"
         >
           <ForwardButtonIcon className="icon--dark opaque" />
