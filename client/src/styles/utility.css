@@ -77,3 +77,11 @@ form {
 .margin-b--l {
   margin-bottom: 1.25rem;
 }
+
+.faded {
+  opacity: 0.75;
+}
+
+.faded:hover {
+  opacity: 1;
+}
