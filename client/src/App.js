@@ -120,8 +120,8 @@ export default function App() {
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/overview/task/:id">
-          <SinglePage isLight={true} />
+        <Route path="/overview/task/:reminderId/:taskId">
+          <SinglePage reminderList={userData.reminders} isLight={true} />
           <BottomNav hasSpeech={false} />
         </Route>
 
