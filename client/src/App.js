@@ -100,7 +100,7 @@ export default function App() {
   };
   return (
     <>
-      <Header isLogin={isLogin} />
+      <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
         <Route path="/create/:number">
           <CreateAction />
@@ -152,7 +152,7 @@ export default function App() {
           <Redirect to="/" />
         </Route>
         <Route path="/">
-          <Home />
+          <Home isLogin={isLogin} name={userData.user.name} />
           <BottomNav hasSpeech={true} />
         </Route>
 

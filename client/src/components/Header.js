@@ -7,7 +7,7 @@ import { ReactComponent as ImprintIcon } from "../svg/icon-imprint.svg";
 import { ReactComponent as LoginIcon } from "../svg/icon-login.svg";
 import MenuLink from "./MenuLink";
 
-export default function Header({ isLogin }) {
+export default function Header({ isLogin, toggleLogin }) {
   const [isToggled, setIsToggled] = useState(false);
 
   function toggleNav() {
@@ -43,6 +43,7 @@ export default function Header({ isLogin }) {
             destination="Logout"
             clickAction={() => toggleNav()}
             icon={<LoginIcon />}
+            toggleLogin={toggleLogin}
           />
         ) : (
           <MenuLink
