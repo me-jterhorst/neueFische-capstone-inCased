@@ -11,6 +11,7 @@ export default function Overview({ reminderList }) {
         <div className="Overview__card__txt">
           <p> In case of:</p>
           <h4>{item.trigger}</h4>
+          <h5>{item.triggerEvent}</h5>
         </div>
         <Link
           to={`/overview/task/${item.reminderId}/0`}

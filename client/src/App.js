@@ -53,7 +53,6 @@ export default function App() {
           },
           {
             taskId: 4,
-            happening: "shopping",
             verb: "Ask for",
             action: "vegan icecream",
             with: "",
@@ -63,11 +62,11 @@ export default function App() {
       {
         reminderId: 22222,
         trigger: "Eric",
+        triggerEvent: "is coming over",
         creationTime: 12343434,
         tasks: [
           {
             taskId: 1,
-            happening: "is Visiting",
             verb: "book",
             action: "restaurant table",
             with: "Anne",
@@ -77,25 +76,23 @@ export default function App() {
       {
         reminderId: 33333,
         trigger: "Joker",
+        triggerEvent: "attacks Gotham",
         creationTime: 12343434,
         tasks: [
           {
             taskId: 1,
-            happening: "is attacking Gotham",
             verb: "call",
             action: "Batman",
             with: "Comissioner Gordon",
           },
           {
             taskId: 2,
-            happening: "breaks into Arkham",
             verb: "refuel",
             action: "the Batmobil",
             with: "Alfred",
           },
           {
             taskId: 3,
-            happening: "is starting a gang war",
             verb: "Call",
             action: "Robin",
             with: "Robin",
