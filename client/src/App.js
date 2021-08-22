@@ -30,25 +30,23 @@ export default function App() {
       {
         reminderId: 11111,
         trigger: "Supermarket",
+        triggerEvent: "shopping",
         creationTime: 12343434,
         tasks: [
           {
             taskId: 1,
-            happening: "shopping",
             verb: "buy",
             action: "some milk",
             with: "Max",
           },
           {
             taskId: 2,
-            happening: "shopping",
             verb: "buy",
             action: "some toiletpaper",
             with: "",
           },
           {
             taskId: 3,
-            happening: "shopping",
             verb: "Ask for",
             action: "vegan icecream",
             with: "",
