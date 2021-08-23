@@ -11,6 +11,12 @@ export default function Account({ reminderList, isLight }) {
     (item) => item.reminderId === Number(reminderId)
   );
 
+  const trigger = specificReminder[0].trigger;
+  const triggerEvent = specificReminder[0].triggerEvent;
+  const verb = specificReminder[0].tasks[taskId].verb;
+  const action = specificReminder[0].tasks[taskId].action;
+  const optinalParty = specificReminder[0].tasks[taskId].with;
+
   return (
     <main id="SinglePage" className="card-screen dispFlex">
       <Card
@@ -25,13 +31,13 @@ export default function Account({ reminderList, isLight }) {
         isLight={isLight}
       >
         <article className="caseArea">
-          <h2>{specificReminder[0].trigger} </h2>
-          <h2>{specificReminder[0].triggerEvent} </h2>
+          <h2>{trigger} </h2>
+          <h2>{triggerEvent} </h2>
         </article>
         <article className="actionArea">
-          <h3>{specificReminder[0].tasks[taskId].verb}</h3>
-          <h2>{specificReminder[0].tasks[taskId].action}</h2>
-          <h3>{`with:  ${specificReminder[0].tasks[taskId].with}`}</h3>
+          <h3>{verb}</h3>
+          <h2>{action}</h2>
+          {optinalParty && <h3>{`with: ${optinalParty}`}</h3>}
         </article>
       </Card>
     </main>

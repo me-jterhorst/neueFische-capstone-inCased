@@ -8,7 +8,6 @@ export default function HeaderSimpleBack({
   currentItem,
   totalItems,
 }) {
-  console.log(currentItem);
   const history = useHistory();
 
   function goToOverview() {
