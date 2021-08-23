@@ -26,7 +26,11 @@ export default function Overview({ reminderList }) {
   return (
     <main id="Overview">
       <Searchfield />
-      {listItems}
+      {listItems.length > 0 ? (
+        listItems
+      ) : (
+        <h1>You need to create some tasks first</h1>
+      )}
     </main>
   );
 }
