@@ -3,17 +3,21 @@ import ForwardButton from "../ForwardButton";
 import AddAnotherButton from "../AddAnotherButton";
 import { useHistory } from "react-router";
 
-export default function HeaderGoForward({ currentItem, totalItems }) {
+export default function HeaderReviewGoForward({
+  currentReminder,
+  currentItem,
+  totalItems,
+}) {
   const history = useHistory();
 
   function goToOverview() {
-    history.push("/");
+    history.push("/overview");
   }
   function goToPrevious() {
-    history.push(`/create/${currentItem - 1}`);
+    history.push(`/overview/task/${currentReminder}/${currentItem - 1}`);
   }
   function goToNextItem() {
-    history.push(`/create/${currentItem + 1}`);
+    history.push(`/overview/task/${currentReminder}/${currentItem + 1}`);
   }
 
   return (

@@ -1,7 +1,7 @@
 import "./SinglePage.css";
 import Card from "../components/Card";
 import FooterAccountDelete from "../components/Card_components/FooterAccountDelete";
-import HeaderGoForward from "../components/Card_components/HeaderGoForward";
+import HeaderReviewGoForward from "../components/Card_components/HeaderReviewGoForward";
 import { useParams } from "react-router-dom";
 export default function Account({ reminderList, isLight }) {
   const { reminderId } = useParams();
@@ -21,7 +21,7 @@ export default function Account({ reminderList, isLight }) {
     <main id="SinglePage" className="card-screen dispFlex">
       <Card
         header={
-          <HeaderGoForward
+          <HeaderReviewGoForward
             currentReminder={Number(reminderId)}
             currentItem={Number(taskId)}
             totalItems={specificReminder[0].tasks.length}

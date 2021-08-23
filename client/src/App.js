@@ -105,13 +105,13 @@ export default function App() {
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
-        <Route path="/create/:number">
-          <CreateAction />
+        <Route path="/create/0">
+          <CreateCase />
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/create">
-          <CreateCase />
+        <Route path="/create/:number">
+          <CreateAction />
           <BottomNav hasSpeech={false} />
         </Route>
 
