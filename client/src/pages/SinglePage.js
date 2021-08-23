@@ -15,7 +15,10 @@ export default function Account({ reminderList, isLight }) {
     <main id="SinglePage" className="card-screen dispFlex">
       <Card
         header={
-          <HeaderGoForward totalItems={specificReminder[0].tasks.length} />
+          <HeaderGoForward
+            currentItem={Number(taskId)}
+            totalItems={specificReminder[0].tasks.length}
+          />
         }
         footer={<FooterAccountDelete />}
         isLight={isLight}
