@@ -1,19 +1,31 @@
 #SinglePage .Card__content {
-  overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: var(--color-black-100);
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }
 
-#SinglePage h2 {
-  border-bottom: 2.5px solid var(--color-black-100);
+.caseArea {
+  position: relative;
+}
+.caseArea::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  height: 5px;
+  width: 100%;
+  background: var(--color-black-100);
+  border-radius: 5px;
 }
 
-#SinglePage .Card__content::-webkit-scrollbar {
-  background: var(--color-black-40);
-
-  width: 0.75rem;
+.caseArea h2 {
+  font-size: 2.2rem;
 }
-#SinglePage .Card__content::-webkit-scrollbar-thumb {
-  background: var(--color-black-85);
-  border-radius: 10px;
+
+.actionArea {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
