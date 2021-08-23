@@ -6,7 +6,7 @@ import SpeechInput from "../components/SpeechInput";
 export default function CreateCase() {
   return (
     <main id="CreateCase" className="card-screen">
-      <Card header={<HeaderGoForward totalItems={8} />}>
+      <Card header={<HeaderGoForward currentItem={0} totalItems={2} />}>
         <h2 className="margin-b--s">
           In case <br /> of
         </h2>
