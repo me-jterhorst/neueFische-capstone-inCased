@@ -1,7 +1,12 @@
 import "./SpeechInput.css";
 import { ReactComponent as MicrophoneIcon } from "../svg/icon-microphone.svg";
 
-export default function SpeechInput({ identifier, label, isRequired = true }) {
+export default function SpeechInput({
+  onChange,
+  identifier,
+  label,
+  isRequired = true,
+}) {
   return (
     <fieldset className={`Speechinput-box `}>
       <label
@@ -15,6 +20,7 @@ export default function SpeechInput({ identifier, label, isRequired = true }) {
           name={`${identifier}__${label}`}
           id={`${identifier}__${label}`}
           placeholder={label}
+          onChange={onChange}
           required={isRequired}
         />
         <span className="Speechinput-button-wrapper">
