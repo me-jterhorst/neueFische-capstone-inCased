@@ -16,6 +16,7 @@ export default function Account({ reminderList, isLight }) {
       <Card
         header={
           <HeaderGoForward
+            currentReminder={Number(reminderId)}
             currentItem={Number(taskId)}
             totalItems={specificReminder[0].tasks.length}
           />

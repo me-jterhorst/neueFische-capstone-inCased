@@ -53,8 +53,8 @@ export default function App() {
           },
           {
             taskId: 4,
-            verb: "Ask for",
-            action: "vegan icecream",
+            verb: "Look for",
+            action: "bargains",
             with: "",
           },
         ],

@@ -1,10 +1,10 @@
 import "./ForwardButton.css";
 import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.svg";
 
-export default function ForwardButton() {
+export default function ForwardButton({ onClick }) {
   return (
     <div className="ForwardButton">
-      <ForwardButtonIcon className="lineIcon icon opaque" />
+      <ForwardButtonIcon onClick={onClick} className="lineIcon icon opaque" />
     </div>
   );
 }
