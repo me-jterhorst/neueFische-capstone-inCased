@@ -1,0 +1,49 @@
+#Overview {
+  height: calc(100vh - 170px);
+}
+
+.Overview__card {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1.5em;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 0.75rem;
+  position: relative;
+}
+
+.Overview__card::after {
+  content: "";
+  height: 5px;
+  position: absolute;
+  background: var(--color-black-100);
+  inset: auto 0 0 0;
+  border-radius: 5px;
+}
+.Overview__card__number {
+  padding: 0.5em 0.75em;
+  aspect-ratio: 1 / 1;
+  background: var(--color-black-100);
+
+  color: var(--color-white-100);
+}
+
+.Overview__card__txt {
+  margin-left: 1rem;
+}
+
+.Overview__card__link {
+  width: 40px;
+  height: 40px;
+  padding: 0.5rem;
+  margin-left: auto;
+}
+
+.Overview__card__link svg {
+  width: 100%;
+  height: 100%;
+}
+
+.Overview__card svg path {
+  stroke: var(--color-black-100) !important;
+}

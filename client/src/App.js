@@ -11,6 +11,7 @@ import PasswordReset from "./pages/PasswordReset";
 import CreateCase from "./pages/CreateCase";
 import CreateAction from "./pages/CreateAction";
 import SinglePage from "./pages/SinglePage";
+import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
 import { useState } from "react";
@@ -27,27 +28,31 @@ export default function App() {
     },
     reminders: [
       {
-        reminderId: 1,
+        reminderId: 11111,
         trigger: "Supermarket",
+        triggerEvent: "shopping",
         creationTime: 12343434,
         tasks: [
           {
             taskId: 1,
-            happening: "shopping",
             verb: "buy",
             action: "some milk",
             with: "Max",
           },
           {
             taskId: 2,
-            happening: "shopping",
             verb: "buy",
             action: "some toiletpaper",
             with: "",
           },
           {
             taskId: 3,
-            happening: "shooing",
+            verb: "Ask for",
+            action: "vegan icecream",
+            with: "",
+          },
+          {
+            taskId: 4,
             verb: "Ask for",
             action: "vegan icecream",
             with: "",
@@ -55,13 +60,13 @@ export default function App() {
         ],
       },
       {
-        reminderId: 2,
+        reminderId: 22222,
         trigger: "Eric",
+        triggerEvent: "is coming over",
         creationTime: 12343434,
         tasks: [
           {
             taskId: 1,
-            happening: "is Visiting",
             verb: "book",
             action: "restaurant table",
             with: "Anne",
@@ -69,27 +74,25 @@ export default function App() {
         ],
       },
       {
-        reminderId: 1,
+        reminderId: 33333,
         trigger: "Joker",
+        triggerEvent: "attacks Gotham",
         creationTime: 12343434,
         tasks: [
           {
             taskId: 1,
-            happening: "is attacking Gotham",
             verb: "call",
             action: "Batman",
             with: "Comissioner Gordon",
           },
           {
             taskId: 2,
-            happening: "breaks into Arkham",
             verb: "refuel",
             action: "the Batmobil",
             with: "Alfred",
           },
           {
             taskId: 3,
-            happening: "is starting a gang war",
             verb: "Call",
             action: "Robin",
             with: "Robin",
@@ -112,13 +115,13 @@ export default function App() {
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/overview/task/:id">
-          <SinglePage isLight={true} />
+        <Route path="/overview/task/:reminderId/:taskId">
+          <SinglePage reminderList={userData.reminders} isLight={true} />
           <BottomNav hasSpeech={false} />
         </Route>
 
         <Route path="/overview">
-          <main>Hello Overview</main>
+          <Overview reminderList={userData.reminders} />
           <BottomNav hasSpeech={true} />
         </Route>
 
