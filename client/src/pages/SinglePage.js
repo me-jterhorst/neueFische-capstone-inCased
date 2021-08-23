@@ -11,7 +11,6 @@ export default function Account({ reminderList, isLight }) {
     (item) => item.reminderId === Number(reminderId)
   );
 
-  console.log(specificReminder);
   return (
     <main id="SinglePage" className="card-screen dispFlex">
       <Card
