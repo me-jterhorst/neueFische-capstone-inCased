@@ -144,7 +144,11 @@ export default function CreateCase() {
             isRequired={false}
           />
         </form>
-        {isTooShort && <p>Required Input fields can't be empty</p>}
+        {isTooShort && (
+          <p className="Card__message--error">
+            Required Input fields can't be empty
+          </p>
+        )}
       </Card>
     </main>
   );
