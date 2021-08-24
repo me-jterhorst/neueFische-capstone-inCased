@@ -14,7 +14,7 @@ import SinglePage from "./pages/SinglePage";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function App() {
   const [isLogin, setLogin] = useState(true);
