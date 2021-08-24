@@ -3,23 +3,23 @@ import ForwardButton from "../ForwardButton";
 import AddAnotherButton from "../AddAnotherButton";
 
 export default function HeaderActionGoForward({
-  clickBackward,
-  clickForward,
-  clickAddForward,
+  onClickBackward,
+  onClickForward,
+  onClickAddForward,
   currentItem,
   totalItems,
 }) {
   return (
     <header className="Card__header dispFlex">
-      <BackButton onClick={clickBackward} />
+      <BackButton onClick={onClickBackward} />
 
       <p className="Card__header__numbers">
         {`${currentItem} / ${totalItems}`}
       </p>
       {currentItem < totalItems ? (
-        <ForwardButton onClick={clickForward} />
+        <ForwardButton onClick={onClickForward} />
       ) : (
-        <AddAnotherButton onClick={clickAddForward} />
+        <AddAnotherButton onClick={onClickAddForward} />
       )}
     </header>
   );

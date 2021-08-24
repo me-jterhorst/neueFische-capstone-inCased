@@ -29,8 +29,7 @@ export default function CreateCase() {
     eventTriggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
   }, [triggerInput, eventTriggerInput, isTooShort]);
 
-  function caseHandleGoForward(event) {
-    event.preventDefault();
+  function caseHandleGoForward() {
     if (reminderArray.tasks.length > 0) {
       history.push("/create/1");
     } else {
@@ -64,8 +63,8 @@ export default function CreateCase() {
       <Card
         header={
           <HeaderCreateCaseGoForward
-            clickBackward={() => caseHandleGoBack()}
-            clickForward={(event) => caseHandleGoForward(event)}
+            onClickBackward={caseHandleGoBack}
+            onClickForward={caseHandleGoForward}
             currentItem={0}
             totalItems={
               reminderArray.tasks.length > 0 ? reminderArray.tasks.length : 1

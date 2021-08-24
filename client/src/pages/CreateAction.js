@@ -8,18 +8,18 @@ import FooterSubmit from "../components/Card_components/FooterSubmit";
 
 export default function CreateCase() {
   /** VARIABLE SET UP */
-  const reminderArray = JSON.parse(localStorage.getItem("newEntry"));
+  const reminderObj = JSON.parse(localStorage.getItem("newEntry"));
   const { number } = useParams();
   const indexNumber = Number(number);
   const history = useHistory();
   const [verbInput, setVerbInput] = useState(
-    reminderArray.tasks[indexNumber - 1].verb
+    reminderObj.tasks[indexNumber - 1].verb
   );
   const [actionInput, setActionInput] = useState(
-    reminderArray.tasks[indexNumber - 1].action
+    reminderObj.tasks[indexNumber - 1].action
   );
   const [withInput, setWithInput] = useState(
-    reminderArray.tasks[indexNumber - 1].with
+    reminderObj.tasks[indexNumber - 1].with
   );
   const [isTooShort, setIsTooShort] = useState(true);
 
@@ -30,9 +30,7 @@ export default function CreateCase() {
   }, [verbInput, actionInput, isTooShort]);
 
   /** ONCLICK ADD NEW TASK */
-  function caseAddGoForward(event) {
-    event.preventDefault();
-
+  function caseAddGoForward() {
     if (isTooShort) {
       return;
     }
@@ -44,8 +42,8 @@ export default function CreateCase() {
       with: withInput,
     };
 
-    reminderArray.tasks[indexNumber - 1] = taskObj;
-    reminderArray.tasks.push({
+    reminderObj.tasks[indexNumber - 1] = taskObj;
+    reminderObj.tasks.push({
       taskId: indexNumber + 1,
       verb: "",
       action: "",
@@ -53,7 +51,7 @@ export default function CreateCase() {
     });
 
     localStorage.removeItem("newEntry");
-    localStorage.setItem("newEntry", JSON.stringify(reminderArray));
+    localStorage.setItem("newEntry", JSON.stringify(reminderObj));
     setVerbInput("");
     setActionInput("");
     setWithInput("");
@@ -62,20 +60,19 @@ export default function CreateCase() {
   }
 
   /** ONCLICK GO BACK  */
-  function actionHandleGoBack(event) {
-    event.preventDefault();
+  function actionHandleGoBack() {
     if (indexNumber > 1) {
-      setVerbInput(reminderArray.tasks[indexNumber - 2].verb);
-      setActionInput(reminderArray.tasks[indexNumber - 2].action);
-      setWithInput(reminderArray.tasks[indexNumber - 2].with);
+      setVerbInput(reminderObj.tasks[indexNumber - 2].verb);
+      setActionInput(reminderObj.tasks[indexNumber - 2].action);
+      setWithInput(reminderObj.tasks[indexNumber - 2].with);
     }
     history.push(`/create/${indexNumber - 1}`);
   }
   /** ONCLICK GO FORWARD  */
   function goForward() {
-    setVerbInput(reminderArray.tasks[indexNumber].verb);
-    setActionInput(reminderArray.tasks[indexNumber].action);
-    setWithInput(reminderArray.tasks[indexNumber].with);
+    setVerbInput(reminderObj.tasks[indexNumber].verb);
+    setActionInput(reminderObj.tasks[indexNumber].action);
+    setWithInput(reminderObj.tasks[indexNumber].with);
 
     history.push(`/create/${indexNumber + 1}`);
   }
@@ -94,10 +91,10 @@ export default function CreateCase() {
       with: withInput,
     };
 
-    reminderArray.tasks[indexNumber - 1] = taskObj;
+    reminderObj.tasks[indexNumber - 1] = taskObj;
 
     localStorage.removeItem("newEntry");
-    localStorage.setItem("reminder", JSON.stringify(reminderArray));
+    localStorage.setItem("reminder", JSON.stringify(reminderObj));
 
     history.push("/");
   }
@@ -107,19 +104,16 @@ export default function CreateCase() {
       <Card
         header={
           <HeaderActionGoForward
-            clickAddForward={(event) => caseAddGoForward(event)}
-            clickForward={() => goForward()}
-            clickBackward={(event) => actionHandleGoBack(event)}
+            onClickAddForward={caseAddGoForward}
+            onClickForward={goForward}
+            onClickBackward={actionHandleGoBack}
             currentItem={indexNumber}
-            totalItems={reminderArray ? reminderArray.tasks.length : 2}
+            totalItems={reminderObj ? reminderObj.tasks.length : 2}
           />
         }
         footer={
-          indexNumber === reminderArray.tasks.length ? (
-            <FooterSubmit
-              onClick={(event) => addReminder(event)}
-              text="Add Reminder"
-            />
+          indexNumber === reminderObj.tasks.length ? (
+            <FooterSubmit onClick={addReminder} text="Add Reminder" />
           ) : (
             ""
           )
