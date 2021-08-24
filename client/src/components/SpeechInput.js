@@ -5,6 +5,7 @@ export default function SpeechInput({
   onChange,
   identifier,
   label,
+  value = "",
   isRequired = true,
 }) {
   return (
@@ -20,6 +21,7 @@ export default function SpeechInput({
           name={`${identifier}__${label}`}
           id={`${identifier}__${label}`}
           placeholder={label}
+          value={value}
           onChange={onChange}
           required={isRequired}
         />

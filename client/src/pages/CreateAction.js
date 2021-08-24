@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import FooterSubmit from "../components/Card_components/FooterSubmit";
 
 export default function CreateCase() {
+  /** VARIABLE SET UP */
   const { number } = useParams();
   const history = useHistory();
   const [verbInput, setVerbInput] = useState("");
@@ -14,11 +15,13 @@ export default function CreateCase() {
   const [withInput, setWithInput] = useState("");
   const [isTooShort, setIsTooShort] = useState(true);
 
+  /** CHECK FOR INPUT */
   useEffect(() => {
     verbInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
     actionInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
   }, [verbInput, actionInput, isTooShort]);
 
+  /** ONCLICK ADD NEW TASK */
   function caseAddGoForward(event) {
     event.preventDefault();
 
@@ -38,10 +41,14 @@ export default function CreateCase() {
 
     localStorage.clear();
     localStorage.setItem("newEntry", JSON.stringify(reminderArray));
-    // How to reset form
-    // useRef???
+    setVerbInput("");
+    setActionInput("");
+    setWithInput("");
+
     history.push(`/create/${Number(number) + 1}`);
   }
+
+  /** ONCLICK GO BACK  */
 
   return (
     <main id="CreateAction" className="card-screen">
@@ -62,17 +69,21 @@ export default function CreateCase() {
           <SpeechInput
             onChange={(event) => setVerbInput(event.target.value)}
             label="Verb"
+            value={verbInput}
           />
           <SpeechInput
             onChange={(event) => setActionInput(event.target.value)}
             label="Action"
+            value={actionInput}
           />
           <SpeechInput
             onChange={(event) => setWithInput(event.target.value)}
             label="With"
+            value={withInput}
             isRequired={false}
           />
         </form>
+        {isTooShort && <p>Required Input fields can't be empty</p>}
       </Card>
     </main>
   );
