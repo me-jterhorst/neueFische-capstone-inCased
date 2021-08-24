@@ -4,6 +4,7 @@ import HeaderCreateCaseGoForward from "../components/Card_components/HeaderCreat
 import SpeechInput from "../components/SpeechInput";
 import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
+import { v4 } from "uuid";
 
 export default function CreateCase() {
   const history = useHistory();
@@ -37,7 +38,7 @@ export default function CreateCase() {
         return;
       } else {
         const obj = {
-          reminderId: 4444,
+          reminderId: v4(),
           trigger: triggerInput,
           triggerEvent: eventTriggerInput,
           creationTime: Date.now(),
