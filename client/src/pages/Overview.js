@@ -3,7 +3,10 @@ import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.s
 import Searchfield from "../components/Searchfield";
 import { Link } from "react-router-dom";
 
-export default function Overview({ reminderList }) {
+export default function Overview() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const reminderList = user.reminders;
+
   const listItems = reminderList.map((item, index) => {
     return (
       <section className="Overview__card dispFlex" key={item.reminderId}>

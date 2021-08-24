@@ -3,12 +3,15 @@ import Card from "../components/Card";
 import FooterAccountDelete from "../components/Card_components/FooterAccountDelete";
 import HeaderReviewGoForward from "../components/Card_components/HeaderReviewGoForward";
 import { useParams } from "react-router-dom";
-export default function Account({ reminderList, isLight }) {
+
+export default function Account({ isLight }) {
   const { reminderId } = useParams();
   const { taskId } = useParams();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const reminderList = user.reminders;
 
   const specificReminder = reminderList.filter(
-    (item) => item.reminderId === Number(reminderId)
+    (item) => item.reminderId === reminderId
   );
 
   const trigger = specificReminder[0].trigger;
@@ -22,7 +25,7 @@ export default function Account({ reminderList, isLight }) {
       <Card
         header={
           <HeaderReviewGoForward
-            currentReminder={Number(reminderId)}
+            currentReminder={reminderId}
             currentItem={Number(taskId)}
             totalItems={specificReminder[0].tasks.length}
           />

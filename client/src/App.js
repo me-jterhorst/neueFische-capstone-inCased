@@ -14,11 +14,10 @@ import SinglePage from "./pages/SinglePage";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
   const [isLogin, setLogin] = useState(true);
-
   const serverUser = {
     id: 1,
     user: {
@@ -26,20 +25,48 @@ export default function App() {
       email: "JaneDoe@hotmail.de",
       password: 12345678,
     },
-    reminders: [{}],
+    reminders: [
+      {
+        reminderId: "33333",
+        trigger: "Joker",
+        triggerEvent: "attacks Gotham",
+        creationTime: 12343434,
+        tasks: [
+          {
+            taskId: 1,
+            verb: "call",
+            action: "Batman",
+            with: "Comissioner Gordon",
+          },
+          {
+            taskId: 2,
+            verb: "refuel",
+            action: "the Batmobil",
+            with: "Alfred",
+          },
+          {
+            taskId: 3,
+            verb: "Call",
+            action: "Robin",
+            with: "Robin",
+          },
+        ],
+      },
+    ],
   };
+  localStorage.setItem("user", JSON.stringify(serverUser));
+
+  const database = JSON.parse(localStorage.getItem("user")) || null;
 
   const userData = {
-    id: 1,
+    id: database.id,
     user: {
-      name: "Jane",
-      email: "JaneDoe@hotmail.de",
+      name: database.user.name,
+      email: database.user.email,
       password: 12345678,
     },
-    reminders: [],
+    reminders: [...database.reminders],
   };
-
-  localStorage.setItem("user", JSON.stringify());
 
   return (
     <>
@@ -56,12 +83,12 @@ export default function App() {
         </Route>
 
         <Route path="/overview/task/:reminderId/:taskId">
-          <SinglePage reminderList={userData.reminders} isLight={true} />
+          <SinglePage isLight={true} />
           <BottomNav hasSpeech={false} />
         </Route>
 
         <Route path="/overview">
-          <Overview reminderList={userData.reminders} />
+          <Overview />
           <BottomNav hasSpeech={true} />
         </Route>
 
