@@ -8,11 +8,18 @@ import FooterSubmit from "../components/Card_components/FooterSubmit";
 
 export default function CreateCase() {
   /** VARIABLE SET UP */
+  const reminderArray = JSON.parse(localStorage.getItem("newEntry"));
   const { number } = useParams();
   const history = useHistory();
-  const [verbInput, setVerbInput] = useState("");
-  const [actionInput, setActionInput] = useState("");
-  const [withInput, setWithInput] = useState("");
+  const [verbInput, setVerbInput] = useState(
+    reminderArray.tasks[Number(number) - 1].verb
+  );
+  const [actionInput, setActionInput] = useState(
+    reminderArray.tasks[Number(number) - 1].action
+  );
+  const [withInput, setWithInput] = useState(
+    reminderArray.tasks[Number(number) - 1].with
+  );
   const [isTooShort, setIsTooShort] = useState(true);
 
   /** CHECK FOR INPUT */
@@ -36,8 +43,13 @@ export default function CreateCase() {
       with: withInput,
     };
 
-    const reminderArray = JSON.parse(localStorage.getItem("newEntry"));
-    reminderArray.tasks.push(taskObj);
+    reminderArray.tasks[Number(number) - 1] = taskObj;
+    reminderArray.tasks.push({
+      taskId: Number(number) + 1,
+      verb: "",
+      action: "",
+      with: "",
+    });
 
     localStorage.clear();
     localStorage.setItem("newEntry", JSON.stringify(reminderArray));
@@ -49,6 +61,23 @@ export default function CreateCase() {
   }
 
   /** ONCLICK GO BACK  */
+  function actionHandleGoBack(event) {
+    event.preventDefault();
+    if (Number(number) > 1) {
+      setVerbInput(reminderArray.tasks[Number(number) - 2].verb);
+      setActionInput(reminderArray.tasks[Number(number) - 2].action);
+      setWithInput(reminderArray.tasks[Number(number) - 2].with);
+    }
+    history.push(`/create/${Number(number) - 1}`);
+  }
+
+  function goForward() {
+    setVerbInput(reminderArray.tasks[Number(number)].verb);
+    setActionInput(reminderArray.tasks[Number(number)].action);
+    setWithInput(reminderArray.tasks[Number(number)].with);
+
+    history.push(`/create/${Number(number) + 1}`);
+  }
 
   return (
     <main id="CreateAction" className="card-screen">
@@ -56,10 +85,10 @@ export default function CreateCase() {
         header={
           <HeaderActionGoForward
             clickAddForward={(event) => caseAddGoForward(event)}
-            clickForward={() => console.log("forward")}
-            clickBackward={() => console.log("backwards")}
+            clickForward={() => goForward()}
+            clickBackward={(event) => actionHandleGoBack(event)}
             currentItem={Number(number)}
-            totalItems={Number(number) + 1}
+            totalItems={reminderArray ? reminderArray.tasks.length : 2}
           />
         }
         footer={<FooterSubmit text="Add Reminder" />}

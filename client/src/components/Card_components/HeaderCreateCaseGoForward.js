@@ -11,9 +11,7 @@ export default function HeaderCreateCaseGoForward({
     <header className="Card__header dispFlex">
       <BackButton onClick={clickBackward} />
 
-      <p className="Card__header__numbers">
-        {`${currentItem + 1} / ${totalItems}`}
-      </p>
+      <p className="Card__header__numbers">{`${0.5} / ${totalItems}`}</p>
 
       <ForwardButton onClick={clickForward} />
     </header>

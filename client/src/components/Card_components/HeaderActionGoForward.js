@@ -14,9 +14,9 @@ export default function HeaderActionGoForward({
       <BackButton onClick={clickBackward} />
 
       <p className="Card__header__numbers">
-        {`${currentItem + 1} / ${totalItems}`}
+        {`${currentItem} / ${totalItems}`}
       </p>
-      {currentItem + 1 < totalItems ? (
+      {currentItem < totalItems ? (
         <ForwardButton onClick={clickForward} />
       ) : (
         <AddAnotherButton onClick={clickAddForward} />

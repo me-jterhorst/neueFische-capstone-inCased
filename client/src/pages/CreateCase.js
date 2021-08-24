@@ -7,6 +7,9 @@ import { useState, useEffect } from "react";
 
 export default function CreateCase() {
   const history = useHistory();
+  const reminderArray = JSON.parse(localStorage.getItem("newEntry")) || {
+    tasks: [],
+  };
   const [triggerInput, setTriggerInput] = useState("");
   const [eventTriggerInput, setEventTriggerInput] = useState("");
   const [isTooShort, setIsTooShort] = useState(true);
@@ -15,7 +18,7 @@ export default function CreateCase() {
     localStorage.clear();
     history.push("/");
   }
-
+  console.log(reminderArray);
   useEffect(() => {
     triggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
     eventTriggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
@@ -23,20 +26,31 @@ export default function CreateCase() {
 
   function caseHandleGoForward(event) {
     event.preventDefault();
-    if (isTooShort) {
-      return;
-    } else {
-      const obj = {
-        reminderId: 4444,
-        trigger: triggerInput,
-        triggerEvent: eventTriggerInput,
-        creationTime: Date.now(),
-        tasks: [],
-      };
-
-      localStorage.setItem("newEntry", JSON.stringify(obj));
-
+    if (reminderArray.tasks.length > 0) {
       history.push("/create/1");
+    } else {
+      if (isTooShort) {
+        return;
+      } else {
+        const obj = {
+          reminderId: 4444,
+          trigger: triggerInput,
+          triggerEvent: eventTriggerInput,
+          creationTime: Date.now(),
+          tasks: [
+            {
+              taskId: 1,
+              verb: "",
+              action: "",
+              with: "",
+            },
+          ],
+        };
+
+        localStorage.setItem("newEntry", JSON.stringify(obj));
+
+        history.push("/create/1");
+      }
     }
   }
 
@@ -48,7 +62,9 @@ export default function CreateCase() {
             clickBackward={() => caseHandleGoBack()}
             clickForward={(event) => caseHandleGoForward(event)}
             currentItem={0}
-            totalItems={2}
+            totalItems={
+              reminderArray.tasks.length > 0 ? reminderArray.tasks.length : 2
+            }
           />
         }
       >
@@ -60,12 +76,14 @@ export default function CreateCase() {
             onChange={(event) => {
               setTriggerInput(event.target.value);
             }}
+            value={triggerInput}
             label="Trigger"
           />
           <SpeechInput
             onChange={(event) => {
               setEventTriggerInput(event.target.value);
             }}
+            value={eventTriggerInput}
             label="Event"
           />
         </form>
