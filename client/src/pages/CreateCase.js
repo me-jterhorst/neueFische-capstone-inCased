@@ -10,15 +10,19 @@ export default function CreateCase() {
   const reminderArray = JSON.parse(localStorage.getItem("newEntry")) || {
     tasks: [],
   };
-  const [triggerInput, setTriggerInput] = useState("");
-  const [eventTriggerInput, setEventTriggerInput] = useState("");
+  const [triggerInput, setTriggerInput] = useState(
+    reminderArray.tasks.length === 0 ? "" : reminderArray.trigger
+  );
+  const [eventTriggerInput, setEventTriggerInput] = useState(
+    reminderArray.tasks.length === 0 ? "" : reminderArray.triggerEvent
+  );
   const [isTooShort, setIsTooShort] = useState(true);
 
   function caseHandleGoBack() {
     localStorage.clear();
     history.push("/");
   }
-  console.log(reminderArray);
+
   useEffect(() => {
     triggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
     eventTriggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
@@ -63,7 +67,7 @@ export default function CreateCase() {
             clickForward={(event) => caseHandleGoForward(event)}
             currentItem={0}
             totalItems={
-              reminderArray.tasks.length > 0 ? reminderArray.tasks.length : 2
+              reminderArray.tasks.length > 0 ? reminderArray.tasks.length : 1
             }
           />
         }
