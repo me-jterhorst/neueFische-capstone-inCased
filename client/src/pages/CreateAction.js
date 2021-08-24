@@ -52,7 +52,7 @@ export default function CreateCase() {
       with: "",
     });
 
-    localStorage.clear();
+    localStorage.removeItem("newEntry");
     localStorage.setItem("newEntry", JSON.stringify(reminderArray));
     setVerbInput("");
     setActionInput("");
@@ -96,7 +96,7 @@ export default function CreateCase() {
 
     reminderArray.tasks[indexNumber - 1] = taskObj;
 
-    localStorage.clear();
+    localStorage.removeItem("newEntry");
     localStorage.setItem("reminder", JSON.stringify(reminderArray));
 
     history.push("/");

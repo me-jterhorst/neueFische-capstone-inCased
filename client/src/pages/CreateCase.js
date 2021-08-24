@@ -20,7 +20,7 @@ export default function CreateCase() {
   const [isTooShort, setIsTooShort] = useState(true);
 
   function caseHandleGoBack() {
-    localStorage.clear();
+    localStorage.removeItem("NewEntry");
     history.push("/");
   }
 
