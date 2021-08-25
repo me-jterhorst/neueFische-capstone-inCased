@@ -25,14 +25,11 @@ export default function CreateCase() {
 
   /** CHECK FOR INPUT */
   useEffect(() => {
-    verbInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-    actionInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-  }, [verbInput, actionInput, isTooShort]);
+    setIsTooShort(verbInput.length === 0 || actionInput.length === 0);
+  }, [verbInput, actionInput]);
 
   /** ONCLICK ADD NEW TASK */
-  function caseAddGoForward(event) {
-    event.preventDefault();
-
+  function caseAddGoForward() {
     if (isTooShort) {
       return;
     }
@@ -62,8 +59,7 @@ export default function CreateCase() {
   }
 
   /** ONCLICK GO BACK  */
-  function actionHandleGoBack(event) {
-    event.preventDefault();
+  function actionHandleGoBack() {
     if (indexNumber > 1) {
       setVerbInput(reminderObj.tasks[indexNumber - 2].verb);
       setActionInput(reminderObj.tasks[indexNumber - 2].action);
@@ -106,19 +102,16 @@ export default function CreateCase() {
       <Card
         header={
           <HeaderActionGoForward
-            clickAddForward={(event) => caseAddGoForward(event)}
-            clickForward={() => goForward()}
-            clickBackward={(event) => actionHandleGoBack(event)}
+            onClickAddForward={caseAddGoForward}
+            onClickForward={goForward}
+            onClickBackward={actionHandleGoBack}
             currentItem={indexNumber}
             totalItems={reminderObj ? reminderObj.tasks.length : 2}
           />
         }
         footer={
           indexNumber === reminderObj.tasks.length ? (
-            <FooterSubmit
-              onClick={(event) => addReminder(event)}
-              text="Add Reminder"
-            />
+            <FooterSubmit onClick={addReminder} text="Add Reminder" />
           ) : (
             ""
           )

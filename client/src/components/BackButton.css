@@ -1,3 +1,8 @@
+.BackButton {
+  background: transparent;
+  border: none;
+}
+
 .BackButton::before {
   content: "";
   width: 10rem;

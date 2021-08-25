@@ -8,30 +8,31 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function CreateCase() {
   const history = useHistory();
-  const reminderArray = JSON.parse(localStorage.getItem("newEntry")) || {
+  const reminderObj = JSON.parse(localStorage.getItem("newEntry")) || {
     tasks: [],
   };
+
   const [triggerInput, setTriggerInput] = useState(
-    reminderArray.tasks.length === 0 ? "" : reminderArray.trigger
+    reminderObj.tasks.length === 0 ? "" : reminderObj.trigger
   );
   const [eventTriggerInput, setEventTriggerInput] = useState(
-    reminderArray.tasks.length === 0 ? "" : reminderArray.triggerEvent
+    reminderObj.tasks.length === 0 ? "" : reminderObj.triggerEvent
   );
+
   const [isTooShort, setIsTooShort] = useState(true);
 
+  useEffect(() => {
+    setIsTooShort(triggerInput.length === 0 || eventTriggerInput.length === 0);
+  }, [triggerInput, eventTriggerInput]);
+
+  /** GO BACK FUNCTION */
   function caseHandleGoBack() {
     localStorage.removeItem("NewEntry");
     history.push("/");
   }
 
-  useEffect(() => {
-    triggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-    eventTriggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-  }, [triggerInput, eventTriggerInput, isTooShort]);
-
-  function caseHandleGoForward(event) {
-    event.preventDefault();
-    if (reminderArray.tasks.length > 0) {
+  function caseHandleGoForward() {
+    if (reminderObj.tasks.length > 0) {
       history.push("/create/1");
     } else {
       if (isTooShort) {
@@ -64,11 +65,11 @@ export default function CreateCase() {
       <Card
         header={
           <HeaderCreateCaseGoForward
-            clickBackward={() => caseHandleGoBack()}
-            clickForward={(event) => caseHandleGoForward(event)}
+            onClickBackward={caseHandleGoBack}
+            onClickForward={caseHandleGoForward}
             currentItem={0}
             totalItems={
-              reminderArray.tasks.length > 0 ? reminderArray.tasks.length : 1
+              reminderObj.tasks.length > 0 ? reminderObj.tasks.length : 1
             }
           />
         }
