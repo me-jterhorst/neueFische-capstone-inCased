@@ -22,9 +22,8 @@ export default function CreateCase() {
   const [isTooShort, setIsTooShort] = useState(true);
 
   useEffect(() => {
-    triggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-    eventTriggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-  }, [triggerInput, eventTriggerInput, isTooShort]);
+    setIsTooShort(triggerInput.length === 0 || eventTriggerInput.length === 0);
+  }, [triggerInput, eventTriggerInput]);
 
   /** GO BACK FUNCTION */
   function caseHandleGoBack() {

@@ -4,7 +4,6 @@ import ForwardButton from "../ForwardButton";
 export default function HeaderCreateCaseGoForward({
   onClickForward,
   onClickBackward,
-  currentItem,
   totalItems,
 }) {
   return (

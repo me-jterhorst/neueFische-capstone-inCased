@@ -25,9 +25,8 @@ export default function CreateCase() {
 
   /** CHECK FOR INPUT */
   useEffect(() => {
-    verbInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-    actionInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-  }, [verbInput, actionInput, isTooShort]);
+    setIsTooShort(verbInput.length === 0 || actionInput.length === 0);
+  }, [verbInput, actionInput]);
 
   /** ONCLICK ADD NEW TASK */
   function caseAddGoForward() {
