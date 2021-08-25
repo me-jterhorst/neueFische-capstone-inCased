@@ -8,17 +8,20 @@ import { v4 } from "uuid";
 
 export default function CreateCase() {
   const history = useHistory();
-  const reminderArray = JSON.parse(localStorage.getItem("newEntry")) || {
+  const reminderObj = JSON.parse(localStorage.getItem("newEntry")) || {
     tasks: [],
   };
+
   const [triggerInput, setTriggerInput] = useState(
-    reminderArray.tasks.length === 0 ? "" : reminderArray.trigger
+    reminderObj.tasks.length === 0 ? "" : reminderObj.trigger
   );
   const [eventTriggerInput, setEventTriggerInput] = useState(
-    reminderArray.tasks.length === 0 ? "" : reminderArray.triggerEvent
+    reminderObj.tasks.length === 0 ? "" : reminderObj.triggerEvent
   );
+
   const [isTooShort, setIsTooShort] = useState(true);
 
+  /** GO BACK FUNCTION */
   function caseHandleGoBack() {
     localStorage.removeItem("NewEntry");
     history.push("/");
@@ -30,7 +33,7 @@ export default function CreateCase() {
   }, [triggerInput, eventTriggerInput, isTooShort]);
 
   function caseHandleGoForward() {
-    if (reminderArray.tasks.length > 0) {
+    if (reminderObj.tasks.length > 0) {
       history.push("/create/1");
     } else {
       if (isTooShort) {
@@ -67,7 +70,7 @@ export default function CreateCase() {
             onClickForward={caseHandleGoForward}
             currentItem={0}
             totalItems={
-              reminderArray.tasks.length > 0 ? reminderArray.tasks.length : 1
+              reminderObj.tasks.length > 0 ? reminderObj.tasks.length : 1
             }
           />
         }
