@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom";
-
-export default function FooterSubmit({ text }) {
+export default function FooterSubmit({ onClick = () => {}, text }) {
   return (
     <footer className="Card__footer Card__footer--submit dispFlex">
-      <Link className="opaque" to="#">
+      <button onClick={onClick} className="opaque" to="#">
         {text}
-      </Link>
+      </button>
     </footer>
   );
 }

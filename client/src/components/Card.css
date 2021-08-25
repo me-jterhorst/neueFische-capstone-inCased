@@ -71,3 +71,10 @@
   padding-inline: 25px;
   justify-content: space-between;
 }
+
+.Card__message--error {
+  background: var(--color-black-100);
+  color: var(--color-white-100);
+  padding: 0.25rem;
+  display: inline;
+}
