@@ -4,7 +4,7 @@ import HeaderCreateCaseGoForward from "../components/Card_components/HeaderCreat
 import SpeechInput from "../components/SpeechInput";
 import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
-import { v4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreateCase() {
   const history = useHistory();
@@ -21,16 +21,16 @@ export default function CreateCase() {
 
   const [isTooShort, setIsTooShort] = useState(true);
 
+  useEffect(() => {
+    triggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
+    eventTriggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
+  }, [triggerInput, eventTriggerInput, isTooShort]);
+
   /** GO BACK FUNCTION */
   function caseHandleGoBack() {
     localStorage.removeItem("NewEntry");
     history.push("/");
   }
-
-  useEffect(() => {
-    triggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-    eventTriggerInput.length === 0 ? setIsTooShort(true) : setIsTooShort(false);
-  }, [triggerInput, eventTriggerInput, isTooShort]);
 
   function caseHandleGoForward() {
     if (reminderObj.tasks.length > 0) {
@@ -40,7 +40,7 @@ export default function CreateCase() {
         return;
       } else {
         const obj = {
-          reminderId: v4(),
+          reminderId: uuidv4(),
           trigger: triggerInput,
           triggerEvent: eventTriggerInput,
           creationTime: Date.now(),
