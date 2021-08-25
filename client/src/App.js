@@ -25,34 +25,7 @@ export default function App() {
       email: "JaneDoe@hotmail.de",
       password: 12345678,
     },
-    reminders: [
-      {
-        reminderId: "33333",
-        trigger: "Joker",
-        triggerEvent: "attacks Gotham",
-        creationTime: 12343434,
-        tasks: [
-          {
-            taskId: 1,
-            verb: "call",
-            action: "Batman",
-            with: "Comissioner Gordon",
-          },
-          {
-            taskId: 2,
-            verb: "refuel",
-            action: "the Batmobil",
-            with: "Alfred",
-          },
-          {
-            taskId: 3,
-            verb: "Call",
-            action: "Robin",
-            with: "Robin",
-          },
-        ],
-      },
-    ],
+    reminders: [],
   };
   localStorage.setItem("user", JSON.stringify(serverUser));
 

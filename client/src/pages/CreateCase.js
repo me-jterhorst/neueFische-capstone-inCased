@@ -27,10 +27,10 @@ export default function CreateCase() {
 
   /** GO BACK FUNCTION */
   function caseHandleGoBack() {
-    localStorage.removeItem("NewEntry");
+    localStorage.removeItem("newEntry");
     history.push("/");
   }
-
+  /** CYCLE FORWARD */
   function caseHandleGoForward() {
     if (reminderObj.tasks.length > 0) {
       history.push("/create/1");

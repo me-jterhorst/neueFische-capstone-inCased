@@ -1,12 +1,13 @@
 import "./SinglePage.css";
 import Card from "../components/Card";
-import FooterAccountDelete from "../components/Card_components/FooterAccountDelete";
+import FooterItemDelete from "../components/Card_components/FooterItemDelete";
 import HeaderReviewGoForward from "../components/Card_components/HeaderReviewGoForward";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function Account({ isLight }) {
   const { reminderId } = useParams();
   const { taskId } = useParams();
+  const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
   const reminderList = user.reminders;
 
@@ -16,9 +17,24 @@ export default function Account({ isLight }) {
 
   const trigger = specificReminder[0].trigger;
   const triggerEvent = specificReminder[0].triggerEvent;
+  const promptedTaskId = specificReminder[0].tasks[taskId].taskId;
   const verb = specificReminder[0].tasks[taskId].verb;
   const action = specificReminder[0].tasks[taskId].action;
   const optinalParty = specificReminder[0].tasks[taskId].with;
+
+  function handleDelete() {
+    const filteredTask = specificReminder[0].tasks.filter(
+      (item) => item.taskId !== promptedTaskId
+    );
+
+    specificReminder[0].tasks = filteredTask;
+    localStorage.setItem("user", JSON.stringify(user));
+    if (taskId > 0) {
+      history.push(`/overview/task/${reminderId}/${Number(taskId) - 1}`);
+    } else {
+      history.push("/overview");
+    }
+  }
 
   return (
     <main id="SinglePage" className="card-screen dispFlex">
@@ -30,7 +46,7 @@ export default function Account({ isLight }) {
             totalItems={specificReminder[0].tasks.length}
           />
         }
-        footer={<FooterAccountDelete />}
+        footer={<FooterItemDelete onClick={handleDelete} />}
         isLight={isLight}
       >
         <article className="caseArea">
