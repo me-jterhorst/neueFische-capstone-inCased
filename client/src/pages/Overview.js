@@ -3,7 +3,7 @@ import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.s
 import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 import Searchfield from "../components/Searchfield";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 export default function Overview() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -62,9 +62,19 @@ export default function Overview() {
     setSearchInput(event.target.value);
   }
 
-  // useEffect(() => {
-  //   createListItem(reminderList);
-  // }, [reRender, reminderList, createListItem]);
+  function removeDuplicateArrayObj(arr) {
+    return arr.reduce((acc, item) => {
+      const hasProduct = !!acc.find(
+        (uniqueProduct) => uniqueProduct.reminderId === item.reminderId
+      );
+
+      if (!hasProduct) {
+        return [...acc, item];
+      }
+
+      return acc;
+    }, []);
+  }
 
   function renderList() {
     if (searchInput) {
@@ -72,8 +82,15 @@ export default function Overview() {
         item.trigger.includes(searchInput)
       );
 
-      return filteredByTriggerList.length > 0 ? (
-        createListItem(filteredByTriggerList)
+      const filteredByWith = reminderList.filter((reminder) => {
+        return reminder.tasks.some((task) => task.with.includes(searchInput));
+      });
+
+      const allSearchHits = [...filteredByTriggerList, ...filteredByWith];
+
+      const cleanSearch = removeDuplicateArrayObj(allSearchHits);
+      return cleanSearch.length > 0 ? (
+        createListItem(cleanSearch)
       ) : (
         <h2 className="Greeting">No Items found</h2>
       );

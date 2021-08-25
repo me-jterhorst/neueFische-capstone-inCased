@@ -10,9 +10,9 @@ export default function Searchfield({ inputValue, onSubmit }) {
       onSubmit={(event) => event.preventDefault()}
       className="Searchfield dispFlex"
     >
-      <button className="Searchfield__button">
+      <div className="Searchfield__button">
         <SearchIcon />
-      </button>
+      </div>
       <input
         type="text"
         name="searchfield__input"

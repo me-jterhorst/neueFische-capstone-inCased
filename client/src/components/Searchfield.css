@@ -4,6 +4,7 @@
   margin: 0 auto;
   height: 2.66rem;
   max-width: 640px;
+  gap: 0;
 }
 
 .Searchfield::before {
@@ -27,8 +28,10 @@
 }
 
 .Searchfield__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
-  cursor: pointer;
   border: none;
   margin-left: 5px;
   transform: scale(0.75);
