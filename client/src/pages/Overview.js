@@ -1,5 +1,6 @@
 import "./Overview.css";
 import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.svg";
+import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 import Searchfield from "../components/Searchfield";
 import { Link } from "react-router-dom";
 
@@ -7,7 +8,16 @@ export default function Overview() {
   const user = JSON.parse(localStorage.getItem("user"));
   const reminderList = user.reminders;
 
-  const listItems = reminderList.map((item, index) => {
+  function handleItemDelete(specificId) {
+    const remainingListItems = reminderList.filter((item) => {
+      return item.reminderId !== specificId;
+    });
+
+    user.reminders = remainingListItems;
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
+  const listItems = reminderList.map((item) => {
     return (
       <section className="Overview__card dispFlex" key={item.reminderId}>
         <div className="Overview__card__number"> {item.tasks.length} </div>
@@ -16,6 +26,13 @@ export default function Overview() {
           <h4>{item.trigger}</h4>
           <h5>{item.triggerEvent}</h5>
         </div>
+
+        {item.tasks.length === 0 && (
+          <DeleteIcon
+            className="Overview__card__link opaque"
+            onClick={() => handleItemDelete(item.reminderId)}
+          />
+        )}
         <Link
           to={`/overview/task/${item.reminderId}/0`}
           className="Overview__card__link"
