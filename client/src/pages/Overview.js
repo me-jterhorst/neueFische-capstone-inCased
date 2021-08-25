@@ -3,54 +3,92 @@ import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.s
 import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 import Searchfield from "../components/Searchfield";
 import { Link } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
 
 export default function Overview() {
   const user = JSON.parse(localStorage.getItem("user"));
   const reminderList = user.reminders;
+  const [reRender, setReRender] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
 
-  function handleItemDelete(specificId) {
-    const remainingListItems = reminderList.filter((item) => {
-      return item.reminderId !== specificId;
-    });
+  const handleItemDelete = useCallback(
+    (specificId) => {
+      const remainingListItems = reminderList.filter((item) => {
+        return item.reminderId !== specificId;
+      });
 
-    user.reminders = remainingListItems;
-    localStorage.setItem("user", JSON.stringify(user));
+      user.reminders = remainingListItems;
+      localStorage.setItem("user", JSON.stringify(user));
+      setReRender(!reRender);
+    },
+    [reRender, reminderList, user]
+  );
+
+  const createListItem = useCallback(
+    (listArr) => {
+      const listItems = listArr.map((item) => {
+        return (
+          <section className="Overview__card dispFlex" key={item.reminderId}>
+            <div className="Overview__card__number"> {item.tasks.length} </div>
+            <div className="Overview__card__txt">
+              <p> In case of:</p>
+              <h4>{item.trigger}</h4>
+              <h5>{item.triggerEvent}</h5>
+            </div>
+
+            {item.tasks.length === 0 && (
+              <DeleteIcon
+                className="Overview__card__link opaque"
+                onClick={() => handleItemDelete(item.reminderId)}
+              />
+            )}
+            <Link
+              to={`/overview/task/${item.reminderId}/0`}
+              className="Overview__card__link"
+            >
+              <ForwardButtonIcon className="icon--dark opaque" />
+            </Link>
+          </section>
+        );
+      });
+
+      return listItems;
+    },
+    [handleItemDelete]
+  );
+
+  function onSearch(event) {
+    event.preventDefault();
+    setSearchInput(event.target.value);
   }
 
-  const listItems = reminderList.map((item) => {
-    return (
-      <section className="Overview__card dispFlex" key={item.reminderId}>
-        <div className="Overview__card__number"> {item.tasks.length} </div>
-        <div className="Overview__card__txt">
-          <p> In case of:</p>
-          <h4>{item.trigger}</h4>
-          <h5>{item.triggerEvent}</h5>
-        </div>
+  // useEffect(() => {
+  //   createListItem(reminderList);
+  // }, [reRender, reminderList, createListItem]);
 
-        {item.tasks.length === 0 && (
-          <DeleteIcon
-            className="Overview__card__link opaque"
-            onClick={() => handleItemDelete(item.reminderId)}
-          />
-        )}
-        <Link
-          to={`/overview/task/${item.reminderId}/0`}
-          className="Overview__card__link"
-        >
-          <ForwardButtonIcon className="icon--dark opaque" />
-        </Link>
-      </section>
-    );
-  });
+  function renderList() {
+    if (searchInput) {
+      const filteredByTriggerList = reminderList.filter((item) =>
+        item.trigger.includes(searchInput)
+      );
+
+      return filteredByTriggerList.length > 0 ? (
+        createListItem(filteredByTriggerList)
+      ) : (
+        <h2 className="Greeting">No Items found</h2>
+      );
+    } else if (reminderList.length > 0) {
+      return createListItem(reminderList);
+    } else {
+      return <h1 className="Greeting">No entries available</h1>;
+    }
+  }
 
   return (
     <main id="Overview">
-      <Searchfield />
-      {listItems.length > 0 ? (
-        listItems
-      ) : (
-        <h1>You need to create some tasks first</h1>
-      )}
+      <Searchfield inputValue={searchInput} onSubmit={onSearch} />
+
+      {renderList()}
     </main>
   );
 }
