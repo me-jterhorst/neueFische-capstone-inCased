@@ -1,6 +1,5 @@
 import "./Searchfield.css";
 import { ReactComponent as SearchIcon } from "../svg/icon-search.svg";
-// import { useState } from "react";
 
 export default function Searchfield({ inputValue, onSubmit }) {
   // const [search, setSearch] = useState("");
