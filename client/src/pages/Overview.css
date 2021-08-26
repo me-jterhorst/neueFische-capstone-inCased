@@ -47,3 +47,7 @@
 .Overview__card svg path {
   stroke: var(--color-black-100) !important;
 }
+
+.withHighlight {
+  background: var(--color-black-25);
+}
