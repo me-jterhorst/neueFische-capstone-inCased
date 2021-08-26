@@ -115,7 +115,6 @@ export default function Overview() {
   return (
     <main id="Overview">
       <Searchfield inputValue={searchInput} onSubmit={onSearch} />
-
       {renderList()}
     </main>
   );
