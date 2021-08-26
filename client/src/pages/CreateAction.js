@@ -1,10 +1,10 @@
 import "./CreateAction.css";
 import Card from "../components/Card";
 import HeaderActionGoForward from "../components/Card_components/HeaderActionGoForward";
-import SpeechInput from "../components/SpeechInput";
-import { useParams, useHistory } from "react-router";
-import { useState, useEffect } from "react";
 import FooterSubmit from "../components/Card_components/FooterSubmit";
+import SpeechInput from "../components/SpeechInput";
+import { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router";
 
 export default function CreateCase() {
   /** VARIABLE SET UP */
@@ -94,7 +94,6 @@ export default function CreateCase() {
 
     localStorage.removeItem("newEntry");
     localStorage.setItem("reminder", JSON.stringify(reminderObj));
-
     history.push("/");
   }
 

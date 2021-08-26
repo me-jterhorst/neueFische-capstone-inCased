@@ -18,89 +18,29 @@ import { useState } from "react";
 
 export default function App() {
   const [isLogin, setLogin] = useState(true);
-
-  const userData = {
+  const serverUser = {
     id: 1,
     user: {
       name: "Jane",
       email: "JaneDoe@hotmail.de",
       password: 12345678,
     },
-    reminders: [
-      {
-        reminderId: 11111,
-        trigger: "Supermarket",
-        triggerEvent: "shopping",
-        creationTime: 12343434,
-        tasks: [
-          {
-            taskId: 1,
-            verb: "buy",
-            action: "some milk",
-            with: "Max",
-          },
-          {
-            taskId: 2,
-            verb: "buy",
-            action: "some toiletpaper",
-            with: "",
-          },
-          {
-            taskId: 3,
-            verb: "Ask for",
-            action: "vegan icecream",
-            with: "",
-          },
-          {
-            taskId: 4,
-            verb: "Look for",
-            action: "bargains",
-            with: "",
-          },
-        ],
-      },
-      {
-        reminderId: 22222,
-        trigger: "Eric",
-        triggerEvent: "is coming over",
-        creationTime: 12343434,
-        tasks: [
-          {
-            taskId: 1,
-            verb: "book",
-            action: "restaurant table",
-            with: "Anne",
-          },
-        ],
-      },
-      {
-        reminderId: 33333,
-        trigger: "Joker",
-        triggerEvent: "attacks Gotham",
-        creationTime: 12343434,
-        tasks: [
-          {
-            taskId: 1,
-            verb: "call",
-            action: "Batman",
-            with: "Comissioner Gordon",
-          },
-          {
-            taskId: 2,
-            verb: "refuel",
-            action: "the Batmobil",
-            with: "Alfred",
-          },
-          {
-            taskId: 3,
-            verb: "Call",
-            action: "Robin",
-            with: "Robin",
-          },
-        ],
-      },
-    ],
+    reminders: [],
   };
+  localStorage.setItem("user", JSON.stringify(serverUser));
+
+  const database = JSON.parse(localStorage.getItem("user")) || null;
+
+  const userData = {
+    id: database.id,
+    user: {
+      name: database.user.name,
+      email: database.user.email,
+      password: 12345678,
+    },
+    reminders: [...database.reminders],
+  };
+
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
@@ -116,12 +56,12 @@ export default function App() {
         </Route>
 
         <Route path="/overview/task/:reminderId/:taskId">
-          <SinglePage reminderList={userData.reminders} isLight={true} />
+          <SinglePage isLight={true} />
           <BottomNav hasSpeech={false} />
         </Route>
 
         <Route path="/overview">
-          <Overview reminderList={userData.reminders} />
+          <Overview />
           <BottomNav hasSpeech={true} />
         </Route>
 
