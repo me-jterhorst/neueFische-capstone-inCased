@@ -1,8 +1,8 @@
-import Searchfield from "../components/Searchfield";
+// import Searchfield from "../components/Searchfield";
 import Greeting from "../components/Greeting";
 import { useEffect } from "react";
 
-export default function Home({ name, isLogin }) {
+export default function Home({ name, isLogin, searchquery }) {
   /** UPDATE USER*/
   useEffect(() => {
     const existingUserData = JSON.parse(localStorage.getItem("user"));
@@ -20,7 +20,7 @@ export default function Home({ name, isLogin }) {
 
   return (
     <main id="home">
-      <Searchfield />
+      {/* <Searchfield inputValue={searchquery} readOnly /> */}
       <Greeting firstname={name} isLogin={isLogin} />
     </main>
   );

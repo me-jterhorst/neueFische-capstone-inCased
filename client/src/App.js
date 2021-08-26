@@ -13,11 +13,18 @@ import CreateAction from "./pages/CreateAction";
 import SinglePage from "./pages/SinglePage";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Route, Redirect, useHistory } from "react-router";
 import { useState } from "react";
 
 export default function App() {
   const [isLogin, setLogin] = useState(true);
+  const [searchInputText, setSearchInputText] = useState("");
+  const history = useHistory();
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  const recognition = new SpeechRecognition();
+
   const serverUser = {
     id: 1,
     user: {
@@ -41,6 +48,20 @@ export default function App() {
     reminders: [...database.reminders],
   };
 
+  function handleSpeech() {
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const current = event.resultIndex;
+      const transcript = event.results[current][0].transcript;
+      setSearchInputText(transcript.slice(0, -1));
+    };
+
+    recognition.onend = () => {
+      history.replace("/overview");
+    };
+  }
+
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
@@ -61,8 +82,8 @@ export default function App() {
         </Route>
 
         <Route path="/overview">
-          <Overview />
-          <BottomNav hasSpeech={true} />
+          <Overview searchquery={searchInputText} />
+          <BottomNav handleSpeech={handleSpeech} hasSpeech={true} />
         </Route>
 
         <Route path="/darkmode">
@@ -95,8 +116,12 @@ export default function App() {
           <Redirect to="/" />
         </Route>
         <Route path="/">
-          <Home isLogin={isLogin} name={userData.user.name} />
-          <BottomNav hasSpeech={true} />
+          <Home
+            isLogin={isLogin}
+            searchquery={searchInputText}
+            name={userData.user.name}
+          />
+          <BottomNav handleSpeech={handleSpeech} hasSpeech={true} />
         </Route>
 
         <Route path="/*">

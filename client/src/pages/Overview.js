@@ -3,13 +3,17 @@ import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.s
 import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 import Searchfield from "../components/Searchfield";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Overview() {
+export default function Overview({ searchquery }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const reminderList = user.reminders;
   const [reRender, setReRender] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState(searchquery);
+
+  useEffect(() => {
+    setSearchInput(searchquery);
+  }, [searchquery]);
 
   const handleItemDelete = (specificId) => {
     const remainingListItems = reminderList.filter((reminder) => {
