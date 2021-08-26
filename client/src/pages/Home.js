@@ -1,8 +1,19 @@
-// import Searchfield from "../components/Searchfield";
+import Searchfield from "../components/Searchfield";
 import Greeting from "../components/Greeting";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function Home({ name, isLogin, searchquery }) {
+export default function Home({ name, isLogin, searchquery, onSubmit }) {
+  const [searchInput, setSearchInput] = useState(searchquery);
+
+  useEffect(() => {
+    setSearchInput(searchquery);
+  }, [searchquery]);
+
+  function onSearch(event) {
+    event.preventDefault();
+    setSearchInput(event.target.value);
+  }
+
   /** UPDATE USER*/
   useEffect(() => {
     const existingUserData = JSON.parse(localStorage.getItem("user"));
@@ -20,7 +31,11 @@ export default function Home({ name, isLogin, searchquery }) {
 
   return (
     <main id="home">
-      {/* <Searchfield inputValue={searchquery} readOnly /> */}
+      <Searchfield
+        inputValue={searchInput}
+        onSubmit={onSubmit}
+        onChange={onSearch}
+      />
       <Greeting firstname={name} isLogin={isLogin} />
     </main>
   );

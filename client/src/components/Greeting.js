@@ -1,6 +1,7 @@
 import "./Greeting.css";
+import React from "react";
 
-export default function Greeting({ firstname, isLogin }) {
+const Greeting = React.memo(({ firstname, isLogin }) => {
   const greetings = [
     "what's cookin'?",
     "what's happening?",
@@ -22,4 +23,6 @@ export default function Greeting({ firstname, isLogin }) {
       {greetings[number]}
     </h1>
   );
-}
+});
+
+export default Greeting;

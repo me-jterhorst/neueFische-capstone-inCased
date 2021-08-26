@@ -5,7 +5,7 @@ import Searchfield from "../components/Searchfield";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function Overview({ searchquery }) {
+export default function Overview({ searchquery, onSubmit }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const reminderList = user.reminders;
   const [reRender, setReRender] = useState(false);
@@ -120,7 +120,11 @@ export default function Overview({ searchquery }) {
 
   return (
     <main id="Overview">
-      <Searchfield inputValue={searchInput} onSubmit={onSearch} />
+      <Searchfield
+        inputValue={searchInput}
+        onSubmit={onSubmit}
+        onChange={onSearch}
+      />
       {renderList()}
     </main>
   );

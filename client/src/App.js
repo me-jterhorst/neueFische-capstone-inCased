@@ -58,8 +58,13 @@ export default function App() {
     };
 
     recognition.onend = () => {
-      history.replace("/overview");
+      history.push("/overview");
     };
+  }
+  function onSubmit(event) {
+    event.preventDefault();
+    setSearchInputText(event.target.searchfield__input.value);
+    history.push("/overview");
   }
 
   return (
@@ -82,7 +87,7 @@ export default function App() {
         </Route>
 
         <Route path="/overview">
-          <Overview searchquery={searchInputText} />
+          <Overview searchquery={searchInputText} onSubmit={onSubmit} />
           <BottomNav handleSpeech={handleSpeech} hasSpeech={true} />
         </Route>
 
@@ -120,6 +125,7 @@ export default function App() {
             isLogin={isLogin}
             searchquery={searchInputText}
             name={userData.user.name}
+            onSubmit={onSubmit}
           />
           <BottomNav handleSpeech={handleSpeech} hasSpeech={true} />
         </Route>
