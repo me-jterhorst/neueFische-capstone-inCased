@@ -35,7 +35,7 @@ export default function Overview() {
             <p> In case of:</p>
             <h4>{item.trigger}</h4>
             <h5>{item.triggerEvent}</h5>
-            {item.hasMatchingWith && <p>Found as optinal party</p>}
+            {item.hasMatchingWith && <p>Found as optional party</p>}
           </div>
 
           {item.tasks.length === 0 && (
@@ -81,12 +81,14 @@ export default function Overview() {
     if (searchInput) {
       /** Get all the main searchresults */
       const filteredByTriggerList = reminderList.filter((item) =>
-        item.trigger.includes(searchInput)
+        item.trigger.toLowerCase().includes(searchInput.toLowerCase())
       );
       /** Get all the secondary searchresults */
       const filteredByWith = reminderList
         .filter((reminder) => {
-          return reminder.tasks.some((task) => task.with.includes(searchInput));
+          return reminder.tasks.some((task) =>
+            task.with.toLowerCase().includes(searchInput.toLowerCase())
+          );
         })
         .map((reminder) => (reminder = { ...reminder, hasMatchingWith: true }));
 
