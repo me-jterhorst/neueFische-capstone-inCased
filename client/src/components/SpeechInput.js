@@ -3,6 +3,7 @@ import { ReactComponent as MicrophoneIcon } from "../svg/icon-microphone.svg";
 
 export default function SpeechInput({
   onChange,
+  onMouseDown,
   identifier,
   label,
   value = "",
@@ -26,8 +27,12 @@ export default function SpeechInput({
           required={isRequired}
         />
         <span className="Speechinput-button-wrapper">
-          <button className="Speechinput-button opaque">
-            <MicrophoneIcon className="icon--small" />
+          <button
+            onMouseDown={onMouseDown}
+            onClick={(event) => event.preventDefault()}
+            className={`Speechinput-button opaque recording--active`}
+          >
+            <MicrophoneIcon className="icon--small" id={label} />
           </button>
         </span>
       </span>
