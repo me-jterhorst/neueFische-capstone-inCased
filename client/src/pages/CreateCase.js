@@ -35,8 +35,6 @@ export default function CreateCase() {
     recognition.onresult = (event) => {
       const current = event.resultIndex;
       const transcript = event.results[current][0].transcript;
-      console.log(transcript);
-      console.log(buttonTarget);
 
       if (buttonTarget.toLowerCase() === "trigger") {
         setTriggerInput(transcript.slice(0, -1));
