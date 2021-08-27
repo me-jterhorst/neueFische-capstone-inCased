@@ -21,10 +21,9 @@ export default function App() {
   const userData = {};
   const [isLogin, setLogin] = useState(true);
   const [searchInput, setSearchInput] = useState("");
-  let supportsSpeech, SpeechRecognition, recognition;
-
   const history = useHistory();
   const location = useLocation();
+  let supportsSpeech, SpeechRecognition, recognition;
 
   if (!window.webkitSpeechRecognition) {
     supportsSpeech = false;

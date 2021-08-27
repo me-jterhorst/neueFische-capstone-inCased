@@ -8,6 +8,7 @@ export default function SpeechInput({
   label,
   value = "",
   isRequired = true,
+  supportsSpeech,
 }) {
   return (
     <fieldset className={`Speechinput-box `}>
@@ -26,15 +27,17 @@ export default function SpeechInput({
           onChange={onChange}
           required={isRequired}
         />
-        <span className="Speechinput-button-wrapper">
-          <button
-            onMouseDown={onMouseDown}
-            onClick={(event) => event.preventDefault()}
-            className={`Speechinput-button opaque recording--active`}
-          >
-            <MicrophoneIcon className="icon--small" id={label} />
-          </button>
-        </span>
+        {supportsSpeech && (
+          <span className="Speechinput-button-wrapper">
+            <button
+              onMouseDown={onMouseDown}
+              onClick={(event) => event.preventDefault()}
+              className={`Speechinput-button opaque recording--active`}
+            >
+              <MicrophoneIcon className="icon--small" id={label} />
+            </button>
+          </span>
+        )}
       </span>
     </fieldset>
   );

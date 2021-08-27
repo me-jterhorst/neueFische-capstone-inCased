@@ -24,10 +24,15 @@ export default function CreateCase() {
   const [isTooShort, setIsTooShort] = useState(true);
 
   /** ==============================  Speech To Text */
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
+  let supportsSpeech, SpeechRecognition, recognition;
 
-  const recognition = new SpeechRecognition();
+  if (!window.webkitSpeechRecognition) {
+    supportsSpeech = false;
+  } else {
+    supportsSpeech = true;
+    SpeechRecognition = window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+  }
 
   function onSpeechInput(event) {
     event.preventDefault();
@@ -149,12 +154,14 @@ export default function CreateCase() {
             label="Verb"
             value={verbInput}
             onMouseDown={onSpeechInput}
+            supportsSpeech={supportsSpeech}
           />
           <SpeechInput
             onChange={(event) => setActionInput(event.target.value)}
             onMouseDown={onSpeechInput}
             label="Action"
             value={actionInput}
+            supportsSpeech={supportsSpeech}
           />
           <SpeechInput
             onChange={(event) => setWithInput(event.target.value)}
@@ -162,6 +169,7 @@ export default function CreateCase() {
             label="With"
             value={withInput}
             isRequired={false}
+            supportsSpeech={supportsSpeech}
           />
         </form>
         {isTooShort && (
