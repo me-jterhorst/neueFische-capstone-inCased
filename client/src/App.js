@@ -21,12 +21,18 @@ export default function App() {
   const userData = {};
   const [isLogin, setLogin] = useState(true);
   const [searchInput, setSearchInput] = useState("");
+  let supportsSpeech, SpeechRecognition, recognition;
+
   const history = useHistory();
   const location = useLocation();
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  const recognition = new SpeechRecognition();
+  if (!window.webkitSpeechRecognition) {
+    supportsSpeech = false;
+  } else {
+    supportsSpeech = true;
+    SpeechRecognition = window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+  }
 
   if (!database) {
     const serverUser = {
@@ -108,7 +114,7 @@ export default function App() {
             onSearch={onSearch}
             onSubmit={onSubmit}
           />
-          <BottomNav handleSpeech={handleSpeech} hasSpeech={true} />
+          <BottomNav handleSpeech={handleSpeech} hasSpeech={supportsSpeech} />
         </Route>
 
         <Route path="/darkmode">
@@ -148,7 +154,7 @@ export default function App() {
             onSearch={onSearch}
             onSubmit={onSubmit}
           />
-          <BottomNav handleSpeech={handleSpeech} hasSpeech={true} />
+          <BottomNav handleSpeech={handleSpeech} hasSpeech={supportsSpeech} />
         </Route>
 
         <Route path="/*">
