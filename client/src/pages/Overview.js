@@ -3,25 +3,21 @@ import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.s
 import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 import Searchfield from "../components/Searchfield";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function Overview({ searchquery, onSubmit }) {
+export default function Overview({ searchquery, onSubmit, onSearch }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const reminderList = user.reminders;
   const [reRender, setReRender] = useState(false);
-  const [searchInput, setSearchInput] = useState(searchquery);
 
-  useEffect(() => {
-    setSearchInput(searchquery);
-  }, [searchquery]);
-
+  /** ==================================== DELETE BUTTON  */
   const handleItemDelete = (specificId) => {
     const remainingListItems = reminderList.filter((reminder) => {
       return reminder.reminderId !== specificId;
     });
 
     user.reminders = remainingListItems;
-    localStorage.setItem("user", JSON.stringify(user));
+    // localStorage.setItem("user", JSON.stringify(user));
     setReRender(!reRender);
   };
 
@@ -61,11 +57,6 @@ export default function Overview({ searchquery, onSubmit }) {
     return listItems;
   };
 
-  function onSearch(event) {
-    event.preventDefault();
-    setSearchInput(event.target.value);
-  }
-
   function removeDuplicateArrayObj(arr) {
     return arr.reduce((acc, item) => {
       const hasObj = !!acc.find(
@@ -82,16 +73,16 @@ export default function Overview({ searchquery, onSubmit }) {
 
   function renderList() {
     /** Check if Searchfield is filled in */
-    if (searchInput) {
+    if (searchquery) {
       /** Get all the main searchresults */
       const filteredByTriggerList = reminderList.filter((item) =>
-        item.trigger.toLowerCase().includes(searchInput.toLowerCase())
+        item.trigger.toLowerCase().includes(searchquery.toLowerCase())
       );
       /** Get all the secondary searchresults */
       const filteredByWith = reminderList
         .filter((reminder) => {
           return reminder.tasks.some((task) =>
-            task.with.toLowerCase().includes(searchInput.toLowerCase())
+            task.with.toLowerCase().includes(searchquery.toLowerCase())
           );
         })
         .map((reminder) => (reminder = { ...reminder, hasMatchingWith: true }));
@@ -121,7 +112,7 @@ export default function Overview({ searchquery, onSubmit }) {
   return (
     <main id="Overview">
       <Searchfield
-        inputValue={searchInput}
+        inputValue={searchquery}
         onSubmit={onSubmit}
         onChange={onSearch}
       />
