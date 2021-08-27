@@ -17,7 +17,7 @@ export default function Overview({ searchquery, onSubmit, onSearch }) {
     });
 
     user.reminders = remainingListItems;
-    // localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
     setReRender(!reRender);
   };
 
