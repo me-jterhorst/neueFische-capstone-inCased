@@ -1,1 +1,6 @@
-
+#Account {
+  background-image: url(../svg/backgrounds/background-account.svg);
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

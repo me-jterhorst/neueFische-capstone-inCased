@@ -1,3 +1,10 @@
+#Imprint {
+  background-image: url(../svg/backgrounds/background-imprint.svg);
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #Imprint .Card__content {
   overflow-y: scroll;
   display: flex;
