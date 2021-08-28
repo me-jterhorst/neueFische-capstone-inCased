@@ -1,3 +1,10 @@
+#SinglePage {
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../svg/backgrounds/background-singleFrame.svg);
+}
+
 #SinglePage .Card__content {
   scrollbar-width: thin;
   scrollbar-color: var(--color-black-100);

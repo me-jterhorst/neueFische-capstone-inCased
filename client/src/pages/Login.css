@@ -4,4 +4,9 @@
   flex-direction: column;
 
   gap: 0.5em;
+
+  background-image: url(../svg/backgrounds/background-logIn.svg);
+  background-size: cover;
+  background-position: top left;
+  background-repeat: no-repeat;
 }

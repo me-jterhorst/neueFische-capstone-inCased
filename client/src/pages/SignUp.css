@@ -1,3 +1,10 @@
+#Signup {
+  background-image: url(../svg/backgrounds/background-signUp.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left;
+}
+
 #Signup .Card__content {
   overflow-y: scroll;
 

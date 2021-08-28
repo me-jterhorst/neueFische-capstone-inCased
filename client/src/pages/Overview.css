@@ -1,5 +1,9 @@
 #Overview {
   height: calc(100vh - 170px);
+  background-image: url(../svg/backgrounds/background-overview.svg);
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .Overview__card {
@@ -10,6 +14,7 @@
   justify-content: flex-start;
   padding-bottom: 0.75rem;
   position: relative;
+  background: var(--color-white-100);
 }
 
 .Overview__card::after {
