@@ -8,8 +8,7 @@ import Imprint from "./pages/Imprint";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
-import CreateCase from "./pages/CreateCase";
-import CreateAction from "./pages/CreateAction";
+import Create from "./pages/Create";
 import SinglePage from "./pages/SinglePage";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
@@ -17,13 +16,13 @@ import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
 import { useState } from "react";
 
 export default function App() {
+  const history = useHistory();
+  const location = useLocation();
   const database = JSON.parse(localStorage.getItem("user")) || null;
   const userData = {};
   const [isLogin, setLogin] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
-  const history = useHistory();
-  const location = useLocation();
 
   let supportsSpeech, SpeechRecognition, recognition;
 
@@ -65,7 +64,7 @@ export default function App() {
     userData.reminders = [...database.reminders];
   }
 
-  function handleSpeech(event) {
+  function onSpeechSearch(event) {
     event.preventDefault();
     recognition.start();
 
@@ -98,13 +97,8 @@ export default function App() {
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
-        <Route path="/create/0">
-          <CreateCase />
-          <BottomNav hasSpeech={false} />
-        </Route>
-
-        <Route path="/create/:number">
-          <CreateAction />
+        <Route path="/create">
+          <Create isLogin={isLogin} supportsSpeech={supportsSpeech} />
           <BottomNav hasSpeech={false} />
         </Route>
 
@@ -121,7 +115,7 @@ export default function App() {
           />
           <BottomNav
             disable={disable}
-            handleSpeech={handleSpeech}
+            handleSpeech={onSpeechSearch}
             hasSpeech={supportsSpeech}
           />
         </Route>
@@ -165,7 +159,7 @@ export default function App() {
           />
           <BottomNav
             disable={disable}
-            handleSpeech={handleSpeech}
+            handleSpeech={onSpeechSearch}
             hasSpeech={supportsSpeech}
           />
         </Route>
