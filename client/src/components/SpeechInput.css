@@ -61,3 +61,7 @@
   background: var(--color-white-100);
   cursor: pointer;
 }
+
+.btn--microphone {
+  pointer-events: none;
+}

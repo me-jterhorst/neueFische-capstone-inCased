@@ -23,6 +23,7 @@ export default function App() {
   const [searchInput, setSearchInput] = useState("");
   const history = useHistory();
   const location = useLocation();
+
   let supportsSpeech, SpeechRecognition, recognition;
 
   if (!window.webkitSpeechRecognition) {
