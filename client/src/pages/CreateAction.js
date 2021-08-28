@@ -22,6 +22,7 @@ export default function CreateCase() {
     reminderObj.tasks[indexNumber - 1].with
   );
   const [isTooShort, setIsTooShort] = useState(true);
+  const [disable, setDisable] = useState(false);
 
   /** ==============================  Speech To Text */
   let supportsSpeech, SpeechRecognition, recognition;
@@ -39,6 +40,10 @@ export default function CreateCase() {
     const buttonTarget = event.target.id;
     recognition.start();
 
+    recognition.onstart = () => {
+      setDisable(true);
+    };
+
     recognition.onresult = (event) => {
       const current = event.resultIndex;
       const transcript = event.results[current][0].transcript;
@@ -50,6 +55,9 @@ export default function CreateCase() {
       } else {
         setWithInput(transcript.slice(0, -1));
       }
+    };
+    recognition.onend = () => {
+      setDisable(false);
     };
   }
 
@@ -150,6 +158,7 @@ export default function CreateCase() {
         <h2 className="margin-b--s">Do this</h2>
         <form className="dispFlex margin-b--l">
           <SpeechInput
+            disable={disable}
             onChange={(event) => setVerbInput(event.target.value)}
             label="Verb"
             value={verbInput}
@@ -157,6 +166,7 @@ export default function CreateCase() {
             supportsSpeech={supportsSpeech}
           />
           <SpeechInput
+            disable={disable}
             onChange={(event) => setActionInput(event.target.value)}
             onMouseDown={onSpeechInput}
             label="Action"
@@ -164,6 +174,7 @@ export default function CreateCase() {
             supportsSpeech={supportsSpeech}
           />
           <SpeechInput
+            disable={disable}
             onChange={(event) => setWithInput(event.target.value)}
             onMouseDown={onSpeechInput}
             label="With"

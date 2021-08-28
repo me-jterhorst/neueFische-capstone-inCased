@@ -5,6 +5,7 @@ export default function SpeechInput({
   onChange,
   onMouseDown,
   identifier,
+  disable,
   label,
   value = "",
   isRequired = true,
@@ -30,11 +31,13 @@ export default function SpeechInput({
         {supportsSpeech && (
           <span className="Speechinput-button-wrapper">
             <button
+              disabled={disable}
+              id={label}
               onMouseDown={onMouseDown}
               onClick={(event) => event.preventDefault()}
-              className={`Speechinput-button opaque recording--active`}
+              className={`Speechinput-button opaque recording--active `}
             >
-              <MicrophoneIcon className="icon--small" id={label} />
+              <MicrophoneIcon className="icon--small btn--microphone" />
             </button>
           </span>
         )}
