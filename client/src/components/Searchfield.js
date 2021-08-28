@@ -1,25 +1,18 @@
 import "./Searchfield.css";
 import { ReactComponent as SearchIcon } from "../svg/icon-search.svg";
 
-export default function Searchfield({ inputValue, onSubmit }) {
-  // const [search, setSearch] = useState("");
-
+export default function Searchfield({ inputValue, onSubmit, onChange }) {
   return (
-    <form
-      onSubmit={(event) => event.preventDefault()}
-      className="Searchfield dispFlex"
-    >
-      <div className="Searchfield__button">
+    <form onSubmit={onSubmit} className="Searchfield dispFlex">
+      <button className="Searchfield__button">
         <SearchIcon />
-      </div>
+      </button>
       <input
         type="text"
         name="searchfield__input"
         id="searchfield__input"
         className="Searchfield__input"
-        // onChange={(event) => setSearch(event.target.value)}
-        // value={search}
-        onChange={onSubmit}
+        onChange={onChange}
         value={inputValue}
       />
     </form>

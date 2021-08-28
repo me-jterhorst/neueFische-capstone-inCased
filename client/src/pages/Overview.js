@@ -5,12 +5,12 @@ import Searchfield from "../components/Searchfield";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function Overview() {
+export default function Overview({ searchquery, onSubmit, onSearch }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const reminderList = user.reminders;
   const [reRender, setReRender] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
 
+  /** ==================================== DELETE BUTTON  */
   const handleItemDelete = (specificId) => {
     const remainingListItems = reminderList.filter((reminder) => {
       return reminder.reminderId !== specificId;
@@ -57,11 +57,6 @@ export default function Overview() {
     return listItems;
   };
 
-  function onSearch(event) {
-    event.preventDefault();
-    setSearchInput(event.target.value);
-  }
-
   function removeDuplicateArrayObj(arr) {
     return arr.reduce((acc, item) => {
       const hasObj = !!acc.find(
@@ -78,16 +73,16 @@ export default function Overview() {
 
   function renderList() {
     /** Check if Searchfield is filled in */
-    if (searchInput) {
+    if (searchquery) {
       /** Get all the main searchresults */
       const filteredByTriggerList = reminderList.filter((item) =>
-        item.trigger.toLowerCase().includes(searchInput.toLowerCase())
+        item.trigger.toLowerCase().includes(searchquery.toLowerCase())
       );
       /** Get all the secondary searchresults */
       const filteredByWith = reminderList
         .filter((reminder) => {
           return reminder.tasks.some((task) =>
-            task.with.toLowerCase().includes(searchInput.toLowerCase())
+            task.with.toLowerCase().includes(searchquery.toLowerCase())
           );
         })
         .map((reminder) => (reminder = { ...reminder, hasMatchingWith: true }));
@@ -116,7 +111,11 @@ export default function Overview() {
 
   return (
     <main id="Overview">
-      <Searchfield inputValue={searchInput} onSubmit={onSearch} />
+      <Searchfield
+        inputValue={searchquery}
+        onSubmit={onSubmit}
+        onChange={onSearch}
+      />
       {renderList()}
     </main>
   );

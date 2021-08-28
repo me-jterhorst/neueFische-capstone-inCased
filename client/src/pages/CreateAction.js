@@ -23,6 +23,36 @@ export default function CreateCase() {
   );
   const [isTooShort, setIsTooShort] = useState(true);
 
+  /** ==============================  Speech To Text */
+  let supportsSpeech, SpeechRecognition, recognition;
+
+  if (!window.webkitSpeechRecognition) {
+    supportsSpeech = false;
+  } else {
+    supportsSpeech = true;
+    SpeechRecognition = window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+  }
+
+  function onSpeechInput(event) {
+    event.preventDefault();
+    const buttonTarget = event.target.id;
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const current = event.resultIndex;
+      const transcript = event.results[current][0].transcript;
+
+      if (buttonTarget.toLowerCase() === "verb") {
+        setVerbInput(transcript.slice(0, -1));
+      } else if (buttonTarget.toLowerCase() === "action") {
+        setActionInput(transcript.slice(0, -1));
+      } else {
+        setWithInput(transcript.slice(0, -1));
+      }
+    };
+  }
+
   /** CHECK FOR INPUT */
   useEffect(() => {
     setIsTooShort(verbInput.length === 0 || actionInput.length === 0);
@@ -123,17 +153,23 @@ export default function CreateCase() {
             onChange={(event) => setVerbInput(event.target.value)}
             label="Verb"
             value={verbInput}
+            onMouseDown={onSpeechInput}
+            supportsSpeech={supportsSpeech}
           />
           <SpeechInput
             onChange={(event) => setActionInput(event.target.value)}
+            onMouseDown={onSpeechInput}
             label="Action"
             value={actionInput}
+            supportsSpeech={supportsSpeech}
           />
           <SpeechInput
             onChange={(event) => setWithInput(event.target.value)}
+            onMouseDown={onSpeechInput}
             label="With"
             value={withInput}
             isRequired={false}
+            supportsSpeech={supportsSpeech}
           />
         </form>
         {isTooShort && (

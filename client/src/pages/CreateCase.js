@@ -21,6 +21,35 @@ export default function CreateCase() {
 
   const [isTooShort, setIsTooShort] = useState(true);
 
+  /** ==============================  Speech To Text */
+  let supportsSpeech, SpeechRecognition, recognition;
+
+  if (!window.webkitSpeechRecognition) {
+    supportsSpeech = false;
+  } else {
+    supportsSpeech = true;
+    SpeechRecognition = window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+  }
+
+  function onSpeechInput(event) {
+    event.preventDefault();
+    const buttonTarget = event.target.id;
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const current = event.resultIndex;
+      const transcript = event.results[current][0].transcript;
+
+      if (buttonTarget.toLowerCase() === "trigger") {
+        setTriggerInput(transcript.slice(0, -1));
+      } else {
+        setEventTriggerInput(transcript.slice(0, -1));
+      }
+    };
+  }
+
+  /** INPUT VALIDATION */
   useEffect(() => {
     setIsTooShort(triggerInput.length === 0 || eventTriggerInput.length === 0);
   }, [triggerInput, eventTriggerInput]);
@@ -77,20 +106,28 @@ export default function CreateCase() {
         <h2 className="margin-b--s">
           In case <br /> of
         </h2>
-        <form id="createForm" className="dispFlex margin-b--l">
+        <form
+          onSubmit={(event) => event.preventDefault()}
+          id="createForm"
+          className="dispFlex margin-b--l"
+        >
           <SpeechInput
             onChange={(event) => {
               setTriggerInput(event.target.value);
             }}
+            onMouseDown={onSpeechInput}
             value={triggerInput}
             label="Trigger"
+            supportsSpeech={supportsSpeech}
           />
           <SpeechInput
             onChange={(event) => {
               setEventTriggerInput(event.target.value);
             }}
+            onMouseDown={onSpeechInput}
             value={eventTriggerInput}
             label="Event"
+            supportsSpeech={supportsSpeech}
           />
         </form>
 

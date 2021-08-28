@@ -1,12 +1,12 @@
 @font-face {
   font-family: "Open Sans";
-  src: local("Open Sans"), url(./fonts/OpenSans-Regular.ttf) format("truetype");
+  src: local("Open Sans"),
+    url(./fonts/open-sans-v23-latin-regular.woff) format("woff");
 }
 
 @font-face {
   font-family: "Rubik";
-  src: local("Rubik"),
-    url(./fonts/Rubik-VariableFont_wght.ttf) format("truetype");
+  src: local("Rubik"), url(./fonts/rubik-v14-latin-regular.woff) format("woff");
 }
 
 *,

@@ -13,33 +13,80 @@ import CreateAction from "./pages/CreateAction";
 import SinglePage from "./pages/SinglePage";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
 import { useState } from "react";
 
 export default function App() {
-  const [isLogin, setLogin] = useState(true);
-  const serverUser = {
-    id: 1,
-    user: {
-      name: "Jane",
-      email: "JaneDoe@hotmail.de",
-      password: 12345678,
-    },
-    reminders: [],
-  };
-  localStorage.setItem("user", JSON.stringify(serverUser));
-
   const database = JSON.parse(localStorage.getItem("user")) || null;
+  const userData = {};
+  const [isLogin, setLogin] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
+  const history = useHistory();
+  const location = useLocation();
+  let supportsSpeech, SpeechRecognition, recognition;
 
-  const userData = {
-    id: database.id,
-    user: {
+  if (!window.webkitSpeechRecognition) {
+    supportsSpeech = false;
+  } else {
+    supportsSpeech = true;
+    SpeechRecognition = window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+  }
+
+  if (!database) {
+    const serverUser = {
+      id: 1,
+      user: {
+        name: "Jane",
+        email: "JaneDoe@hotmail.de",
+        password: 12345678,
+      },
+      reminders: [],
+    };
+
+    localStorage.setItem("user", JSON.stringify(serverUser));
+
+    userData.id = 1;
+    userData.user = {
+      name: "Jakob",
+      email: "mail.de",
+      password: 1223232,
+    };
+    userData.reminders = [];
+  } else {
+    userData.id = database.id;
+    userData.user = {
       name: database.user.name,
       email: database.user.email,
       password: 12345678,
-    },
-    reminders: [...database.reminders],
-  };
+    };
+    userData.reminders = [...database.reminders];
+  }
+
+  function handleSpeech(event) {
+    event.preventDefault();
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const current = event.resultIndex;
+      const transcript = event.results[current][0].transcript;
+      setSearchInput(transcript.slice(0, -1));
+    };
+
+    recognition.onend = () => {
+      history.push("/overview");
+    };
+  }
+  function onSubmit(event) {
+    event.preventDefault();
+    const currentLocation = location.pathname;
+    currentLocation === "/" && history.push("/overview");
+  }
+
+  function onSearch(event) {
+    event.preventDefault();
+    setSearchInput(event.target.value);
+  }
 
   return (
     <>
@@ -61,8 +108,12 @@ export default function App() {
         </Route>
 
         <Route path="/overview">
-          <Overview />
-          <BottomNav hasSpeech={true} />
+          <Overview
+            searchquery={searchInput}
+            onSearch={onSearch}
+            onSubmit={onSubmit}
+          />
+          <BottomNav handleSpeech={handleSpeech} hasSpeech={supportsSpeech} />
         </Route>
 
         <Route path="/darkmode">
@@ -95,8 +146,14 @@ export default function App() {
           <Redirect to="/" />
         </Route>
         <Route path="/">
-          <Home isLogin={isLogin} name={userData.user.name} />
-          <BottomNav hasSpeech={true} />
+          <Home
+            isLogin={isLogin}
+            searchquery={searchInput}
+            name={userData.user.name}
+            onSearch={onSearch}
+            onSubmit={onSubmit}
+          />
+          <BottomNav handleSpeech={handleSpeech} hasSpeech={supportsSpeech} />
         </Route>
 
         <Route path="/*">
