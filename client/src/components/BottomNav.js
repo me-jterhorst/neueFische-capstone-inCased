@@ -5,10 +5,12 @@ import { ReactComponent as HomeIcon } from "../svg/icon-home.svg";
 import { ReactComponent as CreateIcon } from "../svg/icon-create.svg";
 import { ReactComponent as OverviewIcon } from "../svg/icon-overview.svg";
 
-export default function BottomNav({ handleSpeech, hasSpeech }) {
+export default function BottomNav({ handleSpeech, hasSpeech, disable }) {
   return (
     <footer className="dispFlex BottomNav">
-      {hasSpeech ? <SpeechButton onMouseDown={handleSpeech} /> : null}
+      {hasSpeech ? (
+        <SpeechButton disable={disable} onMouseDown={handleSpeech} />
+      ) : null}
 
       <nav className="tabNav dispFlex">
         <NavLink className="opaque" exact to="/">

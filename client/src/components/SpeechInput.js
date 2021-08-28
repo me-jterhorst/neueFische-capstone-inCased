@@ -5,6 +5,7 @@ export default function SpeechInput({
   onChange,
   onMouseDown,
   identifier,
+  disable,
   label,
   value = "",
   isRequired = true,
@@ -30,6 +31,7 @@ export default function SpeechInput({
         {supportsSpeech && (
           <span className="Speechinput-button-wrapper">
             <button
+              disabled={disable}
               id={label}
               onMouseDown={onMouseDown}
               onClick={(event) => event.preventDefault()}

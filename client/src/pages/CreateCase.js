@@ -20,7 +20,7 @@ export default function CreateCase() {
   );
 
   const [isTooShort, setIsTooShort] = useState(true);
-
+  const [disable, setDisable] = useState(false);
   /** ==============================  Speech To Text */
   let supportsSpeech, SpeechRecognition, recognition;
 
@@ -37,6 +37,9 @@ export default function CreateCase() {
     const buttonTarget = event.target.id;
     recognition.start();
 
+    recognition.onstart = () => {
+      setDisable(true);
+    };
     recognition.onresult = (event) => {
       const current = event.resultIndex;
       const transcript = event.results[current][0].transcript;
@@ -46,6 +49,10 @@ export default function CreateCase() {
       } else {
         setEventTriggerInput(transcript.slice(0, -1));
       }
+    };
+
+    recognition.onend = () => {
+      setDisable(false);
     };
   }
 
@@ -112,6 +119,7 @@ export default function CreateCase() {
           className="dispFlex margin-b--l"
         >
           <SpeechInput
+            disable={disable}
             onChange={(event) => {
               setTriggerInput(event.target.value);
             }}
@@ -121,6 +129,7 @@ export default function CreateCase() {
             supportsSpeech={supportsSpeech}
           />
           <SpeechInput
+            disable={disable}
             onChange={(event) => {
               setEventTriggerInput(event.target.value);
             }}

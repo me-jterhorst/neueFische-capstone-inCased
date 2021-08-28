@@ -21,6 +21,7 @@ export default function App() {
   const userData = {};
   const [isLogin, setLogin] = useState(true);
   const [searchInput, setSearchInput] = useState("");
+  const [disable, setDisable] = useState(false);
   const history = useHistory();
   const location = useLocation();
 
@@ -68,6 +69,9 @@ export default function App() {
     event.preventDefault();
     recognition.start();
 
+    recognition.onstart = () => {
+      setDisable(true);
+    };
     recognition.onresult = (event) => {
       const current = event.resultIndex;
       const transcript = event.results[current][0].transcript;
@@ -75,6 +79,7 @@ export default function App() {
     };
 
     recognition.onend = () => {
+      setDisable(false);
       history.push("/overview");
     };
   }
@@ -114,7 +119,11 @@ export default function App() {
             onSearch={onSearch}
             onSubmit={onSubmit}
           />
-          <BottomNav handleSpeech={handleSpeech} hasSpeech={supportsSpeech} />
+          <BottomNav
+            disable={disable}
+            handleSpeech={handleSpeech}
+            hasSpeech={supportsSpeech}
+          />
         </Route>
 
         <Route path="/darkmode">
@@ -154,7 +163,11 @@ export default function App() {
             onSearch={onSearch}
             onSubmit={onSubmit}
           />
-          <BottomNav handleSpeech={handleSpeech} hasSpeech={supportsSpeech} />
+          <BottomNav
+            disable={disable}
+            handleSpeech={handleSpeech}
+            hasSpeech={supportsSpeech}
+          />
         </Route>
 
         <Route path="/*">
