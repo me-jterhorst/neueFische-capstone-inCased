@@ -8,7 +8,8 @@ import { useState, useEffect } from "react";
 import { Switch, Route, Link, useParams, useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-export default function CreateCase({ isLogin, supportsSpeech }) {
+export default function Create({ isLogin, supportsSpeech }) {
+  // ==================== CREATE CASE
   const [isTooShort, setIsTooShort] = useState(true);
 
   const [triggerInput, setTriggerInput] = useState("");
@@ -29,6 +30,7 @@ export default function CreateCase({ isLogin, supportsSpeech }) {
     setIsTooShort(!triggerInput || !eventTriggerInput);
   }, [triggerInput, eventTriggerInput]);
 
+  // ==================================== CREATE ACTION
   const [actionInput, setActionInput] = useState({});
 
   return (
