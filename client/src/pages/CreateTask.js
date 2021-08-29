@@ -5,7 +5,11 @@ import SpeechInput from "../components/SpeechInput";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
-export default function CreateTask({ supportsSpeech }) {
+export default function CreateTask({
+  supportsSpeech,
+  onSpeechInput,
+  disabled,
+}) {
   // ============================== Action
   const { taskId } = useParams();
   const [isTooShort, setIsTooShort] = useState(true);
@@ -36,25 +40,25 @@ export default function CreateTask({ supportsSpeech }) {
             value={verbInput}
             onChange={(event) => setVerbInput(event.target.value)}
             supportsSpeech={supportsSpeech}
-            // onMouseDown={onSpeechInput}
-            // disable={disable}
+            onMouseDown={onSpeechInput}
+            disable={disabled}
           />
           <SpeechInput
             label="Action"
             value={actionInput}
             onChange={(event) => setActionInput(event.target.value)}
             supportsSpeech={supportsSpeech}
-            // onMouseDown={onSpeechInput}
-            // disable={disable}
+            onMouseDown={onSpeechInput}
+            disable={disabled}
           />
           <SpeechInput
             label="With"
             value={withInput}
             onChange={(event) => setWithInput(event.target.value)}
             supportsSpeech={supportsSpeech}
-            required={false}
-            // onMouseDown={onSpeechInput}
-            // disable={disable}
+            isRequired={false}
+            onMouseDown={onSpeechInput}
+            disable={disabled}
           />
           {isTooShort && (
             <p className="Card__message--error">

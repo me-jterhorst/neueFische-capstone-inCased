@@ -5,7 +5,11 @@ import SpeechInput from "../components/SpeechInput";
 import { useState, useEffect, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export default function CreateReminder({ supportsSpeech }) {
+export default function CreateReminder({
+  supportsSpeech,
+  disabled,
+  onSpeechInput,
+}) {
   // ========================================== Case
   const reminderId = useMemo(uuidv4, []);
   const [reminder, setReminder] = useState({});
@@ -36,8 +40,8 @@ export default function CreateReminder({ supportsSpeech }) {
             value={triggerInput}
             onChange={(event) => setTriggerInput(event.target.value)}
             supportsSpeech={supportsSpeech}
-            // onMouseDown={onSpeechInput}
-            // disable={disable}
+            onMouseDown={onSpeechInput}
+            disable={disabled}
           />
 
           <SpeechInput
@@ -45,8 +49,8 @@ export default function CreateReminder({ supportsSpeech }) {
             value={eventTriggerInput}
             onChange={(event) => setEventTriggerInput(event.target.value)}
             supportsSpeech={supportsSpeech}
-            // onMouseDown={onSpeechInput}
-            // disable={disable}
+            onMouseDown={onSpeechInput}
+            disable={disabled}
           />
           {isTooShort && (
             <p className="Card__message--error">
