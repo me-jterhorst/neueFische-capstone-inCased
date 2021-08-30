@@ -5,10 +5,10 @@ import CreateReminder from "./CreateReminder";
 // ============================ Import Requirements
 import { useState } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
 
-export default function Create({ isLogin }) {
+export default function Create({ isLogin, syncReminder }) {
   const history = useHistory();
-  // const [tasks, setTasks] = useState([]);
   const [reminder, setReminder] = useState(null);
   const [pageId, setPageId] = useState(0);
 
@@ -17,6 +17,10 @@ export default function Create({ isLogin }) {
     setPageId(pageId + 1);
     history.push(`/create/${pageId + 1}`);
   }
+
+  useEffect(() => {
+    syncReminder(reminder);
+  }, [reminder]);
 
   // =============== Reminder
   function goBackwardReminder(event) {
@@ -45,7 +49,6 @@ export default function Create({ isLogin }) {
     setReminder(storedReminder);
   }
 
-  console.log(reminder);
   return (
     <Switch>
       <Route path="/create/:taskId">

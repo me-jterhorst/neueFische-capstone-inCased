@@ -26,7 +26,6 @@ export default function App() {
   const [disable, setDisable] = useState(false);
 
   // ================== SPEECH
-
   let supportsSpeech, SpeechRecognition, recognition;
 
   if (!window.webkitSpeechRecognition) {
@@ -97,12 +96,18 @@ export default function App() {
     setSearchInput(event.target.value);
   }
 
+  function syncReminder(reminder) {
+    if (reminder) {
+      setGlobalReminder([...globalReminder, reminder]);
+    }
+  }
+  console.log(globalReminder);
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
         <Route path="/create">
-          <Create isLogin={isLogin} />
+          <Create isLogin={isLogin} syncReminder={syncReminder} />
           <BottomNav hasSpeech={false} />
         </Route>
 

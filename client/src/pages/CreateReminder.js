@@ -4,9 +4,10 @@ import SpeechInput from "../components/SpeechInput";
 // import HeaderActionGoForward from "../components/Card_components/HeaderActionGoForward";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const initialTask = {
+  reminderId: uuidv4(),
   trigger: "",
   eventTrigger: "",
 };
