@@ -5,21 +5,23 @@ import SpeechInput from "../components/SpeechInput";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
-export default function CreateTask({
-  supportsSpeech,
-  onSpeechInput,
-  disabled,
-}) {
+export default function CreateTask() {
   // ============================== Action
   const { taskId } = useParams();
   const [isTooShort, setIsTooShort] = useState(true);
   const [verbInput, setVerbInput] = useState("");
   const [actionInput, setActionInput] = useState("");
   const [withInput, setWithInput] = useState("");
-  const [action, setAction] = useState({});
+  const [task, setTask] = useState({});
+
+  const mouseDown = (label, transcript) => {
+    label === "Verb" && setVerbInput(transcript);
+    label === "Action" && setActionInput(transcript);
+    label === "With" && setWithInput(transcript);
+  };
 
   useEffect(() => {
-    setAction({
+    setTask({
       taskId,
       verb: verbInput,
       action: actionInput,
@@ -28,8 +30,7 @@ export default function CreateTask({
 
     setIsTooShort(!verbInput || !actionInput);
   }, [verbInput, actionInput, withInput, taskId]);
-
-  console.log(action);
+  console.log(task);
   return (
     <main id="CreateAction" className="card-screen">
       <Card>
@@ -39,26 +40,20 @@ export default function CreateTask({
             label="Verb"
             value={verbInput}
             onChange={(event) => setVerbInput(event.target.value)}
-            supportsSpeech={supportsSpeech}
-            onMouseDown={onSpeechInput}
-            disable={disabled}
+            onMouseDown={mouseDown}
           />
           <SpeechInput
             label="Action"
             value={actionInput}
             onChange={(event) => setActionInput(event.target.value)}
-            supportsSpeech={supportsSpeech}
-            onMouseDown={onSpeechInput}
-            disable={disabled}
+            onMouseDown={mouseDown}
           />
           <SpeechInput
             label="With"
             value={withInput}
             onChange={(event) => setWithInput(event.target.value)}
-            supportsSpeech={supportsSpeech}
+            onMouseDown={mouseDown}
             isRequired={false}
-            onMouseDown={onSpeechInput}
-            disable={disabled}
           />
           {isTooShort && (
             <p className="Card__message--error">

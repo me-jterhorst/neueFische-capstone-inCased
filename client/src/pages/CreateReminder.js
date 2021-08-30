@@ -14,17 +14,22 @@ export default function CreateReminder({
   const reminderId = useMemo(uuidv4, []);
   const [reminder, setReminder] = useState({});
   const [triggerInput, setTriggerInput] = useState("");
-  const [eventTriggerInput, setEventTriggerInput] = useState("");
+  const [eventInput, setEventInput] = useState("");
   const [isTooShort, setIsTooShort] = useState(true);
+
+  const mouseDown = (label, transcript) => {
+    label === "Trigger" && setTriggerInput(transcript);
+    label === "Event" && setEventInput(transcript);
+  };
 
   useEffect(() => {
     setReminder({
       reminderId,
       trigger: triggerInput,
-      eventTrigger: eventTriggerInput,
+      eventTrigger: eventInput,
     });
-    setIsTooShort(!triggerInput || !eventTriggerInput);
-  }, [triggerInput, eventTriggerInput, reminderId]);
+    setIsTooShort(!triggerInput || !eventInput);
+  }, [triggerInput, eventInput, reminderId]);
 
   console.log(reminder);
 
@@ -39,18 +44,14 @@ export default function CreateReminder({
             label="Trigger"
             value={triggerInput}
             onChange={(event) => setTriggerInput(event.target.value)}
-            supportsSpeech={supportsSpeech}
-            onMouseDown={onSpeechInput}
-            disable={disabled}
+            onMouseDown={mouseDown}
           />
 
           <SpeechInput
             label="Event"
-            value={eventTriggerInput}
-            onChange={(event) => setEventTriggerInput(event.target.value)}
-            supportsSpeech={supportsSpeech}
-            onMouseDown={onSpeechInput}
-            disable={disabled}
+            value={eventInput}
+            onChange={(event) => setEventInput(event.target.value)}
+            onMouseDown={mouseDown}
           />
           {isTooShort && (
             <p className="Card__message--error">
