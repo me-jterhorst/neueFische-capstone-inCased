@@ -1,63 +1,77 @@
 import "./Create.css";
 import Card from "../components/Card";
-// import HeaderActionGoForward from "../components/Card_components/HeaderActionGoForward";
 import SpeechInput from "../components/SpeechInput";
-import { useState, useEffect, useMemo } from "react";
+// import HeaderActionGoForward from "../components/Card_components/HeaderActionGoForward";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
-export default function CreateReminder({ handleReminder, currentReminder }) {
-  // ========================================== Case
-  const reminderId = useMemo(uuidv4, []);
-  const [triggerInput, setTriggerInput] = useState(
-    currentReminder.trigger || ""
-  );
-  const [eventInput, setEventInput] = useState(
-    currentReminder.eventTrigger || ""
-  );
-  const [isTooShort, setIsTooShort] = useState(true);
+const initialTask = {
+  trigger: "",
+  eventTrigger: "",
+};
+
+export default function CreateReminder({ submitReminder, reminder }) {
   const history = useHistory();
-
-  const mouseDown = (label, transcript) => {
-    label === "Trigger" && setTriggerInput(transcript);
-    label === "Event" && setEventInput(transcript);
-  };
+  const [input, setInput] = useState(initialTask);
+  const [isTooShort, setIsTooShort] = useState(true);
 
   useEffect(() => {
-    handleReminder({
-      reminderId,
-      trigger: triggerInput,
-      eventTrigger: eventInput,
-      tasks: [],
-    });
-    setIsTooShort(!triggerInput || !eventInput);
-  }, [triggerInput, eventInput, reminderId, handleReminder]);
-
-  function clickFoward() {
-    if (!isTooShort) {
-      history.push(`/create/0`);
+    if (reminder) {
+      setInput({
+        trigger: reminder.trigger,
+        eventTrigger: reminder.eventTrigger,
+      });
     }
+  }, [reminder]);
+
+  useEffect(() => {
+    setIsTooShort(!input.trigger || !input.eventTrigger);
+  }, [input]);
+
+  const mouseDownSpeech = (label, transcript) => {
+    label === "Trigger" && setInput({ ...input, trigger: transcript });
+    label === "Event" && setInput({ ...input, eventTrigger: transcript });
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    let tasks = [];
+    if (reminder?.tasks) {
+      tasks = [...reminder.tasks];
+    }
+    submitReminder({ ...input, tasks });
+    history.push("/create/0");
   }
+
   return (
     <main id="CreateCase" className="card-screen">
       <Card>
-        <button onClick={() => clickFoward()}>Forward</button>
-        <h2 className="margin-b--s">
-          In case <br /> of
-        </h2>
-        <form id="createForm" className="dispFlex margin-b--l">
+        <form
+          id="createForm"
+          onSubmit={handleSubmit}
+          className="dispFlex margin-b--l"
+        >
+          <button>Forward</button>
+          <h2 className="margin-b--s">
+            In case <br /> of
+          </h2>
           <SpeechInput
             label="Trigger"
-            value={triggerInput}
-            onChange={(event) => setTriggerInput(event.target.value)}
-            onMouseDown={mouseDown}
+            value={input.trigger}
+            onChange={(event) =>
+              setInput({ ...input, trigger: event.target.value })
+            }
+            onMouseDown={mouseDownSpeech}
           />
 
           <SpeechInput
             label="Event"
-            value={eventInput}
-            onChange={(event) => setEventInput(event.target.value)}
-            onMouseDown={mouseDown}
+            value={input.eventTrigger}
+            onChange={(event) =>
+              setInput({ ...input, eventTrigger: event.target.value })
+            }
+            onMouseDown={mouseDownSpeech}
           />
           {isTooShort && (
             <p className="Card__message--error">

@@ -1,73 +1,76 @@
 import Card from "../components/Card";
-// import HeaderActionGoForward from "../components/Card_components/HeaderActionGoForward";
-// import FooterSubmit from "../components/Card_components/FooterSubmit";
 import SpeechInput from "../components/SpeechInput";
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router";
+import { useParams } from "react-router";
 
-export default function CreateTask({ handleTask, currentReminder, addTask }) {
-  // ============================== Action
+export default function CreateTask({
+  goForward,
+  goBackward,
+  submitTask,
+  reminder,
+}) {
   const { taskId } = useParams();
-  const history = useHistory();
+  const id = Number(taskId);
+  const [input, setInput] = useState({ verb: "", action: "", with: "" });
   const [isTooShort, setIsTooShort] = useState(true);
-  const [verbInput, setVerbInput] = useState("");
-  const [actionInput, setActionInput] = useState("");
-  const [withInput, setWithInput] = useState("");
-
-  const mouseDown = (label, transcript) => {
-    label === "Verb" && setVerbInput(transcript);
-    label === "Action" && setActionInput(transcript);
-    label === "With" && setWithInput(transcript);
-  };
 
   useEffect(() => {
-    handleTask({
-      taskId,
-      verb: verbInput,
-      action: actionInput,
-      with: withInput,
-    });
-
-    setIsTooShort(!verbInput || !actionInput);
-  }, [verbInput, actionInput, withInput, taskId, handleTask]);
-
-  function clickForward() {
-    if (!isTooShort) {
-      addTask(currentReminder);
-      history.push(`/create/${Number(taskId) + 1}`);
+    if (reminder?.tasks[id]) {
+      const taskValues = reminder.tasks[id];
+      setInput({ ...taskValues });
     }
+  }, [id, reminder]);
+
+  useEffect(() => {
+    setIsTooShort(!input.verb || !input.action);
+  }, [input]);
+
+  const mouseDown = (label, transcript) => {
+    label === "Verb" && setInput({ ...input, verb: transcript });
+    label === "Action" && setInput({ ...input, action: transcript });
+    label === "With" && setInput({ ...input, with: transcript });
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    submitTask(input);
+    setInput({ verb: "", action: "", with: "" });
+    goForward();
   }
+
   return (
     <main id="CreateAction" className="card-screen">
       <Card>
-        {Number(taskId) > 0 ? (
-          <button onClick={() => history.push(`/create/${Number(taskId) - 1}`)}>
-            {" "}
-            Backward
-          </button>
-        ) : (
-          <button onClick={() => history.push("/create")}> To Start </button>
-        )}
-        <button onClick={clickForward}> Forward</button>
-
-        <h2> Do this</h2>
-        <form id="createForm" className="dispFlex margin-b--l">
+        <form
+          id="createForm"
+          onSubmit={handleSubmit}
+          className="dispFlex margin-b--l"
+        >
+          <button onClick={goBackward}>Backward</button>
+          <button>Forward</button>
+          <h2> Do this</h2>
           <SpeechInput
             label="Verb"
-            value={verbInput}
-            onChange={(event) => setVerbInput(event.target.value)}
+            value={input.verb}
+            onChange={(event) =>
+              setInput({ ...input, verb: event.target.value })
+            }
             onMouseDown={mouseDown}
           />
           <SpeechInput
             label="Action"
-            value={actionInput}
-            onChange={(event) => setActionInput(event.target.value)}
+            value={input.action}
+            onChange={(event) =>
+              setInput({ ...input, action: event.target.value })
+            }
             onMouseDown={mouseDown}
           />
           <SpeechInput
             label="With"
-            value={withInput}
-            onChange={(event) => setWithInput(event.target.value)}
+            value={input.with}
+            onChange={(event) =>
+              setInput({ ...input, with: event.target.value })
+            }
             onMouseDown={mouseDown}
             isRequired={false}
           />

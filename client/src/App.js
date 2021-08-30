@@ -21,6 +21,7 @@ export default function App() {
   const database = JSON.parse(localStorage.getItem("user")) || null;
   const userData = {};
   const [isLogin, setLogin] = useState(true);
+  const [globalReminder, setGlobalReminder] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
 
@@ -101,7 +102,7 @@ export default function App() {
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
         <Route path="/create">
-          <Create isLogin={isLogin} supportsSpeech={supportsSpeech} />
+          <Create isLogin={isLogin} />
           <BottomNav hasSpeech={false} />
         </Route>
 
