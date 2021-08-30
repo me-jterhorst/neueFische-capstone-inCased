@@ -98,7 +98,7 @@ export default function App() {
 
   function syncReminder(reminder) {
     if (reminder) {
-      setGlobalReminder([...globalReminder, reminder]);
+      setGlobalReminder([reminder]);
     }
   }
   console.log(globalReminder);

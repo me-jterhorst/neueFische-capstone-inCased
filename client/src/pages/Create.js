@@ -19,7 +19,7 @@ export default function Create({ isLogin, syncReminder }) {
   }
 
   useEffect(() => {
-    syncReminder(reminder);
+    localStorage.setItem("newEntry", JSON.stringify(reminder));
   }, [reminder]);
 
   // =============== Reminder
@@ -48,6 +48,15 @@ export default function Create({ isLogin, syncReminder }) {
     storedReminder.tasks[pageId] = singleTask;
     setReminder(storedReminder);
   }
+
+  // ============ Final Step Submit
+
+  // Click on Submit Button in Task Screen
+  // run syncReminder with latest reminder
+  // push final reminder to Array
+  // setRemove the local Storage newEntry
+  // set it to local storage reminder
+  // history push
 
   return (
     <Switch>
