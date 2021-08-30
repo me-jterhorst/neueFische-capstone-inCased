@@ -3,11 +3,12 @@ import Card from "../components/Card";
 // import FooterSubmit from "../components/Card_components/FooterSubmit";
 import SpeechInput from "../components/SpeechInput";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 
-export default function CreateTask({ handleTask }) {
+export default function CreateTask({ handleTask, currentReminder, addTask }) {
   // ============================== Action
   const { taskId } = useParams();
+  const history = useHistory();
   const [isTooShort, setIsTooShort] = useState(true);
   const [verbInput, setVerbInput] = useState("");
   const [actionInput, setActionInput] = useState("");
@@ -30,9 +31,25 @@ export default function CreateTask({ handleTask }) {
     setIsTooShort(!verbInput || !actionInput);
   }, [verbInput, actionInput, withInput, taskId, handleTask]);
 
+  function clickForward() {
+    if (!isTooShort) {
+      addTask(currentReminder);
+      history.push(`/create/${Number(taskId) + 1}`);
+    }
+  }
   return (
     <main id="CreateAction" className="card-screen">
       <Card>
+        {Number(taskId) > 0 ? (
+          <button onClick={() => history.push(`/create/${Number(taskId) - 1}`)}>
+            {" "}
+            Backward
+          </button>
+        ) : (
+          <button onClick={() => history.push("/create")}> To Start </button>
+        )}
+        <button onClick={clickForward}> Forward</button>
+
         <h2> Do this</h2>
         <form id="createForm" className="dispFlex margin-b--l">
           <SpeechInput

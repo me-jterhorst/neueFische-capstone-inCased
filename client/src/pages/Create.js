@@ -3,7 +3,7 @@ import "./Create.css";
 import CreateTask from "./CreateTask";
 import CreateReminder from "./CreateReminder";
 // ============================ Import Requirements
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Switch, Route } from "react-router-dom";
 
 export default function Create({ isLogin }) {
@@ -18,17 +18,28 @@ export default function Create({ isLogin }) {
     setTask(task);
   }, []);
 
-  console.group("create");
-  console.log(task);
-  console.log(reminder);
-  console.groupEnd();
+  useEffect(() => {
+    console.log(reminder);
+  }, [reminder, task]);
+
+  function addTask(reminder) {
+    reminder.tasks.push(task);
+  }
+
   return (
     <Switch>
       <Route path="/create/:taskId">
-        <CreateTask handleTask={getTask} />
+        <CreateTask
+          handleTask={getTask}
+          currentReminder={reminder}
+          addTask={addTask}
+        />
       </Route>
       <Route path="/create">
-        <CreateReminder handleReminder={getReminder} />
+        <CreateReminder
+          handleReminder={getReminder}
+          currentReminder={reminder}
+        />
       </Route>
     </Switch>
   );

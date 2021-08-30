@@ -23,6 +23,9 @@ export default function App() {
   const [isLogin, setLogin] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
+  const [constructReminder, setConstructReminder] = useState([]);
+
+  // ================== SPEECH
 
   let supportsSpeech, SpeechRecognition, recognition;
 
@@ -34,6 +37,7 @@ export default function App() {
     recognition = new SpeechRecognition();
   }
 
+  // ================ Database
   if (!database) {
     const serverUser = {
       id: 1,
@@ -42,7 +46,7 @@ export default function App() {
         email: "JaneDoe@hotmail.de",
         password: 12345678,
       },
-      reminders: [],
+      reminders: constructReminder,
     };
 
     localStorage.setItem("user", JSON.stringify(serverUser));
@@ -64,7 +68,8 @@ export default function App() {
     userData.reminders = [...database.reminders];
   }
 
-  function onSpeechSearch(event) {
+  // ============== SEARCH HANDLERS
+  function onSearchSpeech(event) {
     event.preventDefault();
     recognition.start();
 
@@ -82,13 +87,12 @@ export default function App() {
       history.push("/overview");
     };
   }
-  function onSubmit(event) {
+  function onSearchSubmit(event) {
     event.preventDefault();
     const currentLocation = location.pathname;
     currentLocation === "/" && history.push("/overview");
   }
-
-  function onSearch(event) {
+  function onSearchChange(event) {
     event.preventDefault();
     setSearchInput(event.target.value);
   }
@@ -110,12 +114,12 @@ export default function App() {
         <Route path="/overview">
           <Overview
             searchquery={searchInput}
-            onSearch={onSearch}
-            onSubmit={onSubmit}
+            onSearch={onSearchChange}
+            onSubmit={onSearchSubmit}
           />
           <BottomNav
             disable={disable}
-            handleSpeech={onSpeechSearch}
+            handleSpeech={onSearchSpeech}
             hasSpeech={supportsSpeech}
           />
         </Route>
@@ -154,12 +158,12 @@ export default function App() {
             isLogin={isLogin}
             searchquery={searchInput}
             name={userData.user.name}
-            onSearch={onSearch}
-            onSubmit={onSubmit}
+            onSearch={onSearchChange}
+            onSubmit={onSearchSubmit}
           />
           <BottomNav
             disable={disable}
-            handleSpeech={onSpeechSearch}
+            handleSpeech={onSearchSpeech}
             hasSpeech={supportsSpeech}
           />
         </Route>
