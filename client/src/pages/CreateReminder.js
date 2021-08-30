@@ -5,14 +5,9 @@ import SpeechInput from "../components/SpeechInput";
 import { useState, useEffect, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export default function CreateReminder({
-  supportsSpeech,
-  disabled,
-  onSpeechInput,
-}) {
+export default function CreateReminder({ handleReminder }) {
   // ========================================== Case
   const reminderId = useMemo(uuidv4, []);
-  const [reminder, setReminder] = useState({});
   const [triggerInput, setTriggerInput] = useState("");
   const [eventInput, setEventInput] = useState("");
   const [isTooShort, setIsTooShort] = useState(true);
@@ -23,15 +18,13 @@ export default function CreateReminder({
   };
 
   useEffect(() => {
-    setReminder({
+    handleReminder({
       reminderId,
       trigger: triggerInput,
       eventTrigger: eventInput,
     });
     setIsTooShort(!triggerInput || !eventInput);
-  }, [triggerInput, eventInput, reminderId]);
-
-  console.log(reminder);
+  }, [triggerInput, eventInput, reminderId, handleReminder]);
 
   return (
     <main id="CreateCase" className="card-screen">

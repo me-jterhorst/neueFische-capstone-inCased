@@ -5,14 +5,13 @@ import SpeechInput from "../components/SpeechInput";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
-export default function CreateTask() {
+export default function CreateTask({ handleTask }) {
   // ============================== Action
   const { taskId } = useParams();
   const [isTooShort, setIsTooShort] = useState(true);
   const [verbInput, setVerbInput] = useState("");
   const [actionInput, setActionInput] = useState("");
   const [withInput, setWithInput] = useState("");
-  const [task, setTask] = useState({});
 
   const mouseDown = (label, transcript) => {
     label === "Verb" && setVerbInput(transcript);
@@ -21,7 +20,7 @@ export default function CreateTask() {
   };
 
   useEffect(() => {
-    setTask({
+    handleTask({
       taskId,
       verb: verbInput,
       action: actionInput,
@@ -29,8 +28,8 @@ export default function CreateTask() {
     });
 
     setIsTooShort(!verbInput || !actionInput);
-  }, [verbInput, actionInput, withInput, taskId]);
-  console.log(task);
+  }, [verbInput, actionInput, withInput, taskId, handleTask]);
+
   return (
     <main id="CreateAction" className="card-screen">
       <Card>
