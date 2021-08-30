@@ -23,7 +23,6 @@ export default function App() {
   const [isLogin, setLogin] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
-  const [constructReminder, setConstructReminder] = useState([]);
 
   // ================== SPEECH
 
@@ -46,7 +45,7 @@ export default function App() {
         email: "JaneDoe@hotmail.de",
         password: 12345678,
       },
-      reminders: constructReminder,
+      reminders: [],
     };
 
     localStorage.setItem("user", JSON.stringify(serverUser));
