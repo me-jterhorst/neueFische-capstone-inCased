@@ -9,6 +9,7 @@ export default function CreateTask({
   goBackward,
   submitTask,
   reminder,
+  storeReminder,
 }) {
   const { taskId } = useParams();
   const id = Number(taskId);
@@ -39,7 +40,12 @@ export default function CreateTask({
     goForward();
   }
 
-  console.log(reminder.tasks);
+  function handleSave(event) {
+    event.preventDefault();
+    setInput({ verb: "", action: "", with: "" });
+    storeReminder(input);
+  }
+
   return (
     <main id="CreateAction" className="card-screen">
       <Card>
@@ -89,10 +95,7 @@ export default function CreateTask({
           </div>
           {id === reminder.tasks.length && (
             <footer className="Card__footer dispFlex">
-              <button
-                className="opaque"
-                onClick={(event) => event.preventDefault()}
-              >
+              <button className="opaque" onClick={handleSave}>
                 Add Tasks
               </button>
             </footer>

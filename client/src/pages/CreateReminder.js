@@ -20,6 +20,7 @@ export default function CreateReminder({ submitReminder, reminder }) {
   useEffect(() => {
     if (reminder) {
       setInput({
+        reminderId: () => uuidv4(),
         trigger: reminder.trigger,
         eventTrigger: reminder.eventTrigger,
       });

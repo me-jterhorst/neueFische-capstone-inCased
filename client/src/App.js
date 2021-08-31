@@ -21,7 +21,6 @@ export default function App() {
   const database = JSON.parse(localStorage.getItem("user")) || null;
   const userData = {};
   const [isLogin, setLogin] = useState(true);
-  const [globalReminder, setGlobalReminder] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
 
@@ -96,18 +95,12 @@ export default function App() {
     setSearchInput(event.target.value);
   }
 
-  function syncReminder(reminder) {
-    if (reminder) {
-      setGlobalReminder([reminder]);
-    }
-  }
-  console.log(globalReminder);
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
         <Route path="/create">
-          <Create isLogin={isLogin} syncReminder={syncReminder} />
+          <Create isLogin={isLogin} />
           <BottomNav hasSpeech={false} />
         </Route>
 

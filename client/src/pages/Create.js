@@ -10,6 +10,7 @@ import { useEffect } from "react/cjs/react.development";
 export default function Create({ isLogin, syncReminder }) {
   const history = useHistory();
   const [reminder, setReminder] = useState(null);
+  const [storedReminder, setStoreReminder] = useState(null);
   const [pageId, setPageId] = useState(0);
 
   // ================ ALL
@@ -19,8 +20,12 @@ export default function Create({ isLogin, syncReminder }) {
   }
 
   useEffect(() => {
-    localStorage.setItem("newEntry", JSON.stringify(reminder));
-  }, [reminder]);
+    if (storedReminder) {
+      console.log(storedReminder);
+      localStorage.setItem("reminder", JSON.stringify({ ...storedReminder }));
+      history.push("/");
+    }
+  }, [storedReminder, history]);
 
   // =============== Reminder
   function goBackwardReminder(event) {
@@ -49,6 +54,11 @@ export default function Create({ isLogin, syncReminder }) {
     setReminder(storedReminder);
   }
 
+  function storeReminder(singleTask) {
+    const storedReminder = JSON.parse(JSON.stringify(reminder));
+    storedReminder.tasks[pageId] = singleTask;
+    setStoreReminder(storedReminder);
+  }
   // ============ Final Step Submit
 
   // Click on Submit Button in Task Screen
@@ -66,6 +76,7 @@ export default function Create({ isLogin, syncReminder }) {
           goBackward={goBackwardTask}
           submitTask={submitTask}
           reminder={reminder}
+          storeReminder={storeReminder}
         />
       </Route>
       <Route path="/create">
