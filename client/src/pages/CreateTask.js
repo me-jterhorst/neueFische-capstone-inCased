@@ -46,8 +46,11 @@ export default function CreateTask({
           onSubmit={handleSubmit}
           className="dispFlex margin-b--l"
         >
-          <button onClick={goBackward}>Backward</button>
-          <button>Forward</button>
+          <header>
+            <button onClick={goBackward}>Backward</button>
+            <p>{`${id + 1} / ${reminder.tasks.length + 1} `}</p>
+            <button>Forward</button>
+          </header>
           <h2> Do this</h2>
           <SpeechInput
             label="Verb"
@@ -78,6 +81,13 @@ export default function CreateTask({
             <p className="Card__message--error">
               Required Input fields can't be empty
             </p>
+          )}
+          {id === reminder.tasks.length && (
+            <footer>
+              <button onClick={(event) => event.preventDefault()}>
+                Add Tasks
+              </button>
+            </footer>
           )}
         </form>
       </Card>

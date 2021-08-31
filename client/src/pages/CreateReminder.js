@@ -1,7 +1,7 @@
 import "./Create.css";
 import Card from "../components/Card";
 import SpeechInput from "../components/SpeechInput";
-// import HeaderActionGoForward from "../components/Card_components/HeaderActionGoForward";
+import CardReminderHeader from "../components/Card_components/CardReminderHeader";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
@@ -53,32 +53,34 @@ export default function CreateReminder({ submitReminder, reminder }) {
           onSubmit={handleSubmit}
           className="dispFlex margin-b--l"
         >
-          <button>Forward</button>
-          <h2 className="margin-b--s">
-            In case <br /> of
-          </h2>
-          <SpeechInput
-            label="Trigger"
-            value={input.trigger}
-            onChange={(event) =>
-              setInput({ ...input, trigger: event.target.value })
-            }
-            onMouseDown={mouseDownSpeech}
-          />
+          <CardReminderHeader reminder={reminder} history={history} />
+          <div className="Card__content dispFlex col">
+            <h2 className="margin-b--s">
+              In case <br /> of
+            </h2>
+            <SpeechInput
+              label="Trigger"
+              value={input.trigger}
+              onChange={(event) =>
+                setInput({ ...input, trigger: event.target.value })
+              }
+              onMouseDown={mouseDownSpeech}
+            />
 
-          <SpeechInput
-            label="Event"
-            value={input.eventTrigger}
-            onChange={(event) =>
-              setInput({ ...input, eventTrigger: event.target.value })
-            }
-            onMouseDown={mouseDownSpeech}
-          />
-          {isTooShort && (
-            <p className="Card__message--error">
-              Required Input fields can't be empty
-            </p>
-          )}
+            <SpeechInput
+              label="Event"
+              value={input.eventTrigger}
+              onChange={(event) =>
+                setInput({ ...input, eventTrigger: event.target.value })
+              }
+              onMouseDown={mouseDownSpeech}
+            />
+            {isTooShort && (
+              <p className="Card__message--error">
+                Required Input fields can't be empty
+              </p>
+            )}
+          </div>
         </form>
       </Card>
     </main>
