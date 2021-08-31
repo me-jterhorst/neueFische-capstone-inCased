@@ -1,5 +1,6 @@
 import Card from "../components/Card";
 import SpeechInput from "../components/SpeechInput";
+import CardTaskHeader from "../components/Card_components/CardTaskHeader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
@@ -38,6 +39,7 @@ export default function CreateTask({
     goForward();
   }
 
+  console.log(reminder.tasks);
   return (
     <main id="CreateAction" className="card-screen">
       <Card>
@@ -46,45 +48,51 @@ export default function CreateTask({
           onSubmit={handleSubmit}
           className="dispFlex margin-b--l"
         >
-          <header>
-            <button onClick={goBackward}>Backward</button>
-            <p>{`${id + 1} / ${reminder.tasks.length + 1} `}</p>
-            <button>Forward</button>
-          </header>
-          <h2> Do this</h2>
-          <SpeechInput
-            label="Verb"
-            value={input.verb}
-            onChange={(event) =>
-              setInput({ ...input, verb: event.target.value })
-            }
-            onMouseDown={mouseDown}
+          <CardTaskHeader
+            tasks={reminder.tasks}
+            goBackward={goBackward}
+            taskId={id}
           />
-          <SpeechInput
-            label="Action"
-            value={input.action}
-            onChange={(event) =>
-              setInput({ ...input, action: event.target.value })
-            }
-            onMouseDown={mouseDown}
-          />
-          <SpeechInput
-            label="With"
-            value={input.with}
-            onChange={(event) =>
-              setInput({ ...input, with: event.target.value })
-            }
-            onMouseDown={mouseDown}
-            isRequired={false}
-          />
-          {isTooShort && (
-            <p className="Card__message--error">
-              Required Input fields can't be empty
-            </p>
-          )}
+
+          <div className="Card__content col dispFlex">
+            <h2> Do this</h2>
+            <SpeechInput
+              label="Verb"
+              value={input.verb}
+              onChange={(event) =>
+                setInput({ ...input, verb: event.target.value })
+              }
+              onMouseDown={mouseDown}
+            />
+            <SpeechInput
+              label="Action"
+              value={input.action}
+              onChange={(event) =>
+                setInput({ ...input, action: event.target.value })
+              }
+              onMouseDown={mouseDown}
+            />
+            <SpeechInput
+              label="With"
+              value={input.with}
+              onChange={(event) =>
+                setInput({ ...input, with: event.target.value })
+              }
+              onMouseDown={mouseDown}
+              isRequired={false}
+            />
+            {isTooShort && (
+              <p className="Card__message--error">
+                Required Input fields can't be empty
+              </p>
+            )}
+          </div>
           {id === reminder.tasks.length && (
-            <footer>
-              <button onClick={(event) => event.preventDefault()}>
+            <footer className="Card__footer dispFlex">
+              <button
+                className="opaque"
+                onClick={(event) => event.preventDefault()}
+              >
                 Add Tasks
               </button>
             </footer>

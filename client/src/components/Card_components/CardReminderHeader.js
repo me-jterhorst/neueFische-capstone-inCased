@@ -4,7 +4,12 @@ import { ReactComponent as ForwardButtonIcon } from "../../svg/icon-chevron-righ
 export default function CardReminderHeader({ reminder, history }) {
   return (
     <header className="CardReminder__header dispFlex">
+      <button type="submit" className="ReminderForwardButton">
+        <ForwardButtonIcon className="lineIcon icon opaque" />
+      </button>
+      <p> 0 / {reminder ? reminder.tasks.length + 1 : 1}</p>
       <button
+        type="input"
         className="ReminderBackButton"
         onClick={(event) => {
           event.preventDefault();
@@ -12,10 +17,6 @@ export default function CardReminderHeader({ reminder, history }) {
         }}
       >
         <BackButtonIcon className="lineIcon icon opaque" />
-      </button>
-      <p> 0 / {reminder ? reminder.tasks.length + 1 : 1}</p>
-      <button className="ReminderForwardButton">
-        <ForwardButtonIcon className="lineIcon icon opaque" />
       </button>
     </header>
   );
