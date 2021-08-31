@@ -1,24 +1,25 @@
+// ======================= Import Components
 import Searchfield from "../components/Searchfield";
 import Greeting from "../components/Greeting";
+// ======================= Import Requirements
 import { useEffect } from "react";
 
 export default function Home({
   name,
   isLogin,
   searchquery,
-  onSubmit,
-  onSearch,
+  onSearchSubmit,
+  onSearchChange,
 }) {
-  /** UPDATE USER*/
+  // Add reminder
   useEffect(() => {
     const existingUserData = JSON.parse(localStorage.getItem("user"));
-    const storedReminder = JSON.parse(localStorage.getItem("reminder")) || null;
+    const temporaryReminder =
+      JSON.parse(localStorage.getItem("reminder")) || null;
 
-    if (storedReminder) {
+    if (temporaryReminder) {
       localStorage.removeItem("reminder");
-
-      existingUserData.reminders.push(storedReminder);
-
+      existingUserData.reminders.push(temporaryReminder);
       localStorage.setItem("user", JSON.stringify(existingUserData));
     }
   }, [searchquery]);
@@ -27,8 +28,8 @@ export default function Home({
     <main id="home">
       <Searchfield
         inputValue={searchquery}
-        onSubmit={onSubmit}
-        onChange={onSearch}
+        onSubmit={onSearchSubmit}
+        onChange={onSearchChange}
       />
       <Greeting firstname={name} isLogin={isLogin} />
     </main>

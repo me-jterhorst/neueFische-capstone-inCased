@@ -13,7 +13,7 @@ export default function Create({ isLogin, syncReminder }) {
   const [storedReminder, setStoreReminder] = useState(null);
   const [pageId, setPageId] = useState(0);
 
-  // ================ ALL
+  // ================ UBIQUOUS
   function goForward() {
     setPageId(pageId + 1);
     history.push(`/create/${pageId + 1}`);
@@ -21,7 +21,6 @@ export default function Create({ isLogin, syncReminder }) {
 
   useEffect(() => {
     if (storedReminder) {
-      console.log(storedReminder);
       localStorage.setItem("reminder", JSON.stringify({ ...storedReminder }));
       history.push("/");
     }
@@ -47,26 +46,19 @@ export default function Create({ isLogin, syncReminder }) {
       history.push(`/create/${pageId - 1}`);
     }
   }
-
+  // Add Task object to the Reminder object
   function submitTask(singleTask) {
     const storedReminder = JSON.parse(JSON.stringify(reminder));
     storedReminder.tasks[pageId] = singleTask;
     setReminder(storedReminder);
   }
 
+  // ================== Save fully constructed reminder to user data
   function storeReminder(singleTask) {
     const storedReminder = JSON.parse(JSON.stringify(reminder));
     storedReminder.tasks[pageId] = singleTask;
     setStoreReminder(storedReminder);
   }
-  // ============ Final Step Submit
-
-  // Click on Submit Button in Task Screen
-  // run syncReminder with latest reminder
-  // push final reminder to Array
-  // setRemove the local Storage newEntry
-  // set it to local storage reminder
-  // history push
 
   return (
     <Switch>

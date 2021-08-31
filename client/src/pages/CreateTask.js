@@ -1,6 +1,8 @@
+// =================== Import Components
 import Card from "../components/Card";
 import SpeechInput from "../components/SpeechInput";
 import CardTaskHeader from "../components/Card_components/CardTaskHeader";
+// ===================== Import Requirements
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
@@ -16,6 +18,12 @@ export default function CreateTask({
   const [input, setInput] = useState({ verb: "", action: "", with: "" });
   const [isTooShort, setIsTooShort] = useState(true);
 
+  // Validate Form
+  useEffect(() => {
+    setIsTooShort(!input.verb || !input.action);
+  }, [input]);
+
+  // Paste existing task input into form
   useEffect(() => {
     if (reminder?.tasks[id]) {
       const taskValues = reminder.tasks[id];
@@ -23,16 +31,14 @@ export default function CreateTask({
     }
   }, [id, reminder]);
 
-  useEffect(() => {
-    setIsTooShort(!input.verb || !input.action);
-  }, [input]);
-
+  // Set SpeechRecognition to right target
   const mouseDown = (label, transcript) => {
     label === "Verb" && setInput({ ...input, verb: transcript });
     label === "Action" && setInput({ ...input, action: transcript });
     label === "With" && setInput({ ...input, with: transcript });
   };
 
+  // Switch to next Task Card
   function handleSubmit(event) {
     event.preventDefault();
     submitTask(input);
@@ -40,6 +46,7 @@ export default function CreateTask({
     goForward();
   }
 
+  // End Task Creation
   function handleSave(event) {
     event.preventDefault();
     setInput({ verb: "", action: "", with: "" });

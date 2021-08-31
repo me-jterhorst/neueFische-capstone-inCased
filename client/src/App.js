@@ -156,8 +156,8 @@ export default function App() {
             isLogin={isLogin}
             searchquery={searchInput}
             name={userData.user.name}
-            onSearch={onSearchChange}
-            onSubmit={onSearchSubmit}
+            onSearchChange={onSearchChange}
+            onSearchSubmit={onSearchSubmit}
           />
           <BottomNav
             disable={disable}

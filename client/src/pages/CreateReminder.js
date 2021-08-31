@@ -1,10 +1,13 @@
 import "./Create.css";
+// =============== Import Components
 import Card from "../components/Card";
 import SpeechInput from "../components/SpeechInput";
 import CardReminderHeader from "../components/Card_components/CardReminderHeader";
+// =============== Import Requirements
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";
+
 const initialTask = {
   trigger: "",
   eventTrigger: "",
@@ -16,6 +19,7 @@ export default function CreateReminder({ submitReminder, reminder }) {
   const [input, setInput] = useState(initialTask);
   const [isTooShort, setIsTooShort] = useState(true);
 
+  // Update Input Values
   useEffect(() => {
     if (reminder) {
       setInput({
@@ -25,15 +29,17 @@ export default function CreateReminder({ submitReminder, reminder }) {
     }
   }, [reminder]);
 
+  // Validate if Formfield is Empty or not
   useEffect(() => {
     setIsTooShort(!input.trigger || !input.eventTrigger);
   }, [input]);
-
+  // Set SpeechRecognition to right target
   const mouseDownSpeech = (label, transcript) => {
     label === "Trigger" && setInput({ ...input, trigger: transcript });
     label === "Event" && setInput({ ...input, eventTrigger: transcript });
   };
 
+  // Save the bare reminder or fill it with all remaining tasks
   function handleSubmit(event) {
     event.preventDefault();
     let tasks = [];
