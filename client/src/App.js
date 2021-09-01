@@ -13,16 +13,34 @@ import Create from "./pages/Create";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
   const history = useHistory();
   const location = useLocation();
-  const database = JSON.parse(localStorage.getItem("user")) || null;
-  const userData = {};
   const [isLogin, setLogin] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || {
+      id: 1,
+      user: {
+        name: "Jane",
+        email: "JaneDoe@hotmail.de",
+        password: 12345678,
+      },
+      reminders: [],
+    }
+  );
+
+  // user
+  function updateUser(user) {
+    setUser(user);
+  }
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
   // ================== SPEECH
   let supportsSpeech, SpeechRecognition, recognition;
@@ -33,37 +51,6 @@ export default function App() {
     supportsSpeech = true;
     SpeechRecognition = window.webkitSpeechRecognition;
     recognition = new SpeechRecognition();
-  }
-
-  // ================ Database in state
-  if (!database) {
-    const serverUser = {
-      id: 1,
-      user: {
-        name: "Jane",
-        email: "JaneDoe@hotmail.de",
-        password: 12345678,
-      },
-      reminders: [],
-    };
-
-    localStorage.setItem("user", JSON.stringify(serverUser));
-
-    userData.id = 1;
-    userData.user = {
-      name: "Jakob",
-      email: "mail.de",
-      password: 1223232,
-    };
-    userData.reminders = [];
-  } else {
-    userData.id = database.id;
-    userData.user = {
-      name: database.user.name,
-      email: database.user.email,
-      password: 12345678,
-    };
-    userData.reminders = [...database.reminders];
   }
 
   // ============== SEARCH HANDLERS
@@ -109,6 +96,7 @@ export default function App() {
             searchquery={searchInput}
             onSearch={onSearchChange}
             onSubmit={onSearchSubmit}
+            userReminders={user.reminders}
           />
           <BottomNav
             disable={disable}
@@ -150,9 +138,10 @@ export default function App() {
           <Home
             isLogin={isLogin}
             searchquery={searchInput}
-            name={userData.user.name}
+            name={user.user.name}
             onSearchChange={onSearchChange}
             onSearchSubmit={onSearchSubmit}
+            updateUser={updateUser}
           />
           <BottomNav
             disable={disable}

@@ -10,10 +10,8 @@ export default function Home({
   searchquery,
   onSearchSubmit,
   onSearchChange,
+  updateUser,
 }) {
-  /**
-   * pass in setstate to set user that can be passed to app -> overview
-   */
   // Add reminder
   useEffect(() => {
     const existingUserData = JSON.parse(localStorage.getItem("user"));
@@ -23,9 +21,10 @@ export default function Home({
     if (temporaryReminder) {
       localStorage.removeItem("reminder");
       existingUserData.reminders.push(temporaryReminder);
-      localStorage.setItem("user", JSON.stringify(existingUserData));
+
+      updateUser(existingUserData);
     }
-  }, [searchquery]);
+  }, [searchquery, updateUser]);
 
   return (
     <main id="home">
