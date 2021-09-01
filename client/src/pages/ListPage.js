@@ -47,10 +47,7 @@ export default function ListPage({ inputValue, userReminders }) {
             )}
           </div>
 
-          <Link
-            to={`/overview/task/${index}/0`}
-            className="Overview__card__link"
-          >
+          <Link to={`/overview/${index}/0`} className="Overview__card__link">
             <ForwardButtonIcon className="icon--dark opaque" />
           </Link>
         </section>

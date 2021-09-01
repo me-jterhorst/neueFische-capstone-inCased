@@ -18,8 +18,8 @@ export default function Overview({
 }) {
   return (
     <Switch>
-      <Route path="/overview/task/:reminderId/:postId">
-        <SinglePage />
+      <Route path="/overview/:reminderId/:postId">
+        <SinglePage userReminders={userReminders} />
         <BottomNav hasSpeech={false} />
       </Route>
 
