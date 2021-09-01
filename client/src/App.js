@@ -97,8 +97,6 @@ export default function App() {
             onSearch={onSearchChange}
             onSubmit={onSearchSubmit}
             userReminders={user.reminders}
-          />
-          <BottomNav
             disable={disable}
             handleSpeech={onSearchSpeech}
             hasSpeech={supportsSpeech}

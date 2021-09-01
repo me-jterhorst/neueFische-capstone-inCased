@@ -2,12 +2,15 @@ import "./ListPage.css";
 // import components
 import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.svg";
 // import requirements
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function ListPage({ inputValue, userReminders }) {
-  const [reminders, setReminders] = useState(userReminders);
-
+export default function ListPage({
+  inputValue,
+  userReminders,
+  updateReminder,
+  reminders,
+}) {
   function handleSearch(inputValue) {
     if (inputValue) {
       const filteredReminders = reminders.filter((reminder) => {
@@ -18,9 +21,9 @@ export default function ListPage({ inputValue, userReminders }) {
           )
         );
       });
-      setReminders(filteredReminders);
+      updateReminder(filteredReminders);
     } else {
-      setReminders(userReminders);
+      updateReminder(userReminders);
     }
   }
 

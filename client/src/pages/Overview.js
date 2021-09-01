@@ -8,18 +8,27 @@ import ListPage from "./ListPage";
 import SinglePage from "./SinglePage";
 // ======================== import requirements
 import { Switch, Route } from "react-router-dom";
-// import { useState } from "react";
+import { useState } from "react";
 
 export default function Overview({
   searchquery,
   onSubmit,
   onSearch,
   userReminders,
+  disable,
+  handleSpeech,
+  hasSpeech,
 }) {
+  const [reminders, setReminders] = useState(userReminders);
+
+  function updateReminder(filteredReminder) {
+    setReminders(filteredReminder);
+  }
+
   return (
     <Switch>
       <Route path="/overview/:reminderId/:postId">
-        <SinglePage userReminders={userReminders} />
+        <SinglePage reminders={reminders} userReminders={userReminders} />
         <BottomNav hasSpeech={false} />
       </Route>
 
@@ -30,8 +39,18 @@ export default function Overview({
             onSubmit={onSubmit}
             onChange={onSearch}
           />
-          <ListPage inputValue={searchquery} userReminders={userReminders} />
+          <ListPage
+            inputValue={searchquery}
+            userReminders={userReminders}
+            updateReminder={updateReminder}
+            reminders={reminders}
+          />
         </main>
+        <BottomNav
+          hasSpeech={hasSpeech}
+          disable={disable}
+          handleSpeech={handleSpeech}
+        />
       </Route>
     </Switch>
   );
