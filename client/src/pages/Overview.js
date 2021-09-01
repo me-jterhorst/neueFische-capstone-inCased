@@ -1,8 +1,13 @@
 import "./Overview.css";
+// ======================= import components
 import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.svg";
 import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 import Searchfield from "../components/Searchfield";
-import { Link } from "react-router-dom";
+import BottomNav from "./components/BottomNav";
+// ======================= import pages
+import SinglePage from "./pages/SinglePage";
+// ======================== import requirements
+import { Switch, Route, Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Overview({ searchquery, onSubmit, onSearch }) {
@@ -110,13 +115,22 @@ export default function Overview({ searchquery, onSubmit, onSearch }) {
   }
 
   return (
-    <main id="Overview">
-      <Searchfield
-        inputValue={searchquery}
-        onSubmit={onSubmit}
-        onChange={onSearch}
-      />
-      {renderList()}
-    </main>
+    <Switch>
+      <Route path="/overview/task/:reminderId/:taskId">
+        <SinglePage isLight={true} />
+        <BottomNav hasSpeech={false} />
+      </Route>
+
+      <Route exact path="/overview">
+        <main id="Overview">
+          <Searchfield
+            inputValue={searchquery}
+            onSubmit={onSubmit}
+            onChange={onSearch}
+          />
+          {renderList()}
+        </main>
+      </Route>
+    </Switch>
   );
 }

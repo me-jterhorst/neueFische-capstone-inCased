@@ -11,6 +11,9 @@ export default function Home({
   onSearchSubmit,
   onSearchChange,
 }) {
+  /**
+   * pass in setstate to set user that can be passed to app -> overview
+   */
   // Add reminder
   useEffect(() => {
     const existingUserData = JSON.parse(localStorage.getItem("user"));

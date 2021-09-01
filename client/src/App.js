@@ -1,4 +1,5 @@
 import "./App.css";
+// ========================== Import Components
 import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
 /* =========================== Import Pages*/
@@ -9,7 +10,6 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
 import Create from "./pages/Create";
-import SinglePage from "./pages/SinglePage";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
@@ -35,7 +35,7 @@ export default function App() {
     recognition = new SpeechRecognition();
   }
 
-  // ================ Database
+  // ================ Database in state
   if (!database) {
     const serverUser = {
       id: 1,
@@ -101,11 +101,6 @@ export default function App() {
       <Switch>
         <Route path="/create">
           <Create isLogin={isLogin} />
-          <BottomNav hasSpeech={false} />
-        </Route>
-
-        <Route path="/overview/task/:reminderId/:taskId">
-          <SinglePage isLight={true} />
           <BottomNav hasSpeech={false} />
         </Route>
 
