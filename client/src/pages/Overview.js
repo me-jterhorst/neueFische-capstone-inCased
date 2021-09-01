@@ -5,9 +5,10 @@ import Searchfield from "../components/Searchfield";
 import BottomNav from "../components/BottomNav";
 // ======================= import pages
 import ListPage from "./ListPage";
+import SinglePage from "./SinglePage";
 // ======================== import requirements
-import { Switch, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import { Switch, Route } from "react-router-dom";
+// import { useState } from "react";
 
 export default function Overview({
   searchquery,
@@ -18,6 +19,7 @@ export default function Overview({
   return (
     <Switch>
       <Route path="/overview/task/:reminderId/:postId">
+        <SinglePage />
         <BottomNav hasSpeech={false} />
       </Route>
 
@@ -28,7 +30,7 @@ export default function Overview({
             onSubmit={onSubmit}
             onChange={onSearch}
           />
-          <ListPage inputValue={searchquery} />
+          <ListPage inputValue={searchquery} userReminders={userReminders} />
         </main>
       </Route>
     </Switch>

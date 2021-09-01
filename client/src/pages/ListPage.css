@@ -1,0 +1,9 @@
+.Overview__List {
+  margin-top: 1rem;
+  max-height: 75%;
+}
+
+.List--scroll {
+  padding-right: 10px;
+  overflow-y: scroll;
+}
