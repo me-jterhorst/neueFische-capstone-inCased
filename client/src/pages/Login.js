@@ -8,27 +8,31 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <main id="Login" className="card-screen">
-      <Card header={<HeaderGoBack />} footer={<FooterSubmit text="Login" />}>
-        <h2 className="margin-b--s">Login</h2>
-        <p>
-          No Account yet?
-          <br />
-          <Link className="opaque link" to="/signup">
-            Sign Up here
-          </Link>
-        </p>
+      <Card>
+        <HeaderGoBack />
+        <div className="Card__content">
+          <h2 className="margin-b--s">Login</h2>
+          <p>
+            No Account yet?
+            <br />
+            <Link className="opaque link" to="/signup">
+              Sign Up here
+            </Link>
+          </p>
 
-        <form className="dispFlex margin-b--l">
-          <InputField identifier="Login" label="Username" />
-          <InputField identifier="Login" label="Password" type="password" />
-        </form>
+          <form className="dispFlex margin-b--l">
+            <InputField identifier="Login" label="Username" />
+            <InputField identifier="Login" label="Password" type="password" />
+          </form>
 
-        <details>
-          <summary>Forgot your password?</summary>
-          <Link className="link" to="/password-reset">
-            Password reset
-          </Link>
-        </details>
+          <details>
+            <summary>Forgot your password?</summary>
+            <Link className="link" to="/password-reset">
+              Password reset
+            </Link>
+          </details>
+        </div>
+        <FooterSubmit text="Login" />
       </Card>
     </main>
   );

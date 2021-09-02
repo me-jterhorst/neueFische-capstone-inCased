@@ -1,4 +1,4 @@
-import BackButton from "../BackButton";
+import { ReactComponent as BackButtonIcon } from "../../svg/icon-chevron-left.svg";
 import { useHistory } from "react-router";
 
 export default function HeaderGoBack() {
@@ -10,7 +10,12 @@ export default function HeaderGoBack() {
 
   return (
     <header className="Card__header dispFlex">
-      <BackButton onClick={goToPrevPage} />
+      <button className="OverviewBackButton">
+        <BackButtonIcon
+          onClick={goToPrevPage}
+          className="lineIcon icon opaque"
+        />
+      </button>
     </header>
   );
 }
