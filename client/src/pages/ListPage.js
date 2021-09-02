@@ -61,13 +61,6 @@ export default function ListPage({
       });
   }
 
-  /**
-   * TO DO:
-   * Handle Delete Function to remove whole list Item and update
-   * App -> user.reminders & localStorage
-   *
-   */
-
   return (
     <article
       className={`Overview__List  ${

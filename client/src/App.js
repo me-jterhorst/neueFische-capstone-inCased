@@ -40,7 +40,6 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
-    console.log("I do trigger you know");
   }, [user]);
 
   // ================== SPEECH
