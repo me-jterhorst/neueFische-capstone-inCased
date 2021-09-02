@@ -1,51 +1,45 @@
 import "./SinglePage.css";
 // import components
 import Card from "../components/Card";
+import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 // import requirements
 import { useParams } from "react-router-dom";
+import CardOverviewHeader from "../components/Card_components/CardOverviewHeader";
 
-// to be moved
-import { Link, useHistory } from "react-router-dom";
-
-export default function SinglePage({ reminders, userReminders }) {
-  const { reminderId } = useParams();
-  const { postId } = useParams();
-  const currentReminder = reminders[reminderId];
+export default function SinglePage({ globalReminders }) {
+  const { reminderId, postId } = useParams();
+  console.log(globalReminders);
+  const singleReminder = globalReminders.filter(
+    (reminder) => reminder.reminderId === reminderId
+  );
+  const currentReminder = singleReminder[0];
   const currentTask = currentReminder.tasks[postId];
-  // ========================= to be moved
-  const history = useHistory();
-  // ========================= to be moved
+
   return (
     <main id="SinglePage" className="card-screen dispFlex">
       <Card isLight={true}>
-        <header>
-          <button
-            onClick={() => {
-              history.goBack();
-            }}
-          >
-            Backward
+        <CardOverviewHeader
+          postId={postId}
+          currentReminder={currentReminder}
+          reminderId={reminderId}
+        />
+
+        <div className="Card__content">
+          <article className="caseArea">
+            <h2>{currentReminder.trigger} </h2>
+            <h2>{currentReminder.triggerEvent} </h2>
+          </article>
+          <article className="actionArea">
+            <h3>{currentTask.verb}</h3>
+            <h2>{currentTask.action}</h2>
+            {currentTask.with && <h3>{`with: ${currentTask.with}`}</h3>}
+          </article>
+        </div>
+        <footer className="Card__Footer dispFlex">
+          <button>
+            <DeleteIcon className="lineIcon icon opaque" />
           </button>
-          {`${+postId + 1}/ ${currentReminder.tasks.length}`}
-          <Link
-            to={`/overview/${reminderId}/${Number(postId) + 1}`}
-            // onClick={() => {
-            //   history.goForward();
-            // history.push(`/overview/${reminderId}/${Number(postId) + 1} `);
-            // }}
-          >
-            Forward
-          </Link>
-        </header>
-        <article className="caseArea">
-          <h2>{currentReminder.trigger} </h2>
-          <h2>{currentReminder.triggerEvent} </h2>
-        </article>
-        <article className="actionArea">
-          <h3>{currentTask.verb}</h3>
-          <h2>{currentTask.action}</h2>
-          {currentTask.with && <h3>{`with: ${currentTask.with}`}</h3>}
-        </article>
+        </footer>
       </Card>
     </main>
   );

@@ -1,6 +1,5 @@
 import "./Overview.css";
 // ======================= import components
-
 import Searchfield from "../components/Searchfield";
 import BottomNav from "../components/BottomNav";
 // ======================= import pages
@@ -8,7 +7,6 @@ import ListPage from "./ListPage";
 import SinglePage from "./SinglePage";
 // ======================== import requirements
 import { Switch, Route } from "react-router-dom";
-import { useState } from "react";
 
 export default function Overview({
   searchquery,
@@ -19,16 +17,10 @@ export default function Overview({
   handleSpeech,
   hasSpeech,
 }) {
-  const [reminders, setReminders] = useState(userReminders);
-
-  function updateReminder(filteredReminder) {
-    setReminders(filteredReminder);
-  }
-
   return (
     <Switch>
       <Route path="/overview/:reminderId/:postId">
-        <SinglePage reminders={reminders} userReminders={userReminders} />
+        <SinglePage globalReminders={userReminders} />
         <BottomNav hasSpeech={false} />
       </Route>
 
@@ -39,12 +31,7 @@ export default function Overview({
             onSubmit={onSubmit}
             onChange={onSearch}
           />
-          <ListPage
-            inputValue={searchquery}
-            userReminders={userReminders}
-            updateReminder={updateReminder}
-            reminders={reminders}
-          />
+          <ListPage inputValue={searchquery} globalReminders={userReminders} />
         </main>
         <BottomNav
           hasSpeech={hasSpeech}
