@@ -5,10 +5,14 @@ import { ReactComponent as DarkmodeIcon } from "../svg/icon-darkmode.svg";
 import { ReactComponent as AccountIcon } from "../svg/icon-account.svg";
 import { ReactComponent as ImprintIcon } from "../svg/icon-imprint.svg";
 import { ReactComponent as LoginIcon } from "../svg/icon-login.svg";
+import useOnclickOutside from "react-cool-onclickoutside";
 import MenuLink from "./MenuLink";
 
 export default function Header({ isLogin, toggleLogin }) {
   const [isToggled, setIsToggled] = useState(false);
+  const ref = useOnclickOutside(() => {
+    setIsToggled(false);
+  });
 
   function toggleNav() {
     setIsToggled(!isToggled);
@@ -19,7 +23,7 @@ export default function Header({ isLogin, toggleLogin }) {
     transition`}
     >
       <DotMatrixIcon onClick={() => toggleNav()} />
-      <nav className="top-nav__menu dispFlex col">
+      <nav ref={ref} className="top-nav__menu dispFlex col">
         <MenuLink
           destination="Darkmode"
           clickAction={() => toggleNav()}
