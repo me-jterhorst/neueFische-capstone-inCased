@@ -1,10 +1,15 @@
 import "./ListPage.css";
 // import components
 import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.svg";
+import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 // import requirements
 import { Link } from "react-router-dom";
 
-export default function ListPage({ inputValue, globalReminders }) {
+export default function ListPage({
+  inputValue,
+  globalReminders,
+  deleteReminder,
+}) {
   function renderList() {
     return globalReminders
       .filter((reminder) => {
@@ -38,13 +43,19 @@ export default function ListPage({ inputValue, globalReminders }) {
                 <p>Found as optional party</p>
               )}
             </div>
-
-            <Link
-              to={`/overview/${reminder.reminderId}/0`}
-              className="Overview__card__link"
-            >
-              <ForwardButtonIcon className="icon--dark opaque" />
-            </Link>
+            {reminder.tasks.length > 0 ? (
+              <Link
+                to={`/overview/${reminder.reminderId}/0`}
+                className="Overview__card__link"
+              >
+                <ForwardButtonIcon className="icon--dark opaque" />
+              </Link>
+            ) : (
+              <DeleteIcon
+                onClick={() => deleteReminder(reminder.reminderId)}
+                className="Overview__card__link icon--dark opaque"
+              />
+            )}
           </section>
         );
       });

@@ -40,6 +40,7 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
+    console.log("I do trigger you know");
   }, [user]);
 
   // ================== SPEECH
@@ -82,6 +83,36 @@ export default function App() {
     setSearchInput(event.target.value);
   }
 
+  // ======================= Delete Functions
+
+  function deleteTask(postId, reminderId) {
+    const userWithoutTask = user.reminders.filter(
+      (reminder) => reminder.reminderId === reminderId
+    );
+    userWithoutTask[0].tasks.splice(postId, 1);
+
+    localStorage.setItem("user", JSON.stringify(userWithoutTask));
+
+    if (postId > 0) {
+      history.push(`/overview/${reminderId}/${Number(postId - 1)}`);
+    } else {
+      history.push("/overview");
+    }
+  }
+
+  function deleteReminder(reminderId) {
+    const indexOfReminder = user.reminders.findIndex(
+      (reminder) => reminder.reminderId === reminderId
+    );
+
+    const userWithoutReminder = user;
+    userWithoutReminder.reminders.splice(indexOfReminder, 1);
+
+    localStorage.setItem("user", JSON.stringify(userWithoutReminder));
+
+    history.push("/overview");
+  }
+
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
@@ -100,6 +131,8 @@ export default function App() {
             disable={disable}
             handleSpeech={onSearchSpeech}
             hasSpeech={supportsSpeech}
+            deleteTask={deleteTask}
+            deleteReminder={deleteReminder}
           />
         </Route>
 

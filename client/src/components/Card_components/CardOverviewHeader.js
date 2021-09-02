@@ -13,14 +13,16 @@ export default function CardOverviewHeader({
   const history = useHistory();
   const nextTask = Number(postId) + 1;
   const totalTasks = currentReminder.tasks.length;
+
+  function goBackOverview() {
+    if (Number(postId) > 0) {
+      return history.push(`/overview/${reminderId}/${Number(postId) - 1}`);
+    }
+    history.push("/overview");
+  }
   return (
     <header className="CardOverview__header dispFlex">
-      <button
-        className="OverviewBackButton"
-        onClick={() => {
-          history.goBack();
-        }}
-      >
+      <button className="OverviewBackButton" onClick={goBackOverview}>
         <BackButtonIcon className="lineIcon icon opaque" />
       </button>
       <p>{`${nextTask}/ ${totalTasks}`}</p>

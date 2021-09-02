@@ -1,14 +1,13 @@
 import "./SinglePage.css";
 // import components
 import Card from "../components/Card";
+import CardOverviewHeader from "../components/Card_components/CardOverviewHeader";
 import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
 // import requirements
 import { useParams } from "react-router-dom";
-import CardOverviewHeader from "../components/Card_components/CardOverviewHeader";
 
-export default function SinglePage({ globalReminders }) {
+export default function SinglePage({ globalReminders, deleteTask }) {
   const { reminderId, postId } = useParams();
-  console.log(globalReminders);
   const singleReminder = globalReminders.filter(
     (reminder) => reminder.reminderId === reminderId
   );
@@ -35,8 +34,8 @@ export default function SinglePage({ globalReminders }) {
             {currentTask.with && <h3>{`with: ${currentTask.with}`}</h3>}
           </article>
         </div>
-        <footer className="Card__Footer dispFlex">
-          <button>
+        <footer className="Card__footer dispFlex">
+          <button onClick={() => deleteTask(postId, reminderId)}>
             <DeleteIcon className="lineIcon icon opaque" />
           </button>
         </footer>

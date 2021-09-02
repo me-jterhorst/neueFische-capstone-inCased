@@ -16,11 +16,13 @@ export default function Overview({
   disable,
   handleSpeech,
   hasSpeech,
+  deleteTask,
+  deleteReminder,
 }) {
   return (
     <Switch>
       <Route path="/overview/:reminderId/:postId">
-        <SinglePage globalReminders={userReminders} />
+        <SinglePage globalReminders={userReminders} deleteTask={deleteTask} />
         <BottomNav hasSpeech={false} />
       </Route>
 
@@ -31,7 +33,11 @@ export default function Overview({
             onSubmit={onSubmit}
             onChange={onSearch}
           />
-          <ListPage inputValue={searchquery} globalReminders={userReminders} />
+          <ListPage
+            inputValue={searchquery}
+            globalReminders={userReminders}
+            deleteReminder={deleteReminder}
+          />
         </main>
         <BottomNav
           hasSpeech={hasSpeech}
