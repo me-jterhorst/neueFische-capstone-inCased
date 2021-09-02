@@ -8,13 +8,12 @@
 
 .Overview__card {
   width: 100%;
-  overflow: hidden;
   margin-top: 1.5em;
   align-items: center;
   justify-content: flex-start;
-  padding-bottom: 0.75rem;
   position: relative;
   background: var(--color-white-100);
+  border-bottom-right-radius: 5px;
 }
 
 .Overview__card::after {
@@ -22,11 +21,13 @@
   height: 5px;
   position: absolute;
   background: var(--color-black-100);
-  inset: auto 0 0 0;
+  inset: 100% 0 0 0;
   border-radius: 5px;
 }
+
 .Overview__card__number {
   padding: 0.5em 0.75em;
+  margin-bottom: 0.5rem;
   aspect-ratio: 1 / 1;
   background: var(--color-black-100);
 
@@ -35,21 +36,35 @@
 
 .Overview__card__txt {
   margin-left: 1rem;
+  margin-right: auto;
+  margin-bottom: 0.5rem;
 }
 
-.Overview__card__link {
+.Overview__card svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+}
+
+.btn--forward {
+  all: unset;
+  align-self: center;
+  margin-right: 70px;
+}
+
+.btn--delete {
+  all: unset;
+  position: absolute;
   width: 40px;
-  height: 40px;
-  padding: 0.5rem;
-  margin-left: auto;
+  inset: 0 0 0 auto;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-black-85);
 }
 
-.Overview__card__link svg {
-  width: 100%;
-  height: 100%;
-}
-
-.Overview__card svg path {
+.Overview__card .btn--forward path {
   stroke: var(--color-black-100) !important;
 }
 

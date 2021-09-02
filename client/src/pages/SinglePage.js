@@ -16,7 +16,7 @@ export default function SinglePage({ globalReminders, deleteTask }) {
 
   return (
     <main id="SinglePage" className="card-screen dispFlex">
-      <Card isLight={true}>
+      <Card>
         <CardOverviewHeader
           postId={postId}
           currentReminder={currentReminder}
