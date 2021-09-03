@@ -1,7 +1,7 @@
-// ========================== Import Components
+// ============================== import components
 import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
-/* =========================== Import Pages*/
+// ============================== import pages
 import Home from "./pages/Home";
 import Account from "./pages/Account";
 import Imprint from "./pages/Imprint";
@@ -11,7 +11,7 @@ import PasswordReset from "./pages/PasswordReset";
 import Create from "./pages/Create";
 import Darkmode from "./pages/Darkmode";
 import Overview from "./pages/Overview";
-/* =========================== Import Requirements */
+// ============================== import requirements
 import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
 import { useState, useEffect, useCallback } from "react";
 
@@ -19,8 +19,6 @@ export default function App() {
   const history = useHistory();
   const location = useLocation();
   const [isLogin, setLogin] = useState(true);
-  const [searchInput, setSearchInput] = useState("");
-  const [disable, setDisable] = useState(false);
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || {
       id: 1,
@@ -32,8 +30,13 @@ export default function App() {
       reminders: [],
     }
   );
+  const [searchInput, setSearchInput] = useState("");
+  const [disable, setDisable] = useState(false);
+  const [lightness, setLightness] = useState(
+    JSON.parse(localStorage.getItem("lightness")) || 0
+  );
 
-  // user
+  // =============== USER
   function updateUser(user) {
     setUser(user);
   }
@@ -42,7 +45,7 @@ export default function App() {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  // ================== SPEECH
+  // =============== SPEECH
   let supportsSpeech, SpeechRecognition, recognition;
 
   if (!window.webkitSpeechRecognition) {
@@ -53,7 +56,7 @@ export default function App() {
     recognition = new SpeechRecognition();
   }
 
-  // ============== SEARCH HANDLERS
+  // =============== SEARCH HANDLERS
   function onSearchSpeech(event) {
     event.preventDefault();
     recognition.start();
@@ -82,7 +85,7 @@ export default function App() {
     setSearchInput(event.target.value);
   }
 
-  // ======================= Delete Functions
+  // =============== DELETE FUNCTIONS
 
   function deleteTask(postId, reminderId) {
     const userWithoutTask = user.reminders.filter(
@@ -98,7 +101,6 @@ export default function App() {
       history.push("/overview");
     }
   }
-
   function deleteReminder(reminderId) {
     const indexOfReminder = user.reminders.findIndex(
       (reminder) => reminder.reminderId === reminderId
@@ -111,10 +113,8 @@ export default function App() {
 
     history.push("/overview");
   }
-  // ================================ Darkmode
-  const [lightness, setLightness] = useState(
-    JSON.parse(localStorage.getItem("lightness")) || 0
-  );
+
+  // =============== DARKMODE
   function handleLightness(event) {
     setLightness(event.target.value);
   }
@@ -129,12 +129,13 @@ export default function App() {
   useEffect(() => {
     setDarkestblack();
   }, [setDarkestblack, lightness]);
+
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
         <Route path='/create'>
-          <Create isLogin={isLogin} />
+          <Create isLogin={isLogin} updateUser={updateUser} />
           <BottomNav hasSpeech={false} />
         </Route>
 

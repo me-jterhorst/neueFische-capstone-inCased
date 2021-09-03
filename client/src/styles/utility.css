@@ -11,10 +11,10 @@
   align-items: center;
 }
 
-/* ============== General Icons */
+/* ========= General Icons */
 .icon {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
 }
 
 .icon-stroke--light {
@@ -36,36 +36,33 @@
   width: 1.5rem;
   height: 1.5rem;
 }
+
 .icon--small {
   width: 20px;
   height: 20px;
 }
 
-/* ================= General Hover / Active */
-
+/* ========= General Hover / Active */
 .opaque:hover,
 .opaque:active {
   opacity: 0.6;
   cursor: pointer;
 }
 
-/* =============== Transition Ease-in-out */
+.faded {
+  opacity: 0.75;
+}
+
+.faded:hover {
+  opacity: 1;
+}
+
+/* ========= Transition Ease-in-out */
 .transition {
   transition: all 0.5s ease-in-out;
 }
 
-/* ========================== */
-.card-screen {
-  height: calc(100vh - 90px);
-  padding-bottom: 40px;
-}
-
-form {
-  margin-top: 1rem;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
+/* ========= Margins */
 .margin-b--s {
   margin-bottom: 0.5em;
 }
@@ -76,12 +73,4 @@ form {
 
 .margin-b--l {
   margin-bottom: 1.25rem;
-}
-
-.faded {
-  opacity: 0.75;
-}
-
-.faded:hover {
-  opacity: 1;
 }

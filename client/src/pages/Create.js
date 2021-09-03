@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
-export default function Create({ isLogin, syncReminder }) {
+export default function Create({ isLogin }) {
   const history = useHistory();
   const [reminder, setReminder] = useState(null);
   const [storedReminder, setStoreReminder] = useState(null);
@@ -61,23 +61,25 @@ export default function Create({ isLogin, syncReminder }) {
   }
 
   return (
-    <Switch>
-      <Route path="/create/:taskId">
-        <CreateTask
-          goForward={goForward}
-          goBackward={goBackwardTask}
-          submitTask={submitTask}
-          reminder={reminder}
-          storeReminder={storeReminder}
-        />
-      </Route>
-      <Route path="/create">
-        <CreateReminder
-          submitReminder={submitReminder}
-          goBackward={goBackwardReminder}
-          reminder={reminder}
-        />
-      </Route>
-    </Switch>
+    isLogin && (
+      <Switch>
+        <Route path='/create/:taskId'>
+          <CreateTask
+            goForward={goForward}
+            goBackward={goBackwardTask}
+            submitTask={submitTask}
+            reminder={reminder}
+            storeReminder={storeReminder}
+          />
+        </Route>
+        <Route path='/create'>
+          <CreateReminder
+            submitReminder={submitReminder}
+            goBackward={goBackwardReminder}
+            reminder={reminder}
+          />
+        </Route>
+      </Switch>
+    )
   );
 }

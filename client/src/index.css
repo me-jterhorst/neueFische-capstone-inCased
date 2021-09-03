@@ -41,6 +41,7 @@
 ::-webkit-scrollbar {
   background: var(--color-black-40);
   width: 0.75rem;
+  border-radius: 0.66rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -70,4 +71,15 @@ body {
 main {
   padding-top: 8rem;
   padding-inline: 1.25rem;
+}
+
+.card-screen {
+  height: calc(100vh - 6em);
+  padding-bottom: 2rem;
+}
+
+form {
+  margin-top: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
 }

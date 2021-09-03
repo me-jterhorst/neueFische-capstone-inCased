@@ -24,10 +24,10 @@ export default function Home({
 
       updateUser(existingUserData);
     }
-  }, [searchquery, updateUser]);
+  }, [updateUser]);
 
   return (
-    <main id="home">
+    <main id='home'>
       <Searchfield
         inputValue={searchquery}
         onSubmit={onSearchSubmit}
