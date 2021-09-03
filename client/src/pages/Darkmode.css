@@ -1,0 +1,32 @@
+#Darkmode .Card__content {
+  gap: 1.5rem;
+}
+
+.color-cube {
+  width: 20%;
+  height: 4rem;
+}
+
+.color-cube:nth-of-type(1) {
+  background: var(--color-black-100);
+}
+
+.color-cube:nth-of-type(2) {
+  background: var(--color-black-85);
+}
+
+.color-cube:nth-of-type(3) {
+  background: var(--color-black-70);
+}
+
+.color-cube:nth-of-type(4) {
+  background: var(--color-black-55);
+}
+
+.color-cube:nth-of-type(5) {
+  background: var(--color-black-40);
+}
+
+.color-slider {
+  cursor: pointer;
+}

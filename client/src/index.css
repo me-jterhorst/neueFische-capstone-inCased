@@ -21,14 +21,15 @@
 
 :root {
   font-size: 15px;
-  --color-black-100: #000000;
-  --color-black-85: #323232;
-  --color-black-70: #646464;
-  --color-black-55: #a0a0a0;
-  --color-black-40: #c8c8c8;
-  --color-black-30: #dcdcdc;
-  --color-black-25: #ebebeb;
-  --color-white-100: #ffffff;
+  --lightness: 0%;
+  --color-black-100: hsl(0, 0%, var(--lightness));
+  --color-black-85: hsl(0, 0%, calc(var(--lightness) + 15%));
+  --color-black-70: hsl(0, 0%, calc(var(--lightness) + 30%));
+  --color-black-55: hsl(0, 0%, calc(var(--lightness) + 45%));
+  --color-black-40: hsl(0, 0%, calc(var(--lightness) + 60%));
+  --color-black-30: hsl(0, 0%, calc(var(--lightness) + 70%));
+  --color-black-25: hsl(0, 0%, calc(var(--lightness) + 85%));
+  --color-white-100: hsl(0, 0%, 100%);
   --dot-matrix-width: 2rem;
 }
 

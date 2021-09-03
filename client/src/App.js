@@ -10,10 +10,11 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
 import Create from "./pages/Create";
+import Darkmode from "./pages/Darkmode";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function App() {
   const history = useHistory();
@@ -111,7 +112,24 @@ export default function App() {
 
     history.push("/overview");
   }
+  // ================================ Darkmode
+  const [lightness, setLightness] = useState(
+    JSON.parse(localStorage.getItem("lightness")) || 0
+  );
+  function handleLightness(event) {
+    setLightness(event.target.value);
+  }
+  const setDarkestblack = useCallback(() => {
+    document.documentElement.style.setProperty(
+      "--lightness",
+      `${lightness / 8}%`
+    );
+    localStorage.setItem("lightness", JSON.stringify(lightness));
+  }, [lightness]);
 
+  useEffect(() => {
+    setDarkestblack();
+  }, [setDarkestblack, lightness]);
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
@@ -136,7 +154,7 @@ export default function App() {
         </Route>
 
         <Route path="/darkmode">
-          <main>Hello Darkmode</main>
+          <Darkmode lightness={lightness} handleLightness={handleLightness} />
           <BottomNav hasSpeech={false} />
         </Route>
 
