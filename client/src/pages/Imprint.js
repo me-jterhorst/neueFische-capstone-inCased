@@ -4,18 +4,18 @@ import HeaderGoBack from "../components/Card_components/HeaderGoBack";
 
 export default function Imprint({ isLight }) {
   return (
-    <main id="Imprint" className="card-screen">
+    <main id='Imprint' className='card-screen'>
       <Card isLight={isLight}>
         <HeaderGoBack />
-        <div className="Card__content">
+        <div className='Card__content'>
           <h2>Imprint</h2>
           <p>
-            This App has been made during the{" "}
-            <span className="txt--highlight">
+            This App has been made during the
+            <span className='txt--highlight'>
               Neue Fische Web Developer Bootcamp
             </span>
             . Design, concept and programming have been made by me,{" "}
-            <span className="txt--highlight">Jakob ter Horst.</span>
+            <span className='txt--highlight'>Jakob ter Horst.</span>
           </p>
           <h3>Privacy</h3>
           <p>
