@@ -22,14 +22,13 @@
 :root {
   font-size: 15px;
   --lightness: 0%;
-  --light: 255 255 255;
   --color-black-100: hsl(0, 0%, var(--lightness));
   --color-black-85: hsl(0, 0%, calc(var(--lightness) + 15%));
   --color-black-70: hsl(0, 0%, calc(var(--lightness) + 30%));
   --color-black-55: hsl(0, 0%, calc(var(--lightness) + 45%));
   --color-black-40: hsl(0, 0%, calc(var(--lightness) + 60%));
   --color-black-30: hsl(0, 0%, calc(var(--lightness) + 70%));
-  --color-black-25: hsl(0, 0%, calc(var(--lightness) + 75%));
+  --color-black-25: hsl(0, 0%, calc(var(--lightness) + 85%));
   --color-white-100: hsl(0, 0%, 100%);
   --dot-matrix-width: 2rem;
 }
