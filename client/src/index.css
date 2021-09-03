@@ -20,7 +20,6 @@
 }
 
 :root {
-  font-size: 15px;
   --lightness: 0%;
   --color-black-100: hsl(0, 0%, var(--lightness));
   --color-black-85: hsl(0, 0%, calc(var(--lightness) + 15%));
@@ -30,6 +29,8 @@
   --color-black-30: hsl(0, 0%, calc(var(--lightness) + 70%));
   --color-black-25: hsl(0, 0%, calc(var(--lightness) + 85%));
   --color-white-100: hsl(0, 0%, 100%);
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
   --dot-matrix-width: 2rem;
 }
 
@@ -37,11 +38,18 @@
   background: var(--color-black-40);
 }
 
+::-webkit-scrollbar {
+  background: var(--color-black-40);
+  width: 0.75rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-black-85);
+  border-radius: 0.66rem;
+}
+
 html,
 body {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
   overflow: hidden;
   position: relative;
 }
@@ -51,25 +59,15 @@ html {
 }
 
 body {
-  border-radius: 25px;
-  background: var(--color-white-100);
-  border: 5px solid var(--color-black-100);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  border-radius: 25px;
+  border: 5px solid var(--color-black-100);
+  background: var(--color-white-100);
 }
 
 main {
   padding-top: 8rem;
   padding-inline: 1.25rem;
-}
-
-::-webkit-scrollbar {
-  background: var(--color-black-40);
-
-  width: 0.75rem;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-black-85);
-  border-radius: 10px;
 }

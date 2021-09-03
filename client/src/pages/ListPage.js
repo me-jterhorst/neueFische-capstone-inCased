@@ -1,7 +1,7 @@
 import "./ListPage.css";
 // import components
-import { ReactComponent as ForwardButtonIcon } from "../svg/icon-chevron-right.svg";
-import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
+import { ReactComponent as ForwardButtonIcon } from "../svg/icons/icon-chevron-right.svg";
+import { ReactComponent as DeleteIcon } from "../svg/icons/icon-delete.svg";
 // import requirements
 import { useHistory } from "react-router-dom";
 

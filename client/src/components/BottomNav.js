@@ -1,25 +1,25 @@
 import "./BottomNav.css";
 import { NavLink } from "react-router-dom";
 import SpeechButton from "./SpeechButton";
-import { ReactComponent as HomeIcon } from "../svg/icon-home.svg";
-import { ReactComponent as CreateIcon } from "../svg/icon-create.svg";
-import { ReactComponent as OverviewIcon } from "../svg/icon-overview.svg";
+import { ReactComponent as HomeIcon } from "../svg/icons/icon-home.svg";
+import { ReactComponent as CreateIcon } from "../svg/icons/icon-create.svg";
+import { ReactComponent as OverviewIcon } from "../svg/icons/icon-overview.svg";
 
 export default function BottomNav({ handleSpeech, hasSpeech, disable }) {
   return (
-    <footer className="dispFlex BottomNav">
+    <footer className='dispFlex BottomNav'>
       {hasSpeech ? (
         <SpeechButton disable={disable} onMouseDown={handleSpeech} />
       ) : null}
 
-      <nav className="tabNav dispFlex">
-        <NavLink className="opaque" exact to="/">
+      <nav className='tabNav dispFlex'>
+        <NavLink className='opaque' exact to='/'>
           <HomeIcon />
         </NavLink>
-        <NavLink className="opaque" to="/create">
+        <NavLink className='opaque' to='/create'>
           <CreateIcon />
         </NavLink>
-        <NavLink className="opaque" to="/overview">
+        <NavLink className='opaque' to='/overview'>
           <OverviewIcon />
         </NavLink>
       </nav>

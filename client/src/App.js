@@ -1,4 +1,3 @@
-import "./App.css";
 // ========================== Import Components
 import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
@@ -134,12 +133,12 @@ export default function App() {
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
-        <Route path="/create">
+        <Route path='/create'>
           <Create isLogin={isLogin} />
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/overview">
+        <Route path='/overview'>
           <Overview
             searchquery={searchInput}
             onSearch={onSearchChange}
@@ -153,36 +152,36 @@ export default function App() {
           />
         </Route>
 
-        <Route path="/darkmode">
+        <Route path='/darkmode'>
           <Darkmode lightness={lightness} handleLightness={handleLightness} />
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/account">
+        <Route path='/account'>
           <Account isLight={true} />
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/imprint">
+        <Route path='/imprint'>
           <Imprint />
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/login">
+        <Route path='/login'>
           <Login />
         </Route>
 
-        <Route path="/signup">
+        <Route path='/signup'>
           <SignUp />
         </Route>
 
-        <Route path="/password-reset">
+        <Route path='/password-reset'>
           <PasswordReset />
         </Route>
-        <Route path="/logout">
-          <Redirect to="/" />
+        <Route path='/logout'>
+          <Redirect to='/' />
         </Route>
-        <Route path="/">
+        <Route path='/'>
           <Home
             isLogin={isLogin}
             searchquery={searchInput}
@@ -198,8 +197,8 @@ export default function App() {
           />
         </Route>
 
-        <Route path="/*">
-          <Redirect to="/" />
+        <Route path='/*'>
+          <Redirect to='/' />
         </Route>
       </Switch>
     </>

@@ -1,5 +1,5 @@
 import "./SpeechInput.css";
-import { ReactComponent as MicrophoneIcon } from "../svg/icon-microphone.svg";
+import { ReactComponent as MicrophoneIcon } from "../svg/icons/icon-microphone.svg";
 import { useState } from "react";
 export default function SpeechInput({
   label,
@@ -40,27 +40,26 @@ export default function SpeechInput({
 
   return (
     <fieldset className={`Speechinput-box `}>
-      <label className="Speechinput-label" htmlFor={label}>{`${label}:`}</label>
+      <label className='Speechinput-label' htmlFor={label}>{`${label}:`}</label>
       <span className={`Speechinput-wrapper ${isRequired ? "" : "faded"}`}>
         <input
           id={label}
           name={label}
-          type="text"
-          className="Speechinput"
+          type='text'
+          className='Speechinput'
           value={value}
           onChange={onChange}
           required={isRequired}
         />
         {supportsSpeech && (
-          <span className="Speechinput-button-wrapper">
+          <span className='Speechinput-button-wrapper'>
             <button
               disabled={disable}
               id={label}
               onMouseDown={onSpeechInput}
               onClick={(event) => event.preventDefault()}
-              className={`Speechinput-button opaque recording--active `}
-            >
-              <MicrophoneIcon className="icon--small btn--microphone" />
+              className={`Speechinput-button opaque recording--active `}>
+              <MicrophoneIcon className='icon--small btn--microphone' />
             </button>
           </span>
         )}
