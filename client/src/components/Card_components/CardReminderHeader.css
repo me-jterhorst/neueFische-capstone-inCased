@@ -1,0 +1,40 @@
+.CardReminder__header {
+  padding-top: 0.25rem;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  height: 3.25rem;
+}
+
+.CardReminder__header p {
+  align-self: center;
+}
+
+.CardReminder__header button {
+  all: unset;
+  position: relative;
+  z-index: 0;
+  padding: 0.5rem;
+}
+.ReminderBackButton::before {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  left: -2rem;
+  background: var(--color-black-100);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.ReminderForwardButton::before {
+  content: "";
+  position: absolute;
+  top: -2.25rem;
+  right: -2rem;
+  background: var(--color-black-100);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: -1;
+}

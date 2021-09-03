@@ -16,10 +16,10 @@ export default function BottomNav({ handleSpeech, hasSpeech, disable }) {
         <NavLink className="opaque" exact to="/">
           <HomeIcon />
         </NavLink>
-        <NavLink className="opaque" to="/create/0">
+        <NavLink className="opaque" to="/create">
           <CreateIcon />
         </NavLink>
-        <NavLink className="opaque" exact to="/overview">
+        <NavLink className="opaque" to="/overview">
           <OverviewIcon />
         </NavLink>
       </nav>

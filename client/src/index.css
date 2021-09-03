@@ -15,6 +15,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-black-100);
 }
 
 :root {
@@ -59,4 +61,14 @@ body {
 main {
   padding-top: 8rem;
   padding-inline: 1.25rem;
+}
+
+::-webkit-scrollbar {
+  background: var(--color-black-40);
+
+  width: 0.75rem;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-black-85);
+  border-radius: 10px;
 }

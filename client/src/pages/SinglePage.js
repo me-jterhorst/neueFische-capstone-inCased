@@ -1,76 +1,45 @@
 import "./SinglePage.css";
+// import components
 import Card from "../components/Card";
-import FooterItemDelete from "../components/Card_components/FooterItemDelete";
-import HeaderReviewGoForward from "../components/Card_components/HeaderReviewGoForward";
-import HeaderGoBack from "../components/Card_components/HeaderGoBack";
-import { useParams, useHistory } from "react-router-dom";
+import CardOverviewHeader from "../components/Card_components/CardOverviewHeader";
+import { ReactComponent as DeleteIcon } from "../svg/icon-delete.svg";
+// import requirements
+import { useParams } from "react-router-dom";
 
-export default function SinglePage({ isLight }) {
-  const { reminderId } = useParams();
-  const { taskId } = useParams();
-  const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("user"));
-  const reminderList = user.reminders;
-  const specificReminder = reminderList.filter(
-    (item) => item.reminderId === reminderId
+export default function SinglePage({ globalReminders, deleteTask }) {
+  const { reminderId, postId } = useParams();
+  const singleReminder = globalReminders.filter(
+    (reminder) => reminder.reminderId === reminderId
   );
+  const currentReminder = singleReminder[0];
+  const currentTask = currentReminder.tasks[postId];
 
-  if (specificReminder[0].tasks.length > 0) {
-    const trigger = specificReminder[0].trigger;
-    const triggerEvent = specificReminder[0].triggerEvent;
-    const promptedTaskId = specificReminder[0].tasks[taskId].taskId;
-    const verb = specificReminder[0].tasks[taskId].verb;
-    const action = specificReminder[0].tasks[taskId].action;
-    const optinalParty = specificReminder[0].tasks[taskId].with;
+  return (
+    <main id="SinglePage" className="card-screen dispFlex">
+      <Card isLight={true}>
+        <CardOverviewHeader
+          postId={postId}
+          currentReminder={currentReminder}
+          reminderId={reminderId}
+        />
 
-    function handleDelete() {
-      const filteredTask = specificReminder[0].tasks.filter(
-        (item) => item.taskId !== promptedTaskId
-      );
-
-      specificReminder[0].tasks = filteredTask;
-      localStorage.setItem("user", JSON.stringify(user));
-      if (taskId > 0) {
-        history.push(`/overview/task/${reminderId}/${Number(taskId) - 1}`);
-      } else {
-        history.push("/overview");
-      }
-    }
-
-    return (
-      <main id="SinglePage" className="card-screen dispFlex">
-        <Card
-          header={
-            <HeaderReviewGoForward
-              currentReminder={reminderId}
-              currentItem={Number(taskId)}
-              totalItems={specificReminder[0].tasks.length}
-            />
-          }
-          footer={<FooterItemDelete onClick={handleDelete} />}
-          isLight={isLight}
-        >
+        <div className="Card__content">
           <article className="caseArea">
-            <h2>{trigger} </h2>
-            <h2>{triggerEvent} </h2>
+            <h2>{currentReminder.trigger} </h2>
+            <h2>{currentReminder.triggerEvent} </h2>
           </article>
           <article className="actionArea">
-            <h3>{verb}</h3>
-            <h2>{action}</h2>
-            {optinalParty && <h3>{`with: ${optinalParty}`}</h3>}
+            <h3>{currentTask.verb}</h3>
+            <h2>{currentTask.action}</h2>
+            {currentTask.with && <h3>{`with: ${currentTask.with}`}</h3>}
           </article>
-        </Card>
-      </main>
-    );
-  } else {
-    return (
-      <main id="SinglePage" className="card-screen dispFlex">
-        <Card header={<HeaderGoBack />} footer={null} isLight={isLight}>
-          <article className="caseArea">
-            <h2>All my friends are gone</h2>
-          </article>
-        </Card>
-      </main>
-    );
-  }
+        </div>
+        <footer className="Card__footer dispFlex">
+          <button onClick={() => deleteTask(postId, reminderId)}>
+            <DeleteIcon className="lineIcon icon opaque" />
+          </button>
+        </footer>
+      </Card>
+    </main>
+  );
 }

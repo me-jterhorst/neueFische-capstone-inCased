@@ -1,4 +1,5 @@
 import "./App.css";
+// ========================== Import Components
 import BottomNav from "./components/BottomNav";
 import Header from "./components/Header";
 /* =========================== Import Pages*/
@@ -8,23 +9,40 @@ import Imprint from "./pages/Imprint";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
-import CreateCase from "./pages/CreateCase";
-import CreateAction from "./pages/CreateAction";
-import SinglePage from "./pages/SinglePage";
+import Create from "./pages/Create";
 import Overview from "./pages/Overview";
 /* =========================== Import Requirements */
 import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
-  const database = JSON.parse(localStorage.getItem("user")) || null;
-  const userData = {};
+  const history = useHistory();
+  const location = useLocation();
   const [isLogin, setLogin] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
-  const history = useHistory();
-  const location = useLocation();
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || {
+      id: 1,
+      user: {
+        name: "Jane",
+        email: "JaneDoe@hotmail.de",
+        password: 12345678,
+      },
+      reminders: [],
+    }
+  );
 
+  // user
+  function updateUser(user) {
+    setUser(user);
+  }
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
+  // ================== SPEECH
   let supportsSpeech, SpeechRecognition, recognition;
 
   if (!window.webkitSpeechRecognition) {
@@ -35,37 +53,8 @@ export default function App() {
     recognition = new SpeechRecognition();
   }
 
-  if (!database) {
-    const serverUser = {
-      id: 1,
-      user: {
-        name: "Jane",
-        email: "JaneDoe@hotmail.de",
-        password: 12345678,
-      },
-      reminders: [],
-    };
-
-    localStorage.setItem("user", JSON.stringify(serverUser));
-
-    userData.id = 1;
-    userData.user = {
-      name: "Jakob",
-      email: "mail.de",
-      password: 1223232,
-    };
-    userData.reminders = [];
-  } else {
-    userData.id = database.id;
-    userData.user = {
-      name: database.user.name,
-      email: database.user.email,
-      password: 12345678,
-    };
-    userData.reminders = [...database.reminders];
-  }
-
-  function handleSpeech(event) {
+  // ============== SEARCH HANDLERS
+  function onSearchSpeech(event) {
     event.preventDefault();
     recognition.start();
 
@@ -83,46 +72,66 @@ export default function App() {
       history.push("/overview");
     };
   }
-  function onSubmit(event) {
+  function onSearchSubmit(event) {
     event.preventDefault();
     const currentLocation = location.pathname;
     currentLocation === "/" && history.push("/overview");
   }
-
-  function onSearch(event) {
+  function onSearchChange(event) {
     event.preventDefault();
     setSearchInput(event.target.value);
+  }
+
+  // ======================= Delete Functions
+
+  function deleteTask(postId, reminderId) {
+    const userWithoutTask = user.reminders.filter(
+      (reminder) => reminder.reminderId === reminderId
+    );
+    userWithoutTask[0].tasks.splice(postId, 1);
+
+    localStorage.setItem("user", JSON.stringify(userWithoutTask));
+
+    if (postId > 0) {
+      history.push(`/overview/${reminderId}/${Number(postId - 1)}`);
+    } else {
+      history.push("/overview");
+    }
+  }
+
+  function deleteReminder(reminderId) {
+    const indexOfReminder = user.reminders.findIndex(
+      (reminder) => reminder.reminderId === reminderId
+    );
+
+    const userWithoutReminder = user;
+    userWithoutReminder.reminders.splice(indexOfReminder, 1);
+
+    localStorage.setItem("user", JSON.stringify(userWithoutReminder));
+
+    history.push("/overview");
   }
 
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
       <Switch>
-        <Route path="/create/0">
-          <CreateCase />
-          <BottomNav hasSpeech={false} />
-        </Route>
-
-        <Route path="/create/:number">
-          <CreateAction />
-          <BottomNav hasSpeech={false} />
-        </Route>
-
-        <Route path="/overview/task/:reminderId/:taskId">
-          <SinglePage isLight={true} />
+        <Route path="/create">
+          <Create isLogin={isLogin} />
           <BottomNav hasSpeech={false} />
         </Route>
 
         <Route path="/overview">
           <Overview
             searchquery={searchInput}
-            onSearch={onSearch}
-            onSubmit={onSubmit}
-          />
-          <BottomNav
+            onSearch={onSearchChange}
+            onSubmit={onSearchSubmit}
+            userReminders={user.reminders}
             disable={disable}
-            handleSpeech={handleSpeech}
+            handleSpeech={onSearchSpeech}
             hasSpeech={supportsSpeech}
+            deleteTask={deleteTask}
+            deleteReminder={deleteReminder}
           />
         </Route>
 
@@ -159,13 +168,14 @@ export default function App() {
           <Home
             isLogin={isLogin}
             searchquery={searchInput}
-            name={userData.user.name}
-            onSearch={onSearch}
-            onSubmit={onSubmit}
+            name={user.user.name}
+            onSearchChange={onSearchChange}
+            onSearchSubmit={onSearchSubmit}
+            updateUser={updateUser}
           />
           <BottomNav
             disable={disable}
-            handleSpeech={handleSpeech}
+            handleSpeech={onSearchSpeech}
             hasSpeech={supportsSpeech}
           />
         </Route>
