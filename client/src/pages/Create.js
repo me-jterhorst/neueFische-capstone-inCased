@@ -5,7 +5,7 @@ import CreateReminder from "./CreateReminder";
 // ============================ Import Requirements
 import { useState } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 
 export default function Create({ isLogin, syncReminder }) {
   const history = useHistory();
