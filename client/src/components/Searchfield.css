@@ -3,8 +3,9 @@
   position: relative;
   margin: 0 auto;
   height: 2.66rem;
-  max-width: 640px;
+  max-width: 42rem;
   gap: 0;
+  background: var(--color-white-100);
 }
 
 .Searchfield::before {
@@ -45,4 +46,9 @@
   outline: none;
   border: none;
   font-family: "Rubik", sans-serif;
+}
+
+.Searchfield__input:hover,
+.Searchfield__input:focus {
+  background: var(--color-white-100);
 }

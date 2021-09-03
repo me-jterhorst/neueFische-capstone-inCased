@@ -1,7 +1,7 @@
 import "./Overview.css";
 // ======================= import components
 import Searchfield from "../components/Searchfield";
-import BottomNav from "../components/BottomNav";
+import BottomNav from "../components/Nav_components/BottomNav";
 // ======================= import pages
 import ListPage from "./ListPage";
 import SinglePage from "./SinglePage";
@@ -21,13 +21,13 @@ export default function Overview({
 }) {
   return (
     <Switch>
-      <Route path="/overview/:reminderId/:postId">
+      <Route path='/overview/:reminderId/:postId'>
         <SinglePage globalReminders={userReminders} deleteTask={deleteTask} />
         <BottomNav hasSpeech={false} />
       </Route>
 
-      <Route exact path="/overview">
-        <main id="Overview">
+      <Route exact path='/overview'>
+        <main id='Overview'>
           <Searchfield
             inputValue={searchquery}
             onSubmit={onSubmit}

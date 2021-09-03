@@ -1,7 +1,7 @@
-// ======================= Import Components
+// ============================== import components
 import Searchfield from "../components/Searchfield";
 import Greeting from "../components/Greeting";
-// ======================= Import Requirements
+// ============================== import requirements
 import { useEffect } from "react";
 
 export default function Home({
