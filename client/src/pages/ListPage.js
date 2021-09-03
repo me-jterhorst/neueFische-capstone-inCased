@@ -28,11 +28,10 @@ export default function ListPage({
               ? "withHighlight"
               : ""
           } `}
-          key={index}
-        >
-          <div className="Overview__card__number">{reminder.tasks.length}</div>
+          key={reminder.reminderId}>
+          <div className='Overview__card__number'>{reminder.tasks.length}</div>
 
-          <div className="Overview__card__txt">
+          <div className='Overview__card__txt'>
             <p> In case of:</p>
             <h4>{reminder.trigger}</h4>
             <h5>{reminder.triggerEvent}</h5>
@@ -48,16 +47,14 @@ export default function ListPage({
               onClick={() => {
                 history.push(`/overview/${reminder.reminderId}/0`);
               }}
-              className="btn--forward opaque"
-            >
-              <ForwardButtonIcon className="icon--dark " />
+              className='btn--forward opaque'>
+              <ForwardButtonIcon className='icon--dark ' />
             </button>
           )}
           <button
             onClick={() => deleteReminder(reminder.reminderId)}
-            className="btn--delete opaque"
-          >
-            <DeleteIcon className="icon-stroke--light" />
+            className='btn--delete opaque'>
+            <DeleteIcon className='icon-stroke--light' />
           </button>
         </section>
       );
@@ -67,12 +64,11 @@ export default function ListPage({
     <article
       className={`Overview__List  ${
         globalReminders.length > 4 && "List--scroll"
-      }`}
-    >
+      }`}>
       {globalReminders.length > 0 ? (
         <div>{renderList}</div>
       ) : (
-        <h1 className="Greeting">No reminders available</h1>
+        <h1 className='Greeting'>No reminders available</h1>
       )}
     </article>
   );
