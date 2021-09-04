@@ -1,6 +1,6 @@
 import "./Overview.css";
 // ======================= import components
-import Searchfield from "../components/Searchfield";
+import Searchfield from "../components/Search_components/Searchfield";
 import BottomNav from "../components/Nav_components/BottomNav";
 // ======================= import pages
 import ListPage from "./ListPage";

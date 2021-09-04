@@ -1,5 +1,5 @@
 // ============================== import components
-import Searchfield from "../components/Searchfield";
+import Searchfield from "../components/Search_components/Searchfield";
 import Greeting from "../components/Greeting";
 // ============================== import requirements
 import { useEffect } from "react";

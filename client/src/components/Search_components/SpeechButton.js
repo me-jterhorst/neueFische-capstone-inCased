@@ -1,5 +1,5 @@
 import "./SpeechButton.css";
-import { ReactComponent as MicrophoneIcon } from "../svg/icons/icon-microphone.svg";
+import { ReactComponent as MicrophoneIcon } from "../../svg/icons/icon-microphone.svg";
 
 export default function SpeechButton({ disable, onMouseDown }) {
   return (

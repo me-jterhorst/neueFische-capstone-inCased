@@ -1,7 +1,7 @@
 import "./Create.css";
 // =============== Import Components
 import Card from "../components/Card";
-import SpeechInput from "../components/SpeechInput";
+import SpeechInput from "../components/Input_components/SpeechInput";
 import CardReminderHeader from "../components/Card_components/CardReminderHeader";
 // =============== Import Requirements
 import { useState, useEffect } from "react";
@@ -51,20 +51,19 @@ export default function CreateReminder({ submitReminder, reminder }) {
   }
 
   return (
-    <main id="CreateCase" className="card-screen">
+    <main id='CreateCase' className='card-screen'>
       <Card>
         <form
-          id="createForm"
+          id='createForm'
           onSubmit={handleSubmit}
-          className="dispFlex margin-b--l"
-        >
+          className='dispFlex margin-b--l'>
           <CardReminderHeader reminder={reminder} history={history} />
-          <div className="Card__content dispFlex col">
-            <h2 className="margin-b--s">
+          <div className='Card__content dispFlex col'>
+            <h2 className='margin-b--s'>
               In case <br /> of
             </h2>
             <SpeechInput
-              label="Trigger"
+              label='Trigger'
               value={input.trigger}
               onChange={(event) =>
                 setInput({ ...input, trigger: event.target.value })
@@ -73,7 +72,7 @@ export default function CreateReminder({ submitReminder, reminder }) {
             />
 
             <SpeechInput
-              label="Event"
+              label='Event'
               value={input.eventTrigger}
               onChange={(event) =>
                 setInput({ ...input, eventTrigger: event.target.value })
@@ -81,7 +80,7 @@ export default function CreateReminder({ submitReminder, reminder }) {
               onMouseDown={mouseDownSpeech}
             />
             {isTooShort && (
-              <p className="Card__message--error">
+              <p className='Card__message--error'>
                 Required Input fields can't be empty
               </p>
             )}

@@ -1,5 +1,5 @@
 import "./SpeechInput.css";
-import { ReactComponent as MicrophoneIcon } from "../svg/icons/icon-microphone.svg";
+import { ReactComponent as MicrophoneIcon } from "../../svg/icons/icon-microphone.svg";
 import { useState } from "react";
 export default function SpeechInput({
   label,

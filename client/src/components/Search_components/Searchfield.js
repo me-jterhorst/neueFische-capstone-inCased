@@ -1,5 +1,5 @@
 import "./Searchfield.css";
-import { ReactComponent as SearchIcon } from "../svg/icons/icon-search.svg";
+import { ReactComponent as SearchIcon } from "../../svg/icons/icon-search.svg";
 
 export default function Searchfield({ inputValue, onSubmit, onChange }) {
   return (

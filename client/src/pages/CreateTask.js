@@ -1,6 +1,6 @@
 // =================== Import Components
 import Card from "../components/Card";
-import SpeechInput from "../components/SpeechInput";
+import SpeechInput from "../components/Input_components/SpeechInput";
 import CardTaskHeader from "../components/Card_components/CardTaskHeader";
 // ===================== Import Requirements
 import { useState, useEffect } from "react";
@@ -54,23 +54,22 @@ export default function CreateTask({
   }
 
   return (
-    <main id="CreateAction" className="card-screen">
+    <main id='CreateAction' className='card-screen'>
       <Card>
         <form
-          id="createForm"
+          id='createForm'
           onSubmit={handleSubmit}
-          className="dispFlex margin-b--l"
-        >
+          className='dispFlex margin-b--l'>
           <CardTaskHeader
             tasks={reminder.tasks}
             goBackward={goBackward}
             taskId={id}
           />
 
-          <div className="Card__content col dispFlex">
+          <div className='Card__content col dispFlex'>
             <h2> Do this</h2>
             <SpeechInput
-              label="Verb"
+              label='Verb'
               value={input.verb}
               onChange={(event) =>
                 setInput({ ...input, verb: event.target.value })
@@ -78,7 +77,7 @@ export default function CreateTask({
               onMouseDown={mouseDown}
             />
             <SpeechInput
-              label="Action"
+              label='Action'
               value={input.action}
               onChange={(event) =>
                 setInput({ ...input, action: event.target.value })
@@ -86,7 +85,7 @@ export default function CreateTask({
               onMouseDown={mouseDown}
             />
             <SpeechInput
-              label="With"
+              label='With'
               value={input.with}
               onChange={(event) =>
                 setInput({ ...input, with: event.target.value })
@@ -95,14 +94,14 @@ export default function CreateTask({
               isRequired={false}
             />
             {isTooShort && (
-              <p className="Card__message--error">
+              <p className='Card__message--error'>
                 Required Input fields can't be empty
               </p>
             )}
           </div>
           {id === reminder.tasks.length && (
-            <footer className="Card__footer dispFlex">
-              <button className="opaque" onClick={handleSave}>
+            <footer className='Card__footer dispFlex'>
+              <button className='opaque' onClick={handleSave}>
                 Add Tasks
               </button>
             </footer>

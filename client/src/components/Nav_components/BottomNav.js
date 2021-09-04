@@ -1,6 +1,6 @@
 import "./BottomNav.css";
 // ============================== import components
-import SpeechButton from "../SpeechButton";
+import SpeechButton from "../Search_components/SpeechButton";
 import { ReactComponent as HomeIcon } from "../../svg/icons/icon-home.svg";
 import { ReactComponent as CreateIcon } from "../../svg/icons/icon-create.svg";
 import { ReactComponent as OverviewIcon } from "../../svg/icons/icon-overview.svg";
