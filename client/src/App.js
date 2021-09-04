@@ -31,7 +31,7 @@ export default function App() {
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
   const [lightness, setLightness] = useState(
-    JSON.parse(localStorage.getItem("lightness")) || 100
+    JSON.parse(localStorage.getItem("lightness")) || 10
   );
 
   const [darkness, setDarkness] = useState(
