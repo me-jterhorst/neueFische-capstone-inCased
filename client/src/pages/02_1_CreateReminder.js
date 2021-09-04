@@ -6,7 +6,7 @@ import CardReminderHeader from "../components/Card_components/CardReminderHeader
 // ============================== import requirements
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { v4 as uuidv4 } from "uuid";
+import { nanoid } from "nanoid";
 
 const initialTask = {
   trigger: "",
@@ -14,7 +14,7 @@ const initialTask = {
 };
 
 export default function CreateReminder({ submitReminder, reminder }) {
-  initialTask.reminderId = uuidv4();
+  initialTask.reminderId = nanoid(10);
   const history = useHistory();
   const [input, setInput] = useState(initialTask);
   const [isTooShort, setIsTooShort] = useState(true);
