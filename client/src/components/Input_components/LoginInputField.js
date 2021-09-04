@@ -1,5 +1,3 @@
-import "./LoginInputField.css";
-
 export default function InputField({ identifier, label, type = "text" }) {
   return (
     <fieldset className='Input-box'>

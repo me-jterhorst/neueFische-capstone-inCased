@@ -3,14 +3,14 @@ import BottomNav from "./components/Nav_components/BottomNav";
 import Header from "./components/Nav_components/Header";
 // ============================== import pages
 import Home from "./pages/01_Home";
-import Account from "./pages/Account";
+import Create from "./pages/Create";
+import Overview from "./pages/Overview";
+import Darkmode from "./pages/Darkmode";
 import Imprint from "./pages/Imprint";
+import Account from "./pages/Account";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
-import Create from "./pages/Create";
-import Darkmode from "./pages/Darkmode";
-import Overview from "./pages/Overview";
 // ============================== import requirements
 import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
 import { useState, useEffect, useCallback } from "react";
@@ -86,7 +86,6 @@ export default function App() {
   }
 
   // =============== DELETE FUNCTIONS
-
   function deleteTask(postId, reminderId) {
     const userWithoutTask = user.reminders.filter(
       (reminder) => reminder.reminderId === reminderId

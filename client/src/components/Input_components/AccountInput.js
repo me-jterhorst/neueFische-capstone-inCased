@@ -1,5 +1,3 @@
-import "./AccountInput.css";
-
 export default function Input({ label, value, type = "text" }) {
   return (
     <fieldset className='Input-box'>

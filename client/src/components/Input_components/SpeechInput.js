@@ -39,14 +39,14 @@ export default function SpeechInput({
   }
 
   return (
-    <fieldset className={`Speechinput-box `}>
-      <label className='Speechinput-label' htmlFor={label}>{`${label}:`}</label>
-      <span className={`Speechinput-wrapper ${isRequired ? "" : "faded"}`}>
+    <fieldset className={`Input-box`}>
+      <label htmlFor={label}>{`${label}:`}</label>
+      <span className={`Input-wrapper ${isRequired ? "" : "faded"}`}>
         <input
           id={label}
           name={label}
           type='text'
-          className='Speechinput'
+          className='Input Input--speech'
           value={value}
           onChange={onChange}
           required={isRequired}
