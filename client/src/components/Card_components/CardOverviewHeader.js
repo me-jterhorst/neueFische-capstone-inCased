@@ -25,7 +25,7 @@ export default function CardOverviewHeader({
       <button className='OverviewBackButton' onClick={goBackOverview}>
         <BackButtonIcon className='lineIcon icon opaque' />
       </button>
-      <p>{`${nextTask}/ ${totalTasks}`}</p>
+      <p>{`${nextTask} / ${totalTasks}`}</p>
 
       {totalTasks > nextTask && (
         <button
