@@ -44,7 +44,7 @@
   padding: 0;
 }
 
-/* ===================== Footer */
+/* ================== Footer */
 .Card__footer {
   position: absolute;
   bottom: 0;
@@ -60,7 +60,7 @@
   color: var(--color-white-100);
 }
 
-/* ===================== Modal*/
+/* ================== Modal*/
 .Card--light {
   border: 5px solid var(--color-black-85);
 }
