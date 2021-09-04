@@ -26,7 +26,6 @@
   --color-black-85: hsl(0, 0%, calc(100% - (8.5 * var(--lightness))));
   --color-black-70: hsl(0, 0%, calc(100% - (7 * var(--lightness))));
   --color-black-55: hsl(0, 0%, calc(100% - (6 * var(--lightness))));
-
   --color-black-40: hsl(0, 0%, calc(100% - (4.5 * var(--lightness))));
   --color-black-30: hsl(0, 0%, calc(100% - (3 * var(--lightness))));
   --color-black-25: hsl(0, 0%, calc(100% - (1.5 * var(--lightness))));
