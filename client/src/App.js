@@ -6,8 +6,8 @@ import Home from "./pages/01_Home";
 import Create from "./pages/02_Create";
 import Overview from "./pages/03_Overview";
 import Darkmode from "./pages/04_Darkmode";
-import Imprint from "./pages/Imprint";
-import Account from "./pages/Account";
+import Imprint from "./pages/06_Imprint";
+import Account from "./pages/05_Account";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import PasswordReset from "./pages/PasswordReset";
@@ -145,9 +145,40 @@ export default function App() {
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
+
+      <Route path='/login'>
+        <Login />
+      </Route>
+
+      <Route path='/signup'>
+        <SignUp />
+      </Route>
+
+      <Route path='/password-reset'>
+        <PasswordReset />
+      </Route>
+      <Route path='/logout'>
+        <Redirect to='/' />
+      </Route>
+
+      <Route path='/imprint'>
+        <Imprint />
+        <BottomNav hasSpeech={false} />
+      </Route>
+
       <Switch>
-        <Route path='/create'>
-          <Create isLogin={isLogin} updateUser={updateUser} />
+        <Route path='/account'>
+          <Account isLight={true} />
+          <BottomNav hasSpeech={false} />
+        </Route>
+
+        <Route path='/darkmode'>
+          <Darkmode
+            lightness={lightness}
+            darkness={darkness}
+            handleWhite={handleWhite}
+            handleLightness={handleLightness}
+          />
           <BottomNav hasSpeech={false} />
         </Route>
 
@@ -165,40 +196,11 @@ export default function App() {
           />
         </Route>
 
-        <Route path='/darkmode'>
-          <Darkmode
-            lightness={lightness}
-            darkness={darkness}
-            handleWhite={handleWhite}
-            handleLightness={handleLightness}
-          />
+        <Route path='/create'>
+          <Create isLogin={isLogin} updateUser={updateUser} />
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path='/account'>
-          <Account isLight={true} />
-          <BottomNav hasSpeech={false} />
-        </Route>
-
-        <Route path='/imprint'>
-          <Imprint />
-          <BottomNav hasSpeech={false} />
-        </Route>
-
-        <Route path='/login'>
-          <Login />
-        </Route>
-
-        <Route path='/signup'>
-          <SignUp />
-        </Route>
-
-        <Route path='/password-reset'>
-          <PasswordReset />
-        </Route>
-        <Route path='/logout'>
-          <Redirect to='/' />
-        </Route>
         <Route path='/'>
           <Home
             isLogin={isLogin}

@@ -1,4 +1,5 @@
 import "./Imprint.css";
+// ============================== import components
 import Card from "../components/Card";
 import HeaderGoBack from "../components/Card_components/HeaderGoBack";
 
@@ -10,7 +11,7 @@ export default function Imprint({ isLight }) {
         <div className='Card__content'>
           <h2>Imprint</h2>
           <p>
-            This App has been made during the
+            This App has been made during the{" "}
             <span className='txt--highlight'>
               Neue Fische Web Developer Bootcamp
             </span>
