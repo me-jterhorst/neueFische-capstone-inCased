@@ -31,11 +31,11 @@ export default function App() {
   const [searchInput, setSearchInput] = useState("");
   const [disable, setDisable] = useState(false);
   const [lightness, setLightness] = useState(
-    JSON.parse(localStorage.getItem("lightness")) || 0
+    JSON.parse(localStorage.getItem("lightness")) || 100
   );
 
   const [darkness, setDarkness] = useState(
-    JSON.parse(localStorage.getItem("darkness")) || 0
+    JSON.parse(localStorage.getItem("darkness")) || 100
   );
 
   // =============== USER
