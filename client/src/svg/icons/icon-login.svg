@@ -1,0 +1,19 @@
+<svg
+className='icon'
+viewBox='0 0 40 40'
+xmlns='http://www.w3.org/2000/svg'
+fill="none"
+>
+    <circle
+    cx='20'
+    cy='12'
+    r='5.75'
+    className='icon-stroke--light'
+    stroke-width='2.5'
+    />
+    <path
+    d='M26.375 33.75L13.625 33.75C11.2088 33.75 9.25 31.7912 9.25 29.375C9.25 24.8877 12.8877 21.25 17.375 21.25L22.625 21.25C27.1123 21.25 30.75 24.8877 30.75 29.375C30.75 31.7912 28.7912 33.75 26.375 33.75Z'
+    className='icon-stroke--light'
+    stroke-width='2.5'
+    />
+</svg>

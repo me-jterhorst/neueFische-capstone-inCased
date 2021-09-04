@@ -12,28 +12,7 @@
   padding: 0;
 }
 
-.Card form {
-  margin: 0;
-  padding: 0;
-}
-
-.Card--light {
-  border: 5px solid var(--color-black-85);
-}
-
-.Card__content {
-  padding: 1.25rem;
-  height: 100%;
-  gap: 0.75rem;
-}
-
-.Card__message--error {
-  background: var(--color-black-100);
-  color: var(--color-white-100);
-  padding: 0.25rem;
-  display: inline;
-}
-
+/* ================== Header */
 .Card__header {
   padding-top: 0.25rem;
   justify-content: space-between;
@@ -48,6 +27,24 @@
   z-index: 0;
   padding: 0.5rem;
 }
+
+/* ================== Content */
+.Card__content {
+  padding: 1.25rem;
+  height: 100%;
+  gap: 1.5rem;
+}
+
+.Card__content h2 {
+  margin-bottom: 1.25rem;
+}
+
+.Card form {
+  margin: 0;
+  padding: 0;
+}
+
+/* ================== Footer */
 .Card__footer {
   position: absolute;
   bottom: 0;
@@ -61,4 +58,17 @@
 .Card__footer button {
   all: unset;
   color: var(--color-white-100);
+}
+
+/* ================== Modal*/
+.Card--light {
+  border: 5px solid var(--color-black-85);
+}
+
+.Card__message--error {
+  background: var(--color-black-100);
+  color: var(--color-white-100);
+  padding: 0.25rem;
+  display: inline;
+  width: max-content;
 }

@@ -1,0 +1,32 @@
+/* Header Element Styles */
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: calc(100vw - var(--dot-matrix-width) - 40px);
+  min-width: 100vw;
+  z-index: 10;
+  min-height: 6.66rem;
+}
+
+.top-nav--active {
+  left: 0;
+}
+
+.top-nav__menu {
+  background: var(--color-black-100);
+  height: 100vh;
+  position: absolute;
+  left: 70px;
+  right: 0;
+  padding-top: 6.66rem;
+  padding-left: 4rem;
+}
+
+/* Dot Matrix Menu Button */
+.top-nav__icon {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  cursor: pointer;
+}

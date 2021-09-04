@@ -1,18 +1,15 @@
-import "./App.css";
-// ========================== Import Components
-import BottomNav from "./components/BottomNav";
-import Header from "./components/Header";
-/* =========================== Import Pages*/
-import Home from "./pages/Home";
-import Account from "./pages/Account";
-import Imprint from "./pages/Imprint";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import PasswordReset from "./pages/PasswordReset";
-import Create from "./pages/Create";
-import Darkmode from "./pages/Darkmode";
-import Overview from "./pages/Overview";
-/* =========================== Import Requirements */
+// ============================== import components
+import BottomNav from "./components/Nav_components/BottomNav";
+import Header from "./components/Nav_components/Header";
+// ============================== import pages
+import Home from "./pages/01_Home";
+import Create from "./pages/02_Create";
+import Overview from "./pages/03_Overview";
+import Darkmode from "./pages/04_Darkmode";
+import Imprint from "./pages/06_Imprint";
+import Account from "./pages/05_Account";
+import Login from "./pages/07_Login";
+// ============================== import requirements
 import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
 import { useState, useEffect, useCallback } from "react";
 
@@ -20,8 +17,6 @@ export default function App() {
   const history = useHistory();
   const location = useLocation();
   const [isLogin, setLogin] = useState(true);
-  const [searchInput, setSearchInput] = useState("");
-  const [disable, setDisable] = useState(false);
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || {
       id: 1,
@@ -33,8 +28,17 @@ export default function App() {
       reminders: [],
     }
   );
+  const [searchInput, setSearchInput] = useState("");
+  const [disable, setDisable] = useState(false);
+  const [lightness, setLightness] = useState(
+    JSON.parse(localStorage.getItem("lightness")) || 10
+  );
 
-  // user
+  const [darkness, setDarkness] = useState(
+    JSON.parse(localStorage.getItem("darkness")) || 100
+  );
+
+  // =============== USER
   function updateUser(user) {
     setUser(user);
   }
@@ -43,7 +47,7 @@ export default function App() {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  // ================== SPEECH
+  // =============== SPEECH
   let supportsSpeech, SpeechRecognition, recognition;
 
   if (!window.webkitSpeechRecognition) {
@@ -54,7 +58,7 @@ export default function App() {
     recognition = new SpeechRecognition();
   }
 
-  // ============== SEARCH HANDLERS
+  // =============== SEARCH HANDLERS
   function onSearchSpeech(event) {
     event.preventDefault();
     recognition.start();
@@ -83,8 +87,7 @@ export default function App() {
     setSearchInput(event.target.value);
   }
 
-  // ======================= Delete Functions
-
+  // =============== DELETE FUNCTIONS
   function deleteTask(postId, reminderId) {
     const userWithoutTask = user.reminders.filter(
       (reminder) => reminder.reminderId === reminderId
@@ -99,7 +102,6 @@ export default function App() {
       history.push("/overview");
     }
   }
-
   function deleteReminder(reminderId) {
     const indexOfReminder = user.reminders.findIndex(
       (reminder) => reminder.reminderId === reminderId
@@ -112,34 +114,66 @@ export default function App() {
 
     history.push("/overview");
   }
-  // ================================ Darkmode
-  const [lightness, setLightness] = useState(
-    JSON.parse(localStorage.getItem("lightness")) || 0
-  );
+
+  // =============== DARKMODE
   function handleLightness(event) {
     setLightness(event.target.value);
   }
+  function handleWhite(event) {
+    setDarkness(event.target.value);
+  }
   const setDarkestblack = useCallback(() => {
-    document.documentElement.style.setProperty(
-      "--lightness",
-      `${lightness / 8}%`
-    );
+    document.documentElement.style.setProperty("--lightness", `${lightness}%`);
     localStorage.setItem("lightness", JSON.stringify(lightness));
   }, [lightness]);
+
+  const setWhitestWhite = useCallback(() => {
+    document.documentElement.style.setProperty("--darkness", `${darkness}%`);
+    localStorage.setItem("darkness", JSON.stringify(darkness));
+  }, [darkness]);
 
   useEffect(() => {
     setDarkestblack();
   }, [setDarkestblack, lightness]);
+
+  useEffect(() => {
+    setWhitestWhite();
+  }, [setWhitestWhite, darkness]);
+
   return (
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
+
       <Switch>
-        <Route path="/create">
-          <Create isLogin={isLogin} />
+        <Route path='/logout'>
+          <Redirect to='/' />
+        </Route>
+
+        <Route path='/login'>
+          <Login />
+        </Route>
+
+        <Route path='/imprint'>
+          <Imprint />
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/overview">
+        <Route path='/account'>
+          <Account isLight={true} />
+          <BottomNav hasSpeech={false} />
+        </Route>
+
+        <Route path='/darkmode'>
+          <Darkmode
+            lightness={lightness}
+            darkness={darkness}
+            handleWhite={handleWhite}
+            handleLightness={handleLightness}
+          />
+          <BottomNav hasSpeech={false} />
+        </Route>
+
+        <Route path='/overview'>
           <Overview
             searchquery={searchInput}
             onSearch={onSearchChange}
@@ -153,36 +187,12 @@ export default function App() {
           />
         </Route>
 
-        <Route path="/darkmode">
-          <Darkmode lightness={lightness} handleLightness={handleLightness} />
+        <Route path='/create'>
+          <Create isLogin={isLogin} updateUser={updateUser} />
           <BottomNav hasSpeech={false} />
         </Route>
 
-        <Route path="/account">
-          <Account isLight={true} />
-          <BottomNav hasSpeech={false} />
-        </Route>
-
-        <Route path="/imprint">
-          <Imprint />
-          <BottomNav hasSpeech={false} />
-        </Route>
-
-        <Route path="/login">
-          <Login />
-        </Route>
-
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-
-        <Route path="/password-reset">
-          <PasswordReset />
-        </Route>
-        <Route path="/logout">
-          <Redirect to="/" />
-        </Route>
-        <Route path="/">
+        <Route path='/'>
           <Home
             isLogin={isLogin}
             searchquery={searchInput}
@@ -198,8 +208,8 @@ export default function App() {
           />
         </Route>
 
-        <Route path="/*">
-          <Redirect to="/" />
+        <Route path='/*'>
+          <Redirect to='/' />
         </Route>
       </Switch>
     </>

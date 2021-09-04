@@ -20,16 +20,18 @@
 }
 
 :root {
-  font-size: 15px;
   --lightness: 0%;
-  --color-black-100: hsl(0, 0%, var(--lightness));
-  --color-black-85: hsl(0, 0%, calc(var(--lightness) + 15%));
-  --color-black-70: hsl(0, 0%, calc(var(--lightness) + 30%));
-  --color-black-55: hsl(0, 0%, calc(var(--lightness) + 45%));
-  --color-black-40: hsl(0, 0%, calc(var(--lightness) + 60%));
-  --color-black-30: hsl(0, 0%, calc(var(--lightness) + 70%));
-  --color-black-25: hsl(0, 0%, calc(var(--lightness) + 85%));
-  --color-white-100: hsl(0, 0%, 100%);
+  --darkness: 0%;
+  --color-black-100: hsl(0, 0%, calc(100% - (10 * var(--lightness))));
+  --color-black-85: hsl(0, 0%, calc(100% - (8.5 * var(--lightness))));
+  --color-black-70: hsl(0, 0%, calc(100% - (7 * var(--lightness))));
+  --color-black-55: hsl(0, 0%, calc(100% - (6 * var(--lightness))));
+  --color-black-40: hsl(0, 0%, calc(100% - (4.5 * var(--lightness))));
+  --color-black-30: hsl(0, 0%, calc(100% - (3 * var(--lightness))));
+  --color-black-25: hsl(0, 0%, calc(100% - (1.5 * var(--lightness))));
+  --color-white-100: hsl(0, 0%, calc(var(--darkness)));
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
   --dot-matrix-width: 2rem;
 }
 
@@ -37,11 +39,19 @@
   background: var(--color-black-40);
 }
 
+::-webkit-scrollbar {
+  background: var(--color-black-40);
+  width: 0.75rem;
+  border-radius: 0.66rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-black-85);
+  border-radius: 0.66rem;
+}
+
 html,
 body {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
   overflow: hidden;
   position: relative;
 }
@@ -51,12 +61,12 @@ html {
 }
 
 body {
-  border-radius: 25px;
-  background: var(--color-white-100);
-  border: 5px solid var(--color-black-100);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  border-radius: 25px;
+  border: 5px solid var(--color-black-100);
+  background: var(--color-white-100);
 }
 
 main {
@@ -64,12 +74,13 @@ main {
   padding-inline: 1.25rem;
 }
 
-::-webkit-scrollbar {
-  background: var(--color-black-40);
-
-  width: 0.75rem;
+.card-screen {
+  height: calc(100vh - 6em);
+  padding-bottom: 2rem;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--color-black-85);
-  border-radius: 10px;
+
+form {
+  margin-top: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
 }

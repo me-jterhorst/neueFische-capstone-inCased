@@ -5,10 +5,16 @@
   background-repeat: no-repeat;
 }
 
-#Login .Card__content {
-  /* overflow-y: scroll; */
-  display: flex;
-  flex-direction: column;
+#Signup {
+  background-image: url(../svg/backgrounds/background-signUp.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left;
+}
 
-  gap: 0.5em;
+#PasswordReset {
+  background-image: url(../svg/backgrounds/background-resetPassword.svg);
+  background-position: top left;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

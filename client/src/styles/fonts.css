@@ -16,7 +16,14 @@ h3 {
   font-size: 1.5rem;
 }
 
+h4 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+}
+
 p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
   font-size: 0.85rem;
   line-height: 1.5rem;
   letter-spacing: 0.025rem;
@@ -25,13 +32,15 @@ p {
 label {
   font-family: "Rubik", sans-serif;
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: 0.025rem;
   color: var(--color-black-100);
 }
 
 summary {
   font-size: 0.85rem;
 }
+
 .link {
   text-decoration: none;
   color: var(--color-black-55);

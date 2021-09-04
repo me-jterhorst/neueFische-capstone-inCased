@@ -1,0 +1,14 @@
+.top-nav a {
+  color: var(--color-white-100);
+  font-family: "Rubik", sans-serif;
+  font-size: 2rem;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.top-nav a:last-of-type {
+  margin: auto 0;
+}
