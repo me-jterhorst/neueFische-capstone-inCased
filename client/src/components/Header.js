@@ -1,12 +1,14 @@
 import "./Header.css";
-import { useState } from "react";
+// ============================== import components
+import MenuLink from "./MenuLink";
 import { ReactComponent as DotMatrixIcon } from "../svg/icons/icon-dotMatrix.svg";
 import { ReactComponent as DarkmodeIcon } from "../svg/icons/icon-darkmode.svg";
 import { ReactComponent as AccountIcon } from "../svg/icons/icon-account.svg";
 import { ReactComponent as ImprintIcon } from "../svg/icons/icon-imprint.svg";
 import { ReactComponent as LoginIcon } from "../svg/icons/icon-login.svg";
+// ============================== import requirements
+import { useState } from "react";
 import useOnclickOutside from "react-cool-onclickoutside";
-import MenuLink from "./MenuLink";
 
 export default function Header({ isLogin, toggleLogin }) {
   const [isToggled, setIsToggled] = useState(false);
@@ -14,44 +16,42 @@ export default function Header({ isLogin, toggleLogin }) {
     setIsToggled(false);
   });
 
-  function toggleNav() {
-    setIsToggled(!isToggled);
-  }
   return (
     <header
-      className={`top-nav ${isToggled ? "top-nav--active" : " "}
-    transition`}>
-      <DotMatrixIcon onClick={() => toggleNav()} />
+      className={`top-nav transition ${isToggled ? "top-nav--active" : " "} `}>
+      <DotMatrixIcon onClick={() => setIsToggled(!isToggled)} />
       <nav ref={ref} className='top-nav__menu dispFlex col'>
         <MenuLink
           destination='Darkmode'
-          clickAction={() => toggleNav()}
+          clickAction={() => setIsToggled(!isToggled)}
           icon={<DarkmodeIcon />}
         />
+
         {isLogin && (
           <MenuLink
             destination='Account'
-            clickAction={() => toggleNav()}
+            clickAction={() => setIsToggled(!isToggled)}
             icon={<AccountIcon />}
           />
         )}
 
         <MenuLink
           destination='Imprint'
-          clickAction={() => toggleNav()}
+          clickAction={() => setIsToggled(!isToggled)}
           icon={<ImprintIcon />}
         />
+
         {isLogin ? (
           <MenuLink
             destination='Logout'
-            clickAction={() => toggleNav()}
+            clickAction={() => setIsToggled(!isToggled)}
             icon={<LoginIcon />}
             toggleLogin={toggleLogin}
           />
         ) : (
           <MenuLink
             destination='Login'
-            clickAction={() => toggleNav()}
+            clickAction={() => setIsToggled(!isToggled)}
             icon={<LoginIcon />}
           />
         )}
