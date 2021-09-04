@@ -1,11 +1,10 @@
 import "./Create.css";
-// ============================ Import Components
-import CreateTask from "./CreateTask";
-import CreateReminder from "./CreateReminder";
-// ============================ Import Requirements
-import { useState } from "react";
+// ============================== import components
+import CreateTask from "./02_2_CreateTask";
+import CreateReminder from "./02_1_CreateReminder";
+// ============================== import requirements
+import { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function Create({ isLogin }) {
   const history = useHistory();

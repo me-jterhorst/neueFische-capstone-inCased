@@ -3,9 +3,9 @@ import BottomNav from "./components/Nav_components/BottomNav";
 import Header from "./components/Nav_components/Header";
 // ============================== import pages
 import Home from "./pages/01_Home";
-import Create from "./pages/Create";
-import Overview from "./pages/Overview";
-import Darkmode from "./pages/Darkmode";
+import Create from "./pages/02_Create";
+import Overview from "./pages/03_Overview";
+import Darkmode from "./pages/04_Darkmode";
 import Imprint from "./pages/Imprint";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
@@ -34,6 +34,10 @@ export default function App() {
   const [disable, setDisable] = useState(false);
   const [lightness, setLightness] = useState(
     JSON.parse(localStorage.getItem("lightness")) || 0
+  );
+
+  const [darkness, setDarkness] = useState(
+    JSON.parse(localStorage.getItem("darkness")) || 0
   );
 
   // =============== USER
@@ -117,17 +121,26 @@ export default function App() {
   function handleLightness(event) {
     setLightness(event.target.value);
   }
+  function handleWhite(event) {
+    setDarkness(event.target.value);
+  }
   const setDarkestblack = useCallback(() => {
-    document.documentElement.style.setProperty(
-      "--lightness",
-      `${lightness / 8}%`
-    );
+    document.documentElement.style.setProperty("--lightness", `${lightness}%`);
     localStorage.setItem("lightness", JSON.stringify(lightness));
   }, [lightness]);
+
+  const setWhitestWhite = useCallback(() => {
+    document.documentElement.style.setProperty("--darkness", `${darkness}%`);
+    localStorage.setItem("darkness", JSON.stringify(darkness));
+  }, [darkness]);
 
   useEffect(() => {
     setDarkestblack();
   }, [setDarkestblack, lightness]);
+
+  useEffect(() => {
+    setWhitestWhite();
+  }, [setWhitestWhite, darkness]);
 
   return (
     <>
@@ -153,7 +166,12 @@ export default function App() {
         </Route>
 
         <Route path='/darkmode'>
-          <Darkmode lightness={lightness} handleLightness={handleLightness} />
+          <Darkmode
+            lightness={lightness}
+            darkness={darkness}
+            handleWhite={handleWhite}
+            handleLightness={handleLightness}
+          />
           <BottomNav hasSpeech={false} />
         </Route>
 

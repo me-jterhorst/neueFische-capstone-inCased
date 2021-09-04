@@ -70,4 +70,5 @@
   color: var(--color-white-100);
   padding: 0.25rem;
   display: inline;
+  width: max-content;
 }

@@ -1,8 +1,8 @@
-// =================== Import Components
+// ============================== import components
 import Card from "../components/Card";
 import SpeechInput from "../components/Input_components/SpeechInput";
 import CardTaskHeader from "../components/Card_components/CardTaskHeader";
-// ===================== Import Requirements
+// ============================== import requirements
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 

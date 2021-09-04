@@ -1,8 +1,8 @@
 import "./ListPage.css";
-// import components
+// ============================== import components
 import { ReactComponent as ForwardButtonIcon } from "../svg/icons/icon-chevron-right.svg";
 import { ReactComponent as DeleteIcon } from "../svg/icons/icon-delete.svg";
-// import requirements
+// ============================== import requirements
 import { useHistory } from "react-router-dom";
 
 export default function ListPage({

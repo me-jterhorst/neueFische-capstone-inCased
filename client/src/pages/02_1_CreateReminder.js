@@ -1,9 +1,9 @@
 import "./Create.css";
-// =============== Import Components
+// ============================== import components
 import Card from "../components/Card";
 import SpeechInput from "../components/Input_components/SpeechInput";
 import CardReminderHeader from "../components/Card_components/CardReminderHeader";
-// =============== Import Requirements
+// ============================== import requirements
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { v4 as uuidv4 } from "uuid";

@@ -1,11 +1,11 @@
 import "./Overview.css";
-// ======================= import components
+// ============================== import components
 import Searchfield from "../components/Search_components/Searchfield";
 import BottomNav from "../components/Nav_components/BottomNav";
-// ======================= import pages
-import ListPage from "./ListPage";
-import SinglePage from "./SinglePage";
-// ======================== import requirements
+// ============================== import pages
+import ListPage from "./03_1_ListPage";
+import SinglePage from "./03_2_SinglePage";
+// ============================== import requirements
 import { Switch, Route } from "react-router-dom";
 
 export default function Overview({

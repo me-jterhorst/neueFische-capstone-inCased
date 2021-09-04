@@ -1,9 +1,9 @@
 import "./SinglePage.css";
-// import components
+// ============================== import components
 import Card from "../components/Card";
 import CardOverviewHeader from "../components/Card_components/CardOverviewHeader";
 import { ReactComponent as DeleteIcon } from "../svg/icons/icon-delete.svg";
-// import requirements
+// ============================== import requirements
 import { useParams } from "react-router-dom";
 
 export default function SinglePage({ globalReminders, deleteTask }) {
