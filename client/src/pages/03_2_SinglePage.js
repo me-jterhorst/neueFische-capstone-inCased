@@ -1,4 +1,3 @@
-import "./SinglePage.css";
 // ============================== import components
 import Card from "../components/Card";
 import CardOverviewHeader from "../components/Card_components/CardOverviewHeader";

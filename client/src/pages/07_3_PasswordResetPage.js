@@ -1,7 +1,6 @@
-import "./PasswordReset.css";
+// ============================== import components
 import InputField from "../components/Input_components/LoginInputField";
 import Card from "../components/Card";
-
 import FooterSubmit from "../components/Card_components/FooterSubmit";
 import HeaderGoBack from "../components/Card_components/HeaderGoBack";
 

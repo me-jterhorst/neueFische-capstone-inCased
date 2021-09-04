@@ -1,4 +1,3 @@
-import "./ListPage.css";
 // ============================== import components
 import { ReactComponent as ForwardButtonIcon } from "../svg/icons/icon-chevron-right.svg";
 import { ReactComponent as DeleteIcon } from "../svg/icons/icon-delete.svg";

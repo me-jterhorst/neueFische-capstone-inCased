@@ -8,9 +8,7 @@ import Overview from "./pages/03_Overview";
 import Darkmode from "./pages/04_Darkmode";
 import Imprint from "./pages/06_Imprint";
 import Account from "./pages/05_Account";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import PasswordReset from "./pages/PasswordReset";
+import Login from "./pages/07_Login";
 // ============================== import requirements
 import { Switch, Route, Redirect, useHistory, useLocation } from "react-router";
 import { useState, useEffect, useCallback } from "react";
@@ -146,27 +144,20 @@ export default function App() {
     <>
       <Header isLogin={isLogin} toggleLogin={() => setLogin(!isLogin)} />
 
-      <Route path='/login'>
-        <Login />
-      </Route>
-
-      <Route path='/signup'>
-        <SignUp />
-      </Route>
-
-      <Route path='/password-reset'>
-        <PasswordReset />
-      </Route>
-      <Route path='/logout'>
-        <Redirect to='/' />
-      </Route>
-
-      <Route path='/imprint'>
-        <Imprint />
-        <BottomNav hasSpeech={false} />
-      </Route>
-
       <Switch>
+        <Route path='/logout'>
+          <Redirect to='/' />
+        </Route>
+
+        <Route path='/login'>
+          <Login />
+        </Route>
+
+        <Route path='/imprint'>
+          <Imprint />
+          <BottomNav hasSpeech={false} />
+        </Route>
+
         <Route path='/account'>
           <Account isLight={true} />
           <BottomNav hasSpeech={false} />
