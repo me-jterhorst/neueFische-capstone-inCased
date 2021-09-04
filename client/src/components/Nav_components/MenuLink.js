@@ -1,3 +1,5 @@
+import "./MenuLink.css";
+
 import { NavLink } from "react-router-dom";
 
 export default function MenuLink({
@@ -10,10 +12,9 @@ export default function MenuLink({
     <NavLink
       onClick={clickAction}
       onMouseDown={destination === "Logout" ? toggleLogin : null}
-      className="opaque"
+      className='opaque'
       exact
-      to={`/${destination.toLowerCase()}`}
-    >
+      to={`/${destination.toLowerCase()}`}>
       {icon}
       {destination}
     </NavLink>

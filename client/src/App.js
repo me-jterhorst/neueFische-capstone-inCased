@@ -1,6 +1,6 @@
 // ============================== import components
 import BottomNav from "./components/Nav_components/BottomNav";
-import Header from "./components/Header";
+import Header from "./components/Nav_components/Header";
 // ============================== import pages
 import Home from "./pages/01_Home";
 import Account from "./pages/Account";
