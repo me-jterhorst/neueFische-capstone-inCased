@@ -3,7 +3,7 @@ import "./Login.css";
 import SignUp from "./07_2_SignUp";
 import PasswordReset from "./07_3_PasswordResetPage";
 // ============================== import requirements
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import LoginPage from "./07_1_LoginPage";
 
 export default function Login() {
