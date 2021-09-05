@@ -15,13 +15,13 @@ export default function BottomNav({ handleSpeech, hasSpeech, disable }) {
       ) : null}
 
       <nav className='TabNav dispFlex'>
-        <NavLink className='opaque' exact to='/'>
+        <NavLink className='opaque transition' exact to='/'>
           <HomeIcon />
         </NavLink>
-        <NavLink className='opaque' to='/create'>
+        <NavLink className='opaque transition' to='/create'>
           <CreateIcon />
         </NavLink>
-        <NavLink className='opaque' to='/overview'>
+        <NavLink className='opaque transition' to='/overview'>
           <OverviewIcon />
         </NavLink>
       </nav>
