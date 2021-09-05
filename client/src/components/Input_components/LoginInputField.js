@@ -7,7 +7,7 @@ export default function InputField({ identifier, label, type = "text" }) {
       <span className='Input-wrapper'>
         <input
           type={type}
-          className='Input'
+          className='Input transition'
           name={`${identifier}__${label}`}
           id={`${identifier}__${label}`}
           placeholder={label}

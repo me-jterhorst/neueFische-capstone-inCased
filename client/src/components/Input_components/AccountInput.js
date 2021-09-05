@@ -7,7 +7,7 @@ export default function Input({ label, value, type = "text" }) {
       <span className='Input-wrapper'>
         <input
           type={type}
-          className='Input Input--account'
+          className='Input Input--account transition'
           name={`Account__${label}`}
           id={`Account__${label}`}
           placeholder={value}
