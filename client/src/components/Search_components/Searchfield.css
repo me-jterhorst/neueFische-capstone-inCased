@@ -52,3 +52,7 @@
 .Searchfield__input:focus {
   background: var(--color-white-100);
 }
+
+.Searchfield__button:hover {
+  transform: scale(0.85);
+}

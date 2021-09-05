@@ -46,7 +46,7 @@ export default function SpeechInput({
           id={label}
           name={label}
           type='text'
-          className='Input Input--speech'
+          className='Input Input--speech transition'
           value={value}
           onChange={onChange}
           required={isRequired}
@@ -58,7 +58,7 @@ export default function SpeechInput({
               id={label}
               onMouseDown={onSpeechInput}
               onClick={(event) => event.preventDefault()}
-              className={`Speechinput-button opaque recording--active `}>
+              className={`Speechinput-button opaque recording--active transition`}>
               <MicrophoneIcon className='icon--small btn--microphone' />
             </button>
           </span>

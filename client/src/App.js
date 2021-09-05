@@ -39,9 +39,9 @@ export default function App() {
   );
 
   // =============== USER
-  function updateUser(user) {
+  const updateUser = (user) => {
     setUser(user);
-  }
+  };
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -199,7 +199,6 @@ export default function App() {
             name={user.user.name}
             onSearchChange={onSearchChange}
             onSearchSubmit={onSearchSubmit}
-            updateUser={updateUser}
           />
           <BottomNav
             disable={disable}

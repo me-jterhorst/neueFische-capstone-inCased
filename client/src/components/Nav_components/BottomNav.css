@@ -27,3 +27,7 @@
   border-radius: 50%;
   background: var(--color-black-25);
 }
+
+.TabNav a:hover {
+  transform: scale(1.05);
+}

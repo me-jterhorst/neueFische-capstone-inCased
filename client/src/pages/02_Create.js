@@ -6,7 +6,7 @@ import CreateReminder from "./02_1_CreateReminder";
 import { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 
-export default function Create({ isLogin }) {
+export default function Create({ isLogin, updateUser }) {
   const history = useHistory();
   const [reminder, setReminder] = useState(null);
   const [storedReminder, setStoreReminder] = useState(null);
@@ -20,10 +20,12 @@ export default function Create({ isLogin }) {
 
   useEffect(() => {
     if (storedReminder) {
-      localStorage.setItem("reminder", JSON.stringify({ ...storedReminder }));
+      const user = JSON.parse(localStorage.getItem("user"));
+      user.reminders.push(storedReminder);
+      updateUser(user);
       history.push("/");
     }
-  }, [storedReminder, history]);
+  }, [storedReminder, updateUser, history]);
 
   // =============== Reminder
   function goBackwardReminder(event) {
