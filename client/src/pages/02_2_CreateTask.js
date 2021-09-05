@@ -40,17 +40,21 @@ export default function CreateTask({
 
   // Switch to next Task Card
   function handleSubmit(event) {
-    event.preventDefault();
-    submitTask(input);
-    setInput({ verb: "", action: "", with: "" });
-    goForward();
+    if (!isTooShort) {
+      event.preventDefault();
+      submitTask(input);
+      setInput({ verb: "", action: "", with: "" });
+      goForward();
+    }
   }
 
   // End Task Creation
   function handleSave(event) {
-    event.preventDefault();
-    setInput({ verb: "", action: "", with: "" });
-    storeReminder(input);
+    if (!isTooShort) {
+      event.preventDefault();
+      setInput({ verb: "", action: "", with: "" });
+      storeReminder(input);
+    }
   }
 
   return (
