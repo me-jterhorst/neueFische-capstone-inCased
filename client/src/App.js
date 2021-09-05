@@ -38,12 +38,29 @@ export default function App() {
     JSON.parse(localStorage.getItem("darkness")) || 100
   );
 
-  // =============== USER
-  function updateUser(user) {
-    setUser(user);
-  }
+  // // =============== USER
+  // const updateUser = (user) => {
+  //   setUser(user);
+  // };
+
+  // // Add reminder
+  // useEffect(() => {
+  //   const existingUserData = JSON.parse(localStorage.getItem("user"));
+  //   const temporaryReminder =
+  //     JSON.parse(localStorage.getItem("reminder")) || null;
+
+  //   if (temporaryReminder) {
+  //     localStorage.removeItem("reminder");
+  //     existingUserData.reminders.push(temporaryReminder);
+
+  //     updateUser(existingUserData);
+  //   }
+  // }, [updateUser]);
 
   useEffect(() => {
+    const temporaryReminder =
+      JSON.parse(localStorage.getItem("reminder")) || null;
+    user.reminders.push(temporaryReminder);
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
@@ -188,7 +205,10 @@ export default function App() {
         </Route>
 
         <Route path='/create'>
-          <Create isLogin={isLogin} updateUser={updateUser} />
+          <Create
+            isLogin={isLogin}
+            // updateUser={updateUser}
+          />
           <BottomNav hasSpeech={false} />
         </Route>
 
@@ -199,7 +219,7 @@ export default function App() {
             name={user.user.name}
             onSearchChange={onSearchChange}
             onSearchSubmit={onSearchSubmit}
-            updateUser={updateUser}
+            // updateUser={updateUser}
           />
           <BottomNav
             disable={disable}
